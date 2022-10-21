@@ -14,6 +14,7 @@ Github > Settings > SSH and GPG keys
 ## Setup Docker
 
 1. Clone repository
+
 `cd Desktop`
 
 `git clone git@github.com:kredo-grobal-it-intern/5th_batch_app.git`
