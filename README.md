@@ -24,6 +24,7 @@ Github > Settings > SSH and GPG keys
 `cd 5th_batch_app`
 
 3. create .env
+
 `cp .env.example .env`
 
 4. modify .env L12
@@ -37,14 +38,12 @@ Github > Settings > SSH and GPG keys
 
 ## Setup Local
 
-##### install php 
+##### 0. install php 
 `php -v`
 
 if you don't have any PHP version
 
-
-##### install mysql 
-if you don't have mysql `brew install mysql`
+`brew install php`
 
 ##### 1. Clone repository
 `git clone git@github.com:kredo-grobal-it-intern/5th_batch_app.git`
@@ -60,15 +59,21 @@ if you don't have mysql `brew install mysql`
 ##### 4. Modify .env L12
 <img width="400" alt="Screen Shot 2022-07-12 at 3 43 08 PM" src="https://user-images.githubusercontent.com/105486119/178426049-b936326c-e467-48d4-aca6-4b2103e5e6f0.png">
 
-##### 5. Install Composer Libraries
-`composer install`
+##### 5. Create Database
+`mysql --version`
 
-##### 6. Setup Environment
-`mysql -u root -p`
+if you don't have mysql
 
-enter your password
+`brew install mysql`
+
+`mysql.server start`
+
+`mysql -u root`
 
 `create database 5th_batch_app;`
+
+##### 6. Install Composer Libraries
+`composer install`
 
 ##### 7. Run migration and seeder
 `php artisan migrate`
