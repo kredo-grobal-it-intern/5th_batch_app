@@ -5,11 +5,11 @@
 
 `type ~/.ssh/id_rsa.pub` (Windows)
 
-if you don't have `.ssh/id_rsa.pub`
+##### if you don't have `.ssh/id_rsa.pub`
 
 `ssh-keygen -t rsa -C "your_github_email@example.com"` 
 
-Github > Settings > SSH and GPG keys
+##### Github > Settings > SSH and GPG keys
 
 ## Setup Docker
 
@@ -55,21 +55,24 @@ Github > Settings > SSH and GPG keys
 ##### 5. install php 
 `php -v`
 
-if you don't have any PHP version
+##### if you don't have any PHP version
 
 `brew install php`
 
 ##### 6. Create Database
 `mysql --version`
 
-if you don't have mysql
+##### if you don't have mysql
 
 `brew install mysql`
 
+##### start mysql server
 `mysql.server start`
 
+##### login mysql 
 `mysql -u root`
 
+##### create your database 
 `create database 5th_batch_app;`
 
 ##### 7. Install Composer Libraries
@@ -88,7 +91,7 @@ if you don't have mysql
 ##### 10. Run npm
 `npm install` 
 
-if you didn't node plese install from below link
+##### if you don't have node plese install from below link
 
 https://codelikes.com/mac-node-install/
 
