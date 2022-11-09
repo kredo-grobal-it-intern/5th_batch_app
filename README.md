@@ -13,25 +13,25 @@ Github > Settings > SSH and GPG keys
 
 ## Setup Docker
 
-1. Clone repository
+##### 1. Clone repository
 
 `cd Desktop`
 
 `git clone git@github.com:kredo-grobal-it-intern/5th_batch_app.git`
 
-2. Go to your directory
+##### 2. Go to your directory
 
 `cd 5th_batch_app`
 
-3. create .env
+##### 3. create .env
 
 `cp .env.example .env`
 
-4. modify .env L12
+##### 4. modify .env L12
 <img width="400" alt="Screen Shot 2022-07-12 at 3 43 08 PM" src="https://user-images.githubusercontent.com/105486119/178426049-b936326c-e467-48d4-aca6-4b2103e5e6f0.png">
 
-<!-- 5. sail up
-`./vendor/laravel/sail/bin/sail up` -->
+##### 5. sail up
+`./vendor/laravel/sail/bin/sail up`
 
 
 
