@@ -72,6 +72,9 @@
 ##### login mysql 
 `mysql -u root`
 
+##### exit mysql 
+`exit`
+
 ##### create your database 
 `create database 5th_batch_app;`
 
