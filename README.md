@@ -94,7 +94,7 @@
 ##### 10. Run npm
 `npm install` 
 
-##### if you don't have node plese install from below link
+##### if you don't have node, please install from below link
 
 https://codelikes.com/mac-node-install/
 
