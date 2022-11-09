@@ -109,7 +109,7 @@ https://codelikes.com/mac-node-install/
 ##### 13. Visit a website
 http://127.0.0.1:8000/
 
-##### Set Sequel Ace
+## Set Sequel Ace
 <img width="400" alt="Screen Shot 2022-06-10 at 4 32 39 PM" src="https://user-images.githubusercontent.com/105486119/173014301-bf3c0b08-ae1a-48fa-930b-d13a8f8674b7.png">
 
 ##### Name: localhost/5th_batch_app
