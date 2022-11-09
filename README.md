@@ -38,13 +38,6 @@ Github > Settings > SSH and GPG keys
 
 ## Setup Local
 
-##### 0. install php 
-`php -v`
-
-if you don't have any PHP version
-
-`brew install php`
-
 ##### 1. Clone repository
 `git clone git@github.com:kredo-grobal-it-intern/5th_batch_app.git`
 
@@ -59,7 +52,14 @@ if you don't have any PHP version
 ##### 4. Modify .env L12
 <img width="400" alt="Screen Shot 2022-07-12 at 3 43 08 PM" src="https://user-images.githubusercontent.com/105486119/178426049-b936326c-e467-48d4-aca6-4b2103e5e6f0.png">
 
-##### 5. Create Database
+##### 5. install php 
+`php -v`
+
+if you don't have any PHP version
+
+`brew install php`
+
+##### 6. Create Database
 `mysql --version`
 
 if you don't have mysql
@@ -72,34 +72,35 @@ if you don't have mysql
 
 `create database 5th_batch_app;`
 
-##### 6. Install Composer Libraries
+##### 7. Install Composer Libraries
 `composer install`
 
-##### 7. Run migration and seeder
+##### 8. Run migration and seeder
 `php artisan migrate`
 
 `php artisan db:seed`
 
-##### 8. make images folder & Run storage:link
+##### 9. make images folder & Run storage:link
 `mkdir storage/app/public/images`
 
 `php artisan storage:link`
 
-##### 9. Run npm
+##### 10. Run npm
 `npm install` 
 
-if you didn't node plese install
+if you didn't node plese install from below link
+
 https://codelikes.com/mac-node-install/
 
 `npm run dev`
 
-##### 10. Set Application key
+##### 11. Set Application key
 `php artisan key:generate`
 
-##### 11. Server start
+##### 12. Server start
 `php artisan serve`
 
-##### 12. Visit a website
+##### 13. Visit a website
 http://127.0.0.1:8000/
 
 ##### Set Sequel Ace
