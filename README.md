@@ -36,7 +36,7 @@
 
 
 
-## Setup Local
+## Setup Local (Mac)
 
 ##### 1. Clone repository
 `git clone git@github.com:kredo-grobal-it-intern/5th_batch_app.git`
