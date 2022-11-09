@@ -1,6 +1,6 @@
 ## Setup Github
 
-##### Check your ~/.ssh/id_rsa.pub 
+##### 1. Check your ~/.ssh/id_rsa.pub 
 `less ~/.ssh/id_rsa.pub` (Mac)
 
 `type ~/.ssh/id_rsa.pub` (Windows)
