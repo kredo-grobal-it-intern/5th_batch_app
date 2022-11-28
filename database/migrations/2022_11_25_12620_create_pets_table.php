@@ -15,7 +15,7 @@ class CreatePetsTable extends Migration
     {
         Schema::create('pets', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('owner_id');
+            $table->unsignedBigInteger('user_id');
             $table->enum('pet_type', ['dog', 'cat']);
             $table->text('breed');
             $table->text('weight');
@@ -28,7 +28,7 @@ class CreatePetsTable extends Migration
             $table->tinyInteger('neutered');
             $table->timestamps();
 
-            $table->foreign('owner_id')->references('id')->on('owners')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
 
 

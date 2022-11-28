@@ -19,6 +19,7 @@ class CreatePostTagsTable extends Migration
             $table->timestamps(); // created_at
 
             // need foreign key
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
         });
     }
 

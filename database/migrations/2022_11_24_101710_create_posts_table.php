@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->timestamps(); // need created_at updated_at
 
             // need foreign key
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -21,13 +21,13 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->string('gender')->nullable();
+            $table->enum('gender', ['Male', 'Female'])->nullable();
             $table->string('date_of_birth')->nullable();
             $table->string('password');
             $table->string('introduction')->nullable();
             $table->unsignedBigInteger('role_id')
                 ->default(2)
-                ->comment('1:admin 2:user');
+                ->comment('1:admin 2:user 3:owner');
             $table->timestamps();
         });
     }

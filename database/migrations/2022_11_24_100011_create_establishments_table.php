@@ -19,11 +19,11 @@ class CreateEstablishmentsTable extends Migration
             $table->string('contact_number');
             $table->string('website');
             $table->string('image');
-            // $table->unsignedBigInteger('owner_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            // $table->foreign('owner_id')->references('id')->on('owners');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
