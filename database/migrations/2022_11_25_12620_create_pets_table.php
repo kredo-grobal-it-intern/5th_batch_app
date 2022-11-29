@@ -20,7 +20,7 @@ class CreatePetsTable extends Migration
             $table->text('breed');
             $table->text('weight');
             $table->text('charateristic');
-            $table->string('image');
+            $table->string('image',255);
             $table->enum('vaccination_status', ['Compeleted', 'Not yet']);
             $table->enum('gender', ['Male', 'Female']);
             $table->string('url');
