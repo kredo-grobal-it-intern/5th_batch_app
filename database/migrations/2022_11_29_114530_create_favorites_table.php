@@ -14,7 +14,7 @@ class CreateFavoritesTable extends Migration
     public function up()
     {
         Schema::create('favorites', function (Blueprint $table) {
-            $table->id();
+            
             $table->timestamps();
 
             $table('user_id')->reference('id')->on('users')->onDelete('cascade');

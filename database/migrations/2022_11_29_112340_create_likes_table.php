@@ -14,7 +14,7 @@ class CreateLikesTable extends Migration
     public function up()
     {
         Schema::create('likes', function (Blueprint $table) {
-            $table->id();
+
             $table->timestamps();
 
             $table('user_id')->reference('id')->on('users')->onDelete('cascade');
