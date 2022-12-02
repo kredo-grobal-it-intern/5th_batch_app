@@ -16,9 +16,8 @@
     <div class="row  mt-5 ">
         <div class="col-5  p-0">
             {{-- <img src="{{asset('')}}" alt=""> --}}
-            <div class="bg-secondary w-100" style="height: 400px;">
-                {{ $article->image }} <br>
-                image will be here
+            <div class="bg-secondary w-100">
+                <img src="{{ asset('/storage/images/' . $article->image) }}" class="w-100 p-0" alt="">
             </div>
             <p class="text-end">
                 created at: {{ $article->created_at }} <br>
@@ -40,7 +39,7 @@
         <div class="col-1"></div>
         <div class="col-6 bg-warning">
             <div class="">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, non ad. Quas iure perferendis maiores consectetur odio distinctio optio, incidunt blanditiis? Eligendi vel distinctio totam magni nisi, voluptate, commodi nemo odit consectetur et obcaecati dolorem non neque amet quaerat veritatis aut accusantium. Veritatis, aut sequi. Dolorem similique perspiciatis blanditiis temporibus hic accusamus sit quasi pariatur perferendis natus, necessitatibus consectetur sunt beatae veritatis voluptate, dignissimos veniam iure. Fugiat esse doloremque earum ipsum molestiae iste. Natus voluptatum laborum consectetur! Ipsum velit corrupti, tenetur saepe autem at. Beatae eaque quis vero praesentium harum numquam aliquam magni enim minus obcaecati, ad optio, nulla impedit.
+                <p class="fs-4">{{ $article->body }}</p>
             </div>
         </div>
         <a href="{{ route('article.index') }}" class="fs-4 w-50 text-decoration-none mt-5 mx-auto">Back</a>

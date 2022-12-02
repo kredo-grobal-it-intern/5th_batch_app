@@ -17,7 +17,6 @@
                 <p>Are you sure to delete this article?</p>
                 <div class="bg-secondary">
                     <img src="{{ asset('/storage/images/' . $article->image) }}" class="img-thumbnail" alt="">
-                    image will be here
                 </div>
                 <div class="mt-2">{{ $article->title }}</div>
             </div>      

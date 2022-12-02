@@ -51,6 +51,7 @@
                     </a>
                 </div>
             </div>
+            <a href="{{ route('article.create') }}" class="text-decoration-none">Write Article</a>
         </div>
     </div>
 </div>

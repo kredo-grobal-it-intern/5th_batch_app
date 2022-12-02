@@ -6,10 +6,10 @@
                         <div class="row gx-2">
                             @foreach($all_articles as $article)
                                 <div class="col-5 mx-auto mt-4 card p-0">
-                                    <a href="{{ route('article.show', $article) }}" class="card-body">
-                                        {{$article->image}}
+                                    <a href="{{ route('article.show', $article) }}" class="card-body  p-0">
+                                        <img src="{{ asset('/storage/images/' . $article->image) }}" class="w-100 p-0" alt="" style="max-height:95px;">
                                     </a>
-                                    <a href="" class="card-footer">
+                                    <a href="" class="card-footer p-1" style="height: 40px;">
                                         {{$article->title}}
                                     </a>
                                 </div>
