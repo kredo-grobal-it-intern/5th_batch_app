@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -12,9 +13,19 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $article;
+
+    public function __construct(Article $article){    // class Post の object化 / from Post.php 
+        $this->article = $article;
+    }
+
     public function index()
     {
-        //
+        $all_articles = Article::latest()->get();
+    
+        //     return view('post.index')->with('post', $post);
+        return view('useful-info.index')->with('all_articles', $all_articles);
     }
 
     /**
@@ -24,7 +35,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('useful-info.articles.create');
     }
 
     /**
@@ -46,7 +57,8 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        //     return view('post.index')->with('post', $post);
+        return view('useful-info.articles.show')->with('article',$article);    
     }
 
     /**
@@ -57,7 +69,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('useful-info.articles.edit')->with('article',$article);  
     }
 
     /**

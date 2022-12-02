@@ -21,7 +21,7 @@
                 image will be here
             </div>
             <p class="text-end">
-                created at: {{ $article->created_at->diffForHumans() }} <br>
+                created at: {{ $article->created_at }} <br>
                 updated at: ~hours ago <br>
                 written by: Michael Jordan
             </p>

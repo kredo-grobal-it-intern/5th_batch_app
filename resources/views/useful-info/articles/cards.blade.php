@@ -3,52 +3,26 @@
                 <div class="row">
             <!-- Amusement -->
                     <div class="col"  style="background-color:rgba(250, 202, 123, 1);">
-                        <div class="row p-3">
-                            <div class="col card p-0">
-                                <div class="card-body">
-                                   img
+                        <div class="row gx-2">
+                            @foreach($all_articles as $article)
+                                <div class="col-5 mx-auto mt-4 card p-0">
+                                    <a href="{{ route('article.show', $article) }}" class="card-body">
+                                        {{$article->image}}
+                                    </a>
+                                    <a href="" class="card-footer">
+                                        {{$article->title}}
+                                    </a>
                                 </div>
-                                <div class="card-footer">
-                                    Animal Cafe
-                                </div>
-                            </div>
-                            <div class="col-1"></div>
-                            <div class="col card p-0">
-                                <div class="card-body">
-                                   img
-                                </div>
-                                <div class="card-footer">
-                                    Animal Cafe
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row p-3">
-                            <div class="col card p-0">
-                                <div class="card-body">
-                                   img
-                                </div>
-                                <div class="card-footer">
-                                    Animal Cafe
-                                </div>
-                            </div>
-                            <div class="col-1"></div>
-                            <div class="col card p-0">
-                                <div class="card-body">
-                                   img
-                                </div>
-                                <div class="card-footer">
-                                    Animal Cafe
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
-                   
+                    
         <!-- cafe -->
                     <div class="col ms-4" style="background-color:rgba(255, 222, 104, 1);">
                         <div class="row p-3">
                             <div class="col card p-0">
                                 <div class="card-body">
-                                   img
+                                    img
                                 </div>
                                 <div class="card-footer">
                                     Animal Cafe
@@ -57,7 +31,7 @@
                             <div class="col-1"></div>
                             <div class="col card p-0">
                                 <div class="card-body">
-                                   img
+                                    img
                                 </div>
                                 <div class="card-footer">
                                     Animal Cafe
@@ -67,7 +41,7 @@
                         <div class="row p-3">
                             <div class="col card p-0">
                                 <div class="card-body">
-                                   img
+                                    img
                                 </div>
                                 <div class="card-footer">
                                     Animal Cafe
@@ -76,7 +50,7 @@
                             <div class="col-1"></div>
                             <div class="col card p-0">
                                 <div class="card-body">
-                                   img
+                                    img
                                 </div>
                                 <div class="card-footer">
                                     Animal Cafe
@@ -92,7 +66,7 @@
                         <div class="row p-3">
                             <div class="col card p-0">
                                 <div class="card-body">
-                                   img
+                                    img
                                 </div>
                                 <div class="card-footer">
                                     Animal Cafe
@@ -101,7 +75,7 @@
                             <div class="col-1"></div>
                             <div class="col card p-0">
                                 <div class="card-body">
-                                   img
+                                    img
                                 </div>
                                 <div class="card-footer">
                                     Animal Cafe
@@ -111,7 +85,7 @@
                         <div class="row p-3">
                             <div class="col card p-0">
                                 <div class="card-body">
-                                   img
+                                    img
                                 </div>
                                 <div class="card-footer">
                                     Animal Cafe
@@ -120,7 +94,7 @@
                             <div class="col-1"></div>
                             <div class="col card p-0">
                                 <div class="card-body">
-                                   img
+                                    img
                                 </div>
                                 <div class="card-footer">
                                     Animal Cafe
@@ -134,7 +108,7 @@
                         <div class="row p-3">
                             <div class="col card p-0">
                                 <div class="card-body">
-                                   img
+                                    img
                                 </div>
                                 <div class="card-footer">
                                     Animal Cafe
@@ -143,7 +117,7 @@
                             <div class="col-1"></div>
                             <div class="col card p-0">
                                 <div class="card-body">
-                                   img
+                                    img
                                 </div>
                                 <div class="card-footer">
                                     Animal Cafe
@@ -153,7 +127,7 @@
                         <div class="row p-3">
                             <div class="col card p-0">
                                 <div class="card-body">
-                                   img
+                                    img
                                 </div>
                                 <div class="card-footer">
                                     Animal Cafe
@@ -162,7 +136,7 @@
                             <div class="col-1"></div>
                             <div class="col card p-0">
                                 <div class="card-body">
-                                   img
+                                    img
                                 </div>
                                 <div class="card-footer">
                                     Animal Cafe
