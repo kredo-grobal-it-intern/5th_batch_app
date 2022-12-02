@@ -17,6 +17,7 @@ class CreateLocationsTable extends Migration
             $table->id();
             $table->string('name',250)->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

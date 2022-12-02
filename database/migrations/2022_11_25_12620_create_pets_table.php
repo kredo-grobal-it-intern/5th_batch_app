@@ -27,6 +27,7 @@ class CreatePetsTable extends Migration
             $table->string('date_of_brith');
             $table->tinyInteger('neutered');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 

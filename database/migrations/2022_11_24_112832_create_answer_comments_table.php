@@ -15,7 +15,7 @@ class CreateAnswerCommentsTable extends Migration
     {
         Schema::create('answer_comments', function (Blueprint $table) {
             $table->id();
-            $table->text('comment');
+            $table->text('body');
             $table->unsignedBigInteger('answer_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
