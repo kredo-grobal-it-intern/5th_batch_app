@@ -21,6 +21,19 @@ Route::get('/map', function () {
     return view('maps.index');
 });
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::resource('/map', CommentController::class);
+Route::get('map', function () {
+    return view('maps.index');
+});
+
+Route::get('map/all', function () {
+    return view('maps.viewAll');
+});
+
+Route::get('map/saved', function () {
+    return view('maps.saved');
+});

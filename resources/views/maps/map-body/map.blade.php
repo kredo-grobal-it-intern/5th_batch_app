@@ -1,4 +1,4 @@
-{{-- 
+
     <section class="my-5 mx-5" style="max-width: 23rem;">
         
         <div class="card map-card ">
@@ -6,7 +6,7 @@
 
 
                                 <!-- ⬇️ closed を消すと以下 code が表示される -->
-            {{-- <div class="card-body closed px-0">
+            <div class="card-body closed px-0">
                 <div class="button px-2 mt-3">
                     <a class="btn btn-floating btn-lg living-coral text-white float-end" style="margin-right: .75rem;">
                         <i class="fas fa-bicycle"></i>
@@ -58,7 +58,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div> --}}
+            </div>
         </div>
     </section>
 </div>
