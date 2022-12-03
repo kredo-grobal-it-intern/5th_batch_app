@@ -5,11 +5,11 @@
                     <div class="col"  style="background-color:rgba(250, 202, 123, 1);">
                         <div class="row gx-2">
                             @foreach($all_articles as $article)
-                                <div class="col-5 mx-auto mt-4 card p-0">
+                                <div class="col-5 mx-auto mt-4 card p-0" style="max-height: 120px">
                                     <a href="{{ route('article.show', $article) }}" class="card-body  p-0">
-                                        <img src="{{ asset('/storage/images/' . $article->image) }}" class="w-100 p-0" alt="" style="max-height:95px;">
+                                        <img src="{{ asset('/storage/images/' . $article->image) }}" class="w-100 p-0 rounded-top" alt="" style="max-height:90px;">
                                     </a>
-                                    <a href="" class="card-footer p-1" style="height: 40px;">
+                                    <a href="" class="card-footer p-1">
                                         {{$article->title}}
                                     </a>
                                 </div>

@@ -22,7 +22,7 @@
             </div>      
                 
             <div class="modal-footer">
-                <form action="" method="post" class="w-100">
+                <form action="{{ route('article.destroy', $article) }}" method="post" class="w-100">
                     @csrf
                     @method('DELETE')
 

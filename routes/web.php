@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SampleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,16 +23,35 @@ Route::get('/', function () {
 // Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/useful', function () {
-    return view('useful-info.articles.allArticles');
+
+
+Route::get('/amusement', function () {
+    return view('useful-info.articles.All-articles.amusement');
 });
+Route::get('/cafe', function () {
+    return view('useful-info.articles.All-articles.cafe');
+});
+Route::get('/dogrun', function () {
+    return view('useful-info.articles.All-articles.dogrun');
+});
+Route::get('/hospital', function () {
+    return view('useful-info.articles.All-articles.hospital');
+});
+
+
+Route::get('/saved', function () {
+    return view('useful-info.articles.saved');
+});
+
+
 
 // Route::group(["middleware"=>"auth"], function () {
     // Route::get('/categories', [CategoryController::class, 'generateCategories']);
     // Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
     // Route::post('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
 
-    Route::resource('/article', ArticleController::class);
+        Route::resource('/article', ArticleController::class);
+
     // Route::resource('/comments', CommentController::class);
     // Route::resource('/profile', ProfileController::class);
     // Route::resource('/follow', FollowController::class);
