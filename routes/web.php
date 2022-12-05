@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\qanda\QuestionController;
+use App\Http\Controllers\qanda\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+#creating categories (When you want to add a new category, you can use this route)
+Route::get('/categories',[CategoryController::class, 'generateQuestionCategories']);
+
+Route::group(["middleware"=>"auth"], function() {
+    #question
+    Route::resource('/Q-A', QuestionController::class);
 });
