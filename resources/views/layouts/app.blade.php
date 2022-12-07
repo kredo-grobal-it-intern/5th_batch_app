@@ -20,7 +20,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/qanda.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/q_and_a.css') }}" rel="stylesheet">
 
     {{-- for mdbootstrap --}}
     <!-- Bootstrap CSS v5.2.1 -->

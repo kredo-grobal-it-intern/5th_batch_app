@@ -16,4 +16,4 @@ mix.js('resources/js/app.js', 'public/js')
     //     //
     // ])
     .sass('resources/sass/app.scss', 'public/css')
-    .sass('resources/sass/qanda.scss', 'public/css');
+    .sass('resources/sass/q_and_a.scss', 'public/css');
