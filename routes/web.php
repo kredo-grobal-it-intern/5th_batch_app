@@ -15,10 +15,12 @@ use App\Http\Controllers\qanda\CategoryController;
 |
 */
 
-Auth::routes();
+// Auth::route();
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+
 });
 
 #creating categories (When you want to add a new category, you can use this route)
