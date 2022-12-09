@@ -163,11 +163,24 @@
                     <div class="d-flex justify-content-between mb-3">
                         <a class="btn btn-link link-danger p-md-1 my-1 fs-6 border border-danger" data-mdb-toggle="collapse" href="#collapseContent{{ $question->id }}"
                             role="button" aria-expanded="false" aria-controls="collapseContent">Read more</a>
-                        <div>
+                        <div class="d-inline d-flex">
                             <i class="fas fa-share-alt text-muted p-md-1 my-1 me-2" data-mdb-toggle="tooltip"
                                 data-mdb-placement="top" title="Share this post"></i>
-                            <i class="fas fa-heart text-muted p-md-1 my-1 me-0" data-mdb-toggle="tooltip" data-mdb-placement="top"
-                                title="I like it"></i>
+                            @if ($question->questionIsLiked())
+                                <form action="{{ route('Question_Reaction.destroy', $question->id ) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-light text-danger p-md-1 my-1 me-0"><i class="fas fa-heart unlike fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
+                                    title="Remove like"></i></button>
+                                </form>
+                            @else
+                                <form action="{{ route('Question_Reaction.store') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $question->id }}">
+                                    <button type="submit" class="btn btn-light text-muted p-md-1 my-1 me-0"><i class="fas fa-heart like fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
+                                    title="I like it"></i></button>
+                                </form>
+                            @endif
                         </div>
                     </div>
                     <form action="{{ route('Answer.store') }}" method="post" enctype="multipart/form-data">

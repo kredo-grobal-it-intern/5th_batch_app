@@ -26,7 +26,7 @@ class QuestionController extends Controller
 
         $all_question_categories = QuestionCategory::all();
 
-        return view('qanda/index')
+        return view('question/index')
                     ->with('all_questions', $all_questions)
                     ->with('all_question_categories', $all_question_categories);
     }
@@ -35,7 +35,7 @@ class QuestionController extends Controller
     public function create()
     {
         $all_question_categories = QuestionCategory::all();
-        return view('qanda.create')->with('all_question_categories', $all_question_categories);
+        return view('question.create')->with('all_question_categories', $all_question_categories);
     }
 
 

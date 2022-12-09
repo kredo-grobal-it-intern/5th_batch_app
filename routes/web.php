@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\qanda\QuestionController;
 use App\Http\Controllers\qanda\CategoryController;
+use App\Http\Controllers\qanda\AnswerController;
+use App\Http\Controllers\qanda\AnswerCommentController;
+use App\Http\Controllers\qanda\QuestionReactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +30,7 @@ Route::get('/categories',[CategoryController::class, 'generateQuestionCategories
 Route::group(["middleware"=>"auth"], function() {
     #question
     Route::resource('/Q-A', QuestionController::class);
+    Route::resource('/Answer', AnswerController::class);
+    Route::resource('/Answer_Comment', AnswerCommentController::class);
+    Route::resource('/Question_Reaction', QuestionReactionController::class);
 });

@@ -14,7 +14,7 @@ class SelectedCategory extends Model
 
     public $timestamps = false;
 
-    public function questionCategory(){
-        return $this->belongsTo(QuestionCategory::class);
-    }
+    // public function questionCategory(){
+    //     return $this->belongsTo(QuestionCategory::class);
+    // }
 }
