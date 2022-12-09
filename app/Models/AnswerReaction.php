@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class AnswerReaction extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
     public function liked_by(){
         return $this->belongsTo(User::class);

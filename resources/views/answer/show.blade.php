@@ -96,12 +96,25 @@
                     </div>
                 @endif
                 <div class="card-body pt-2" style="background-color: #f8f8f8">
-                    <div class="text-end">
+                    <div class="float-end d-inline d-flex">
                         <i class="fas fa-share-alt text-muted p-md-1 my-1 me-2" data-mdb-toggle="tooltip"
                             data-mdb-placement="top" title="Share this post"></i>
-                        <i class="fas fa-heart text-muted p-md-1 my-1 me-0" data-mdb-toggle="tooltip" data-mdb-placement="top"
-                            title="I like it"></i>
-                    </div>
+                        @if ($answer->answerIsLiked())
+                            <form action="{{ route('Answer_Reaction.destroy', $answer->id ) }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-light text-danger p-md-1 my-1 me-0"><i class="fas fa-heart unlike fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
+                                title="Remove like"></i></button>
+                            </form>
+                        @else
+                            <form action="{{ route('Answer_Reaction.store') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $answer->id }}">
+                                <button type="submit" class="btn btn-light text-muted p-md-1 my-1 me-0"><i class="fas fa-heart like fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
+                                title="I like it"></i></button>
+                            </form>
+                        @endif
+                    </div><br>
                     <form action="{{ route('Answer_Comment.store') }}" method="post">
                         @csrf
                         <input type="hidden" name="answer_id" value="{{ $answer->id }}">
