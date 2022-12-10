@@ -16,8 +16,16 @@ use App\Http\Controllers\PostsController;
 
 Auth::routes();
 
-Route::group(["auth" => "middleware"], function () {
+Route::get('/', function () {
+    return view('welcome');
+});
 
+#creating categories (When you want to add a new category, you can use this route)
+Route::get('/categories', [CategoryController::class, 'generateQuestionCategories']);
+
+Route::group(["middleware" => "auth"], function () {
+    #question
+    Route::resource('/Q-A', QuestionController::class);
     // profile ----------------------------------------------------------------
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/', [PostsController::class, 'index'])->name('users.post.index');
@@ -28,4 +36,3 @@ Route::group(["auth" => "middleware"], function () {
     // profile ----------------------------------------------------------------
 
 });
-
