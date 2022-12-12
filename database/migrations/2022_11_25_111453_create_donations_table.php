@@ -18,14 +18,14 @@ class CreateDonationsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('pet_id')->nullable();
             $table->string('facility')->nullable();
-            $table->enum('contributor', ['individual', 'Oraganization'])->nullable();//contributor
+            $table->enum('contributor', ['individual', 'Oraganization']);
             $table->integer('amount');
-            $table->enum('donation_type', ['cash', 'pet'])->nullable(); //donation_type
+            $table->enum('donation_type', ['cash', 'pet'])->nullable();
             $table->integer('delivery_area')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            // $table->foreign('pet_id')->references('id')->on('pets')->onDelete('cascade');
+            $table->foreign('pet_id')->references('id')->on('pets')->onDelete('cascade');
         });
     }
 

@@ -7,7 +7,7 @@
               stripe.redirectToCheckout({
                   sessionId: '{{ $session->id }}'
               }).then(function (result) {
-                  window.location.href = 'http://127.0.0.1:8000/help_animal_top';
+                  window.location.href = '/help_animal_top';
               });
           }
       </script>
