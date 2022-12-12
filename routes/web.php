@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\SampleController;
+use App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,18 +25,18 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('/amusement', function () {
-    return view('useful-info.articles.All-articles.amusement');
-});
-Route::get('/cafe', function () {
-    return view('useful-info.articles.All-articles.cafe');
-});
-Route::get('/dogrun', function () {
-    return view('useful-info.articles.All-articles.dogrun');
-});
-Route::get('/hospital', function () {
-    return view('useful-info.articles.All-articles.hospital');
-});
+// Route::get('/amusement', function () {
+//     return view('useful-info.articles.All-articles.amusement');
+// });
+// Route::get('/cafe', function () {
+//     return view('useful-info.articles.All-articles.cafe');
+// });
+// Route::get('/dogrun', function () {
+//     return view('useful-info.articles.All-articles.dogrun');
+// });
+// Route::get('/hospital', function () {
+//     return view('useful-info.articles.All-articles.hospital');
+// });
 
 
 Route::get('/saved', function () {
@@ -45,21 +45,27 @@ Route::get('/saved', function () {
 
 
 
-// Route::group(["middleware"=>"auth"], function () {
-    // Route::get('/categories', [CategoryController::class, 'generateCategories']);
-    // Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
-    // Route::post('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
+Route::resource('/article', ArticleController::class);
+Route::resource('/pet-news', NewsController::class);
 
-        Route::resource('/article', ArticleController::class);
 
-    // Route::resource('/comments', CommentController::class);
-    // Route::resource('/profile', ProfileController::class);
-    // Route::resource('/follow', FollowController::class);
-    // Route::resource('/like', LikeController::class)->except('index');
+// Route::get('/pet-news', [NewsController::class, 'index']);
+// Route::get('/pet-news/show', [NewsController::class, 'show']);
 
-//    Route::group(["prefix"=>"admin", "as"=>"admin."],function(){
-//         Route::resource('/users',UsersController::class); //admin.users.show
-//         Route::resource('/posts',PostsController::class); //admin.users.show
-//         Route::resource('/categories',CategoriesController::class); //admin.users.show
-//    });
-// });
+// Route::get('/pet-news/show/hospital', [NewsController::class, 'showHospital']);
+// Route::get('/pet-news/show/hospital', [NewsController::class, 'showHospital']);
+// Route::get('/pet-news/show/hospital', [NewsController::class, 'showHospital']);
+// Route::get('/pet-news/show/hospital', [NewsController::class, 'showHospital']);
+
+Route::group(["prefix"=>"pet-news", "as"=>"pet-news."],function(){
+    // Route::get('/index', [NewsController::class, 'index']);
+    // Route::get('/show/{id}', [NewsController::class, 'show']);
+
+    Route::group(["prefix"=>"show", "as"=>"show."],function(){
+        Route::get('/amusement', [NewsController::class, 'showAmusement']);
+        Route::get('/cafe', [NewsController::class, 'showCafe']);
+        Route::get('/dogrun', [NewsController::class, 'showDogrun']);
+        Route::get('/hospital', [NewsController::class, 'showHospital']);
+        Route::get('/result', [NewsController::class, 'search']);
+    });
+});

@@ -1,4 +1,4 @@
-<div class="modal fade" id="delete-article-{{ $article->id }}">
+<div class="modal fade" id="delete-article-{{ $news->id }}">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content border-danger">
             <div class="modal-header border-danger">
@@ -15,14 +15,18 @@
             </div>
             <div class="modal-body">
                 <p>Are you sure to delete this article?</p>
-                <div class="bg-secondary">
-                    <img src="{{ asset('/storage/images/' . $article->image) }}" class="img-thumbnail" alt="">
-                </div>
-                <div class="mt-2">{{ $article->title }}</div>
+                
+                @if($news->image)
+                    <img src="{{ $news->image }}" class="w-100 p-0 rounded-top" alt="" >
+                @else
+                    <a href="{{$news->url}}" style="max-height: 120px">No image</a>
+                @endif
+            
+                <div class="mt-2">{{ $news->title }}</div>
             </div>      
                 
             <div class="modal-footer">
-                <form action="{{ route('article.destroy', $article) }}" method="post" class="w-100">
+                <form action="" method="post" class="w-100">
                     @csrf
                     @method('DELETE')
 
@@ -33,6 +37,7 @@
         </div>
     </div>
 </div>
+{{-- {{ route('article.destroy', $news) }} --}}
 {{-- 
 <!-- Modal -->
 <div class="modal top fade" id="delete-article-{{$article->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
