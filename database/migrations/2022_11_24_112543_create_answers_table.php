@@ -17,7 +17,7 @@ class CreateAnswersTable extends Migration
             $table->id();
             $table->text('body');
             $table->string('image',255)->nullable();
-            $table->tinyInteger('best_answer');
+            $table->tinyInteger('best_answer')->nullable();
             $table->unsignedBigInteger('question_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
