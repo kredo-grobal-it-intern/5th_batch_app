@@ -18,7 +18,7 @@ class CreateDonationsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('pet_id')->nullable();
             $table->string('facility');
-            $table->enum('contributor', ['individual', 'Oraganization']);//contributor
+            $table->enum('contributor', ['individual', 'oraganization']);//contributor
             $table->integer('amount')->nullable();
             $table->enum('donation_type', ['cash', 'pet']); //donation_type
             $table->integer('delivery_area')->nullable();
