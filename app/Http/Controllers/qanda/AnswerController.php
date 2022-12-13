@@ -22,9 +22,10 @@ class AnswerController extends Controller
     public function show($id)
     {
         $question = Question::findOrFail($id);
-        $all_answers = $question->answers()->latest()->get();
+        $best_answer = $question->answers()->where('best_answer', 1)->first();
+        $all_answers = $question->answers()->where('best_answer', null)->latest()->get();
 
-        return view('answer/show')->with('all_answers', $all_answers);
+        return view('answer/show')->with('all_answers', $all_answers)->with('question', $question)->with('best_answer', $best_answer);
     }
 
 
@@ -67,6 +68,17 @@ class AnswerController extends Controller
         $answer = $this->answer->findOrFail($id);
         // $this->deleteAnswerImage($answer->image);
         $answer->delete();
+
+        return redirect()->back();
+    }
+
+
+    public function selectBestAnswer(Request $request, $id)
+    {
+        $answer = $this->answer->findOrFail($id);
+
+        $answer->best_answer = 1;
+        $answer->update();
 
         return redirect()->back();
     }

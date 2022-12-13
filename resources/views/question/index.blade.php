@@ -138,7 +138,11 @@
                                 </span>
                             @endforeach
                         </span>
-                        <span class="badge bg-opacity-50 my-auto pt-2" style="background-color: skyblue; height: 30px; width: 70px;">Solved <i class="fa-regular fa-circle-check" style="color: #faca7b"></i></span>
+                        @if ($question->IsSelectedBestAnswer())
+                            <span class="badge bg-opacity-50 my-auto pt-2" style="background-color: green; height: 30px; width: 80px;">Solved <i class="fa-regular fa-circle-check" style="color: #faca7b"></i></span>
+                        @else
+                            <span class="badge bg-opacity-50 my-auto pt-2" style="background-color: skyblue; height: 30px; width: 150px;">Answer acceptance <i class="fa-solid fa-paw"></i></span>
+                        @endif
                     </div>
                     <h4 class="card-title text-decoration-underline px-3 py-3 mb-0" style="background-color: #f8f8f8">Q. {{ $question->title }}</h4>
                 </div>
@@ -161,8 +165,16 @@
                 <div class="card-body" style="background-color: #f8f8f8">
                     <p class="card-text collapse" id="collapseContent{{ $question->id }}">{{ $question->content }}</p>
                     <div class="d-flex justify-content-between mb-3">
-                        <a class="btn btn-link link-danger p-md-1 my-1 fs-6 border border-danger" data-mdb-toggle="collapse" href="#collapseContent{{ $question->id }}"
-                            role="button" aria-expanded="false" aria-controls="collapseContent">Read more</a>
+                        <div class="div">
+                            <a class="btn btn-link link-danger p-md-1 my-1 fs-6 border border-danger" data-mdb-toggle="collapse" href="#collapseContent{{ $question->id }}"
+                                role="button" aria-expanded="false" aria-controls="collapseContent">Read more</a>
+                                @if ($question->answers->count() > 0)
+                                    <a href="{{ route('Answer.show', $question->id ) }}" class=""><i class="fa-solid fa-comment p-md-1 my-2 ms-2" data-mdb-toggle="tooltip"
+                                        data-mdb-placement="top" title="Show All Answers"> {{$question->answers->count()}}</i></a>
+                                @else
+                                    <i class="fa-solid fa-comment p-md-1 my-2 ms-2" data-mdb-toggle="tooltip" data-mdb-placement="top" title="No answers yet"> {{$question->answers->count()}}</i>
+                                @endif
+                        </div>
                         <div class="d-inline d-flex">
                             <i class="fas fa-share-alt text-muted p-md-1 my-1 me-2" data-mdb-toggle="tooltip"
                                 data-mdb-placement="top" title="Share this post"></i>
@@ -197,11 +209,6 @@
                             <button type="submit" class="btn w-50 mt-2" style="background-color: #faca7b">Post your Answer</button>
                         </div>
                     </form>
-                    <div class="text-center">
-                        @if ($question->answers->count() > 0)
-                            <a href="{{ route('Answer.show', $question->id ) }}" class="text-decoration-underline">Show All Answers ({{$question->answers->count()}})</a>
-                        @endif
-                    </div>
                 </div>
             </div>
         </section>

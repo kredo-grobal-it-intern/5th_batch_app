@@ -7,7 +7,7 @@
         <h1 class="font-mask">All Comments</h1>
     </div>
     <section class="mx-auto my-5 w-75">
-        <div class="card">
+        <div class="card" style="background-color: #f8f8f8">
             <div class="card-header" style="background-color: #faca7b">
                 <div class="row">
                     <div class="col-2">

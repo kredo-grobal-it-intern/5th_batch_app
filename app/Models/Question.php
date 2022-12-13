@@ -27,6 +27,10 @@ class Question extends Model
         return $this->hasMany(Answer::class);
     }
 
+    public function IsSelectedBestAnswer(){
+        return $this->answers()->where('best_answer', 1)->exists();
+    }
+
     public function questionLikes(){
         return $this->hasMany(QuestionReaction::class);
     }

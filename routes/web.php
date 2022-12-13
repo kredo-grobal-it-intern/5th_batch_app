@@ -6,6 +6,7 @@ use App\Http\Controllers\qanda\CategoryController;
 use App\Http\Controllers\qanda\AnswerController;
 use App\Http\Controllers\qanda\AnswerCommentController;
 use App\Http\Controllers\qanda\QuestionReactionController;
+use App\Http\Controllers\qanda\AnswerReactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,7 @@ Route::group(["middleware"=>"auth"], function() {
     Route::resource('/Answer', AnswerController::class);
     Route::resource('/Answer_Comment', AnswerCommentController::class);
     Route::resource('/Question_Reaction', QuestionReactionController::class);
+    Route::resource('/Answer_Reaction', AnswerReactionController::class);
+    #Best answer
+    Route::patch('/BestAnswer/{id}',[AnswerController::class, 'selectBestAnswer'])->name('SelectBestAnswer');
 });
