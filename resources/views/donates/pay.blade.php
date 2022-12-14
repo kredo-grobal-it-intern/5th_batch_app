@@ -1,15 +1,18 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>Larave</title>
+  <script src="https://js.stripe.com/v3/"></script>
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js"></script>
 
-@section('title', 'Donate page')
+</head>
+<body>
 
-@section('content')
-
-    {{-- #postでデータを送信 --}}
-    <div class="justify-content-center my-5">
-            <img src="{{ asset('/storage/images/cat4.jpg') }}" class="rounded mx-auto d-block pt-1" width="180" height="180" style="border-radius: 30px" style="border: 6px solid #FFFFFF">
-      <form action="{{ route('card.pay_price') }}" method="post">
+</html>
+      <form action="{{ route('card.stripe') }}" method="post"id="payment-form">
         @csrf
-
+          {{-- input payment amount --}}
             <div class="mb-3">
                 <div class="input-group">
                     <div class="input-group-text">$</div>
@@ -19,9 +22,29 @@
                     <p class="text-danger small">{{ $message }}</p>
                 @enderror
             </div>
+
+                          <!-- Mount the instance within a <label> -->
+            <label>Card
+              <div id="card-element"></div>
+            </label>
+
+            <!--
+              Or create a <label> with a 'for' attribute,
+              referencing the ID of your container.
+            -->
+            <label for="card-element">Card</label>
+            <div id="card-element"></div>
+
+            <script>
+              cardElement.mount('#card-element');
+            </script>
+
+                <!-- Used to display Element errors. -->
+                <div id="card-errors" role="alert"></div>
+              </div>
+
             <button id="checkout-button" type="submit" class="btn btn-success fw-bold px-5">submit</button>
-            <a href="{{ route('card.checkout') }}">Please check</a>
         </form>
       </div>
 
-@endsection
+    </body>
