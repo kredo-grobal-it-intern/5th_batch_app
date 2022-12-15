@@ -18,26 +18,19 @@ class CardController extends Controller
         $this->donation = $donation;
     }
 
-
+    // Donation Method page
     public function index()
     {
         return view('donates.req_su');
     }
 
-    public function stripe(Request $request)
-  {
-    $stripe = new \Stripe\StripeClient('sk_test_51M8JNHK3NRhPPLZhLgpFivFnzAwXPfr09Zy62rM1LTb6JHKaPMPBWAqOoQPAyxAh2cVVBXP9ZbFf1eMBKlGHYJdn00BPaYDiIF');
+    // Card checkout page
+    public function pay()
+    {
+        return view('donates.pay');
+    }
 
-    $stripe->paymentIntents->create(
-    [
-        'amount' => 1099,
-        'currency' => 'jpy',
-        'automatic_payment_methods' => ['enabled' => true],
-    ]
-    );
-
- }
-
+   // input pay_amount
     public function pay_price(Request $request)
     {
         $request->validate([
@@ -51,62 +44,49 @@ class CardController extends Controller
             $this->donation->amount       = $request->amount;
             // $this->donation->facility       = $request->facility;
             $this->donation->save();
-
-            return redirect()->route('card.checkout');
         }else{
             DB::table('donations')->truncate();
             $this->donation->amount       = $request->amount;
             $this->donation->save();
         }
 
-
-        $this->donation->amount       = $request->amount;
-        $this->donation->save();
-
         return redirect()->route('card.checkout');
+
     }
 
     public function checkout()
     {
         $all_donations = $this->donation->latest()->get();
-        $line_items = [];
+
         foreach($all_donations as $donation){
-            $line_item = [
-            'price_data' => [
-                'currency' => 'jpy',
-                'product_data' => [
-                'name' => 'donation',
-                'description' => 'Your donations creates feature for animal',
-                ],
-                'unit_amount' => $donation->amount,
-             ],
-              'quantity' => 1,
-            ];
-            array_push($line_items,$line_item);
-        }
+                 $donation->amount;
+          }
 
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
-        // $token = $_POST['stripeToken'];
-        $session = \Stripe\Checkout\Session::create([
+          $stripe = new \Stripe\StripeClient(
+            'sk_test_51M8JNHK3NRhPPLZhLgpFivFnzAwXPfr09Zy62rM1LTb6JHKaPMPBWAqOoQPAyxAh2cVVBXP9ZbFf1eMBKlGHYJdn00BPaYDiIF');
+            $amount =  $donation->amount;
+
+            $payment_intent = $stripe->paymentIntents->create([
                     'payment_method_types' => ['card'],
-                    'line_items' => [$line_items],
-                    'success_url' => route('card.success'),
-                    'cancel_url' => 'http://localhost:4242/cancel',
-                    'mode'                 => 'payment',
-                    // 'source' => $token,
+                    'amount' => $amount,
+                    'currency' => 'jpy',
+                    'confirm' => true,
                 ]);
+                // dd($payment_intent);
+                // $payment_intent_id = $payment_intent->id;
 
-          return view('donates.checkout', [
-            'session' => $session,
-            'publicKey' => env('STRIPE_PUBLIC_KEY')
-        ]);
+                // $stripe->paymentIntents->confirm(
+                //     $payment_intent_id,
+                //     ['payment_method' => 'card']
+                //   );
+
+                return view('donates.index');
+
     }
 
 
-    public function pay()
-    {
-        return view('donates.pay');
-    }
+
+
 
     public function success()
     {

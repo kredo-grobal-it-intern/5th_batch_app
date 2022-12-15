@@ -4,10 +4,10 @@
 
 @section('content')
    <div class="mt-5">
-    <img src="{{ asset('/storage/images/cat4.jpg') }}" class="rounded mx-auto d-block pt-1" width="180" height="180" style="border-radius: 30px" style="border: 6px solid #FFFFFF">
+    <img src="{{ asset('/storage/images/help_animal_top.png') }}" class="rounded mx-auto d-block pt-1 rounded-7" width="200" height="200" style="border-radius: 30px" style="border: 6px solid #FFFFFF">
    </div>
 
-   <div class="p-3 mb-2 bg-secondary text-white w-50 mx-auto row"  style="--bs-bg-opacity: .1; height: 340px">
+   <div class="p-3 m-2 text-white  mx-auto row"  style=" height: 340px;background:#F8F8F8;">
         <div class="col p-4">
             <div class="text-right"><a href="{{ route('find_animal.index') }}"><i class="fa-solid fa-dog link-warning w-25" style="font-size: 40px "></i></a></div>
             <div class="text-right text-bold h3 text-dark pt-1">Find Animal</div>
