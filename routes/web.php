@@ -48,13 +48,10 @@ Route::group(["middleware" => "auth"], function () {
     Route::name('card.')
     ->group (function () {
     Route::get('/card',[CardController::class,'index'])->name('index');
-    Route::get('/card/checkout',[CardController::class,'checkout'])->name('checkout');
     Route::get('/card/pay',[CardController::class,'pay'])->name('pay');
     Route::post('/card/pay_price',[CardController::class,'pay_price'])->name('pay_price');
-    Route::post('/card/stripe',[CardController::class,'stripe'])->name('stripe');
-    Route::get('/card/success',[CardController::class,'success'])->name('success');
     });
-    Route::delete('/card/{id}/destroy', [CardController::class,'destroy'])->name('card.destroy');
+
     #Find animal
     Route::name('find_animal.')
     ->group (function () {

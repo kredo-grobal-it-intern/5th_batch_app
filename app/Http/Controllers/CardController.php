@@ -21,7 +21,7 @@ class CardController extends Controller
     // Donation Method page
     public function index()
     {
-        return view('donates.req_su');
+        return view('donates.pay_method');
     }
 
     // Card checkout page
@@ -35,65 +35,18 @@ class CardController extends Controller
     {
         $request->validate([
             'amount'         => 'required',
-            // 'facility'       => 'required'
         ]);
 
-        $price_data = Donation::all()->first();
-
-        if($price_data == null){
-            $this->donation->amount       = $request->amount;
-            // $this->donation->facility       = $request->facility;
-            $this->donation->save();
-        }else{
-            DB::table('donations')->truncate();
-            $this->donation->amount       = $request->amount;
-            $this->donation->save();
-        }
-
-        return redirect()->route('card.checkout');
-
-    }
-
-    public function checkout()
-    {
-        $all_donations = $this->donation->latest()->get();
-
-        foreach($all_donations as $donation){
-                 $donation->amount;
-          }
-
-          $stripe = new \Stripe\StripeClient(
-            'sk_test_51M8JNHK3NRhPPLZhLgpFivFnzAwXPfr09Zy62rM1LTb6JHKaPMPBWAqOoQPAyxAh2cVVBXP9ZbFf1eMBKlGHYJdn00BPaYDiIF');
-            $amount =  $donation->amount;
-
-            $payment_intent = $stripe->paymentIntents->create([
-                    'payment_method_types' => ['card'],
-                    'amount' => $amount,
+          \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+          \Stripe\Charge::create([
+                    "amount" => (double) $request->amount,
                     'currency' => 'jpy',
-                    'confirm' => true,
+                    "source" => $request->stripeToken,
+                    "description" => "Donation for lovely pets"
                 ]);
-                // dd($payment_intent);
-                // $payment_intent_id = $payment_intent->id;
 
-                // $stripe->paymentIntents->confirm(
-                //     $payment_intent_id,
-                //     ['payment_method' => 'card']
-                //   );
-
-                return view('donates.index');
+                return view('donates.help_animal_top');
 
     }
-
-
-
-
-
-    public function success()
-    {
-        $price_data = Donation::all()->first();
-        $price_data->delete();
-        return redirect(route('help_animal_top.index'));
-    }
-
 
 }
