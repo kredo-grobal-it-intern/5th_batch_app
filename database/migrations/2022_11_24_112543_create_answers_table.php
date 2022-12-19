@@ -16,8 +16,8 @@ class CreateAnswersTable extends Migration
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
             $table->text('body');
-            $table->string('image',50);
-            $table->tinyInteger('best_answer');
+            $table->string('image',255)->nullable();
+            $table->tinyInteger('best_answer')->nullable();
             $table->unsignedBigInteger('question_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

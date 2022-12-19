@@ -13,7 +13,7 @@
     </div>
 
     <div class="row mt-5">
-        <form action="" method="post" class="col-7 mx-auto">
+        <form action="{{ route('article.update', $article) }}" method="post" enctype="multipart/form-data" class="col-7 mx-auto">
             @csrf
             @method('PATCH')
             <div class="row p-0">
@@ -32,7 +32,7 @@
                 <div class="col-1"></div>
 
                 <div class="col">
-                    <div class="bg-secondary" style="height: 180px;">previous image will be displayed here</div>
+                    <img src="{{ asset('/storage/images/' . $article->image) }}" class="w-100 p-0 mt-4" alt="">
                 </div>
             </div>
             
@@ -58,17 +58,16 @@
             
             <div class="mt-3 p-0">
                 <label for="body" class="form-label fw-bold mb-0">Body</label>
-                <textarea name="description" id="body"  class="form-control" rows="10" required>{{$article->body}}</textarea>
+                <textarea name="body" id="body"  class="form-control" rows="10" required>{{$article->body}}</textarea>
             </div>
 
             <div class="mt-5">
-                <button type="button" class="btn btn-warning float-start col-5">Update</button>
+                <button type="submit" class="btn btn-warning float-start col-5">Update</button>
 
                 <a href="{{ route('article.index') }}" type="button" class="btn btn-secondary float-end col-5">Cancel</a>
             </div>
         
         </form>
-       
     </div>
 </div>
 @endsection

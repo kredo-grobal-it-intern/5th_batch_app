@@ -17,13 +17,14 @@ class CreateEstablishmentsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('contact_number');
-            $table->string('website');
-            $table->string('image');
+            $table->string('website')
+            $table->string('image',255);
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');
+
         });
     }
 

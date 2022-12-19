@@ -13,9 +13,9 @@
     </div>
 
     <div class="row mt-5">
-        <form action="" method="post" class="col-7 mx-auto">
+        <form action="{{ route('article.store') }}" method="post" enctype="multipart/form-data" class="col-7 mx-auto">
             @csrf
-           <div class="row p-0">
+            <div class="row p-0">
                 <div class="col">
                     <label for="image" class="form-label fw-bold mb-0">Image</label>
                     <input type="file" name="image" id="image" class="form-control">
@@ -55,17 +55,17 @@
             
             <div class="mt-3 p-0">
                 <label for="body" class="form-label fw-bold mb-0">Body</label>
-                <textarea name="description" id="body"  class="form-control" rows="10" placeholder="Whats on your mind?" required></textarea>
+
+                <textarea name="body" id="body"  class="form-control" rows="10" placeholder="Whats on your mind?" required></textarea>
             </div>
 
             <div class="mt-5">
-                <button type="button" class="btn btn-warning float-start col-5">Add</button>
+                <button type="submit" class="btn btn-warning float-start col-5">Add</button>
 
                 <a href="{{ route('article.index') }}" type="button" class="btn btn-secondary float-end col-5">Cancel</a>
             </div>
         
         </form>
-       
     </div>
 </div>
 @endsection
