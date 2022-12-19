@@ -47,3 +47,4 @@
         <script src="https://js.stripe.com/v3/"></script>
         <script src="{{ mix('js/stripe.form.js') }}"></script>
     @endsection
+

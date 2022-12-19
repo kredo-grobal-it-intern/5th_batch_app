@@ -2,6 +2,10 @@
 
 @section('title', 'Donate page')
 
+@section('style')
+     <link rel="stylesheet" href="{{ mix('/css/pay_method.css') }}">
+@endsection
+
 @section('content')
 
 <div class="row mt-5">
@@ -9,10 +13,10 @@
         <img src="{{ asset('/storage/images/donation.png') }}">
     </div>
     <div class="col-7">
-        <div class="mx-auto row  text-center"  style=" height: 50px;background:#FACA7B;;border-radius: 12px;">
+        <div class="mx-auto row request">
             <p class="h3 my-auto text-center">Request for Support</p>
        </div>
-        <div class="p-3 m-3  mx-auto row h5"  style=" height: 170px;background:#F8F8F8;border-radius: 12px;">
+        <div class="p-3 m-3  mx-auto row content_request">
             Each year, 4,059 dogs and 19,705 cats are killed and disposed of in Japan.
             <br>
             Some pets are killed by their owners or left behind in disasters.
@@ -20,20 +24,20 @@
             We started this fundraiser because we want as many pets as possible to live.
         </div>
 
-        <div class="mx-auto row m-2 text-center"  style=" height: 50px;background:#FACA7B;;border-radius: 12px;">
+        <div class="mx-auto row m-2 request">
             <p class="h3 my-auto text-center">Donation Method</p>
        </div>
 
         <div class="p-4 m-3 mx-auto row h5 text-center"  style=" height: 150px;background:#F8F8F8;border-radius: 12px;">
                 <div class="row">
-                    <div class="col">
-                        <img src="{{ asset('/storage/images/Vector.png') }}" style="width:75px ;height:75px;">
+                    <div class="col .hand_money_image">
+                        <img src="{{ asset('/storage/images/hand_money.png') }}">
                     </div>
-                    <div class="col">
-                        <i class="fa-solid fa-arrow-right w-25" style="font-size: 60px;color:#FACA7B"></i>
+                    <div class="col arrow-icon">
+                        <i class="fa-solid fa-arrow-right"></i>
                     </div>
-                    <div class="col">
-                        <i class="fa-solid fa-bowl-food w-25" style="font-size: 75px;color:#FACA7B"></i>
+                    <div class="col dogfood">
+                        <i class="fa-solid fa-bowl-food"></i>
                     </div>
                 </div>
 
@@ -50,7 +54,7 @@
                 </div>
         </div>
 
-        <div class="mx-auto row  text-center"  style=" height: 70px;background:#FACA7B;;border-radius: 12px;">
+        <div class="mx-auto row link_checkout">
             <p class="h3 my-auto text-center"><a href="{{ route('card.pay') }}">Donation Via Credit Card</a></p>
        </div>
 </div>
