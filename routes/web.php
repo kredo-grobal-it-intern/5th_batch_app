@@ -1,12 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\qanda\QuestionController;
-use App\Http\Controllers\qanda\CategoryController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\FindController;
 use App\Http\Controllers\PublicationController;
+
+
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\NewsController;
+
+use App\Http\Controllers\qanda\QuestionController;
+use App\Http\Controllers\qanda\CategoryController;
 
 
 /*

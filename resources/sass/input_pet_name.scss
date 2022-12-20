@@ -1,0 +1,142 @@
+.title{
+    position: absolute;
+    width: 262px;
+    height: 33px;
+    left: 589px;
+    top: 130px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 33px;
+    /* ボックスの高さと同一 */
+
+    text-align: center;
+
+    /* black */
+
+    color: #181818;
+
+}
+
+.number_border{
+    position: absolute;
+    width: 852px;
+    height: 0px;
+    left: 500px;
+    top: 215px;
+
+    opacity: 0.1;
+    /* black */
+
+    border: 1px solid #181818
+}
+.circle_1{
+    position: absolute;
+    left: 474px;
+    top:200px;
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #FACA7B;
+    text-align: center;
+    line-height: 50px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    color: #181818;
+
+}
+
+.circle_2{
+    position: absolute;
+    left: 900px;
+    top:200px;
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #DFDFDF;;
+    text-align: center;
+    line-height: 50px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    color: #181818;
+
+}
+
+.circle_3{
+    position: absolute;
+    left: 1326px;
+    top:200px;
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #DFDFDF;;
+    text-align: center;
+    line-height: 50px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    color: #181818;
+
+}
+
+.p_form{
+    width: 852px;
+    position: absolute;
+    left: 474px;
+    top: 256px;
+}
+
+.name{
+    position: absolute;
+    width: 43px;
+    height: 22px;
+    left: 385px;
+    top: 356px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    /* ボックスの高さと同一 */
+
+
+    /* black */
+
+    color: #181818;
+
+}
+
+.age{
+    position: absolute;
+    width: 30px;
+    height: 22px;
+    left: 730px;
+    top: 356px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    /* ボックスの高さと同一 */
+
+
+    /* black */
+
+    color: #181818;
+
+}
