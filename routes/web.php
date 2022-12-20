@@ -9,6 +9,14 @@ use App\Http\Controllers\FindController;
 use App\Http\Controllers\PublicationController;
 
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\NewsController;
+
+use App\Http\Controllers\qanda\QuestionController;
+use App\Http\Controllers\qanda\CategoryController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -78,6 +86,34 @@ Route::group(["middleware" => "auth"], function () {
 
  });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+ Route::resource('/article', ArticleController::class);
+ Route::resource('/pet-news', NewsController::class);
+ 
+ 
+ Route::group(["prefix"=>"pet-news", "as"=>"pet-news."],function(){
+     Route::group(["prefix"=>"show", "as"=>"show."],function(){
+         Route::get('/amusement', [NewsController::class, 'showAmusement']);
+         Route::get('/cafe', [NewsController::class, 'showCafe']);
+         Route::get('/dogrun', [NewsController::class, 'showDogrun']);
+         Route::get('/hospital', [NewsController::class, 'showHospital']);
+         Route::get('/result', [NewsController::class, 'search']);
+     });
+ });
+ 
+ 
+ Route::group(["middleware"=>"auth"], function() {
+     #question
+     Route::resource('/Q-A', QuestionController::class);
+ });
+ 
+ Route::get('map', function () {
+     return view('maps.index');
+ });
+ 
+ Route::get('map/all', function () {
+     return view('maps.viewAll');
+ });
+ 
+ Route::get('map/saved', function () {
+     return view('maps.saved');
+ });
