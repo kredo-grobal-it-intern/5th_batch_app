@@ -37,24 +37,25 @@
             <div class=" d-flex justify-content-around">
                 <div class="">
                     <label for="amusement_park">Amusement Park</label>
-                    <input type="radio" name="location" id="amusement_park" value="amusement_park" {{ old('location','amusement_park') == 'amusement_park' ? 'checked' : '' }} class=" form-check-inline">
+                    <input type="radio" name="location" id="amusement_park" class=" form-check-inline">
                 </div>
                 <div class="">
                     <label for="cafe">Cafe</label>
-                    <input type="radio" name="location" id="cafe" value="cafe"  {{ old('location') == 'cafe' ? 'checked' : '' }} class=" form-check-inline">
+                    <input type="radio" name="location" id="cafe" class=" form-check-inline">
                 </div>
                 <div class="">
                     <label for="dogrun">Dogrun</label>
-                    <input type="radio" name="location" id="dogrun" value="dogrun"  {{ old('location') == 'dogrun' ? 'checked' : '' }} class=" form-check-inline">
+                    <input type="radio" name="location" id="dogrun" class=" form-check-inline">
                 </div>
                 <div class="">
                     <label for="hospital">Hospital</label>
-                    <input type="radio" name="location" id="hospital" value="hospital"  {{ old('location') == 'hospital' ? 'checked' : '' }} class=" form-check-inline">
+                    <input type="radio" name="location" id="hospital" class=" form-check-inline">
                 </div>
             </div>
             
             <div class="mt-3 p-0">
                 <label for="body" class="form-label fw-bold mb-0">Body</label>
+
                 <textarea name="body" id="body"  class="form-control" rows="10" placeholder="Whats on your mind?" required></textarea>
             </div>
 

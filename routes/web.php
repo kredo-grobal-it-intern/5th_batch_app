@@ -52,3 +52,14 @@ Route::group(["middleware"=>"auth"], function() {
     Route::resource('/Q-A', QuestionController::class);
 });
 
+Route::get('map', function () {
+    return view('maps.index');
+});
+
+Route::get('map/all', function () {
+    return view('maps.viewAll');
+});
+
+Route::get('map/saved', function () {
+    return view('maps.saved');
+});
