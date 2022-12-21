@@ -19,11 +19,17 @@ class AnswerController extends Controller
     // }
 
 
-    public function show(Answer $answer)
+    public function index(){
+
+    }
+
+    public function show($id)
     {
-        dd('Hello World');
-        // $question = Question::findOrFail($id);
-        $question = $answer->question;
+        // todo: make model binding work
+        // $answer = Answer::find($id);
+        
+        $question = Question::findOrFail($id);
+        // $question = $answer->question;
         $best_answer = $question->answers()->where('best_answer', 1)->first();
         $all_answers = $question->answers()->where('best_answer', null)->latest()->get();
 

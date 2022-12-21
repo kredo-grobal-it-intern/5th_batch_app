@@ -16,6 +16,13 @@ class QuestionReactionController extends Controller
     //     $this->question_reaction = $question_reaction;
     // }
 
+    public function index(){
+
+    }
+
+    public function show($id){
+        dd($id);
+    }
 
     public function store(Request $request)
     {
@@ -42,5 +49,9 @@ class QuestionReactionController extends Controller
 
     public function destroy(QuestionReaction $question_reaction) {
         $question_reaction->where('liked_by', Auth::id())->delete();
+    }
+
+    public function create(){
+        
     }
 }
