@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class AnswerCommentController extends Controller
 {
-    private $answer_comment;
+    // private $answer_comment;
 
-    public function __construct(AnswerComment $answer_comment)
-    {
-        $this->answer_comment = $answer_comment;
-    }
+    // public function __construct(AnswerComment $answer_comment)
+    // {
+    //     $this->answer_comment = $answer_comment;
+    // }
 
 
     public function show($id)
@@ -29,20 +29,26 @@ class AnswerCommentController extends Controller
 
     public function store(Request $request)
     {
-        $this->answer_comment->user_id = Auth::user()->id;
-        $this->answer_comment->answer_id = $request->answer_id;
-        $this->answer_comment->body = $request->comment;
+        // $this->answer_comment->user_id = Auth::id();
+        // $this->answer_comment->answer_id = $request->answer_id;
+        // $this->answer_comment->body = $request->comment;
 
-        $this->answer_comment->save();
+        // $this->answer_comment->save();
+
+        AnswerComment::create([
+            "user_id" => Auth::id(),
+            "answer_id" => $request->answer_id,
+            "body" => $request->comment
+        ]);
 
         return redirect()->back();
 
     }
 
 
-    public function destroy(AnswerComment $answer_comment, $id)
+    public function destroy(AnswerComment $answer_comment)
     {
-        $answer_comment = $this->answer_comment->findOrFail($id);
+        // $answer_comment = $this->answer_comment->findOrFail($id);
         $answer_comment->delete();
 
         return redirect()->back();

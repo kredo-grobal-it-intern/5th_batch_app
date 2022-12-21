@@ -35,7 +35,7 @@ class QuestionController extends Controller
     public function create()
     {
         $all_question_categories = QuestionCategory::all();
-        return view('question.create')->with('all_question_categories', $all_question_categories);
+        return view('question/create')->with('all_question_categories', $all_question_categories);
     }
 
 
@@ -55,7 +55,7 @@ class QuestionController extends Controller
         // $this->question->SelectedCategory()->createMany($question_category);
         $this->question->createSelectedCategory()->createMany($question_category);
 
-        return redirect()->route('Q-A.index');
+        return redirect()->route('question.index');
     }
 
 
@@ -100,16 +100,17 @@ class QuestionController extends Controller
         }
         $question->createSelectedCategory()->createMany($question_category);
 
-        return redirect()->route('Q-A.index');
+        return redirect()->route('question.index');
     }
 
 
-    public function destroy(Question $question, $id)
+    public function destroy(Question $question)
     {
-        $question = $this->question->findOrFail($id);
+        // $question = $this->question->findOrFail($id);
         // $this->deleteQuestionImage($question->image);
         $question->delete();
 
         return redirect()->back();
     }
+
 }

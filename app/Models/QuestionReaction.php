@@ -9,6 +9,7 @@ class QuestionReaction extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $fillable = ['liked_by','question_id'];
 
     public function user(){
         return $this->belongsTo(User::class);

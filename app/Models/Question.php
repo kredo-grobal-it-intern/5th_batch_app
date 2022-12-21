@@ -36,6 +36,6 @@ class Question extends Model
     }
 
     public function questionIsLiked(){
-        return $this->questionLikes()->where('liked_by', Auth::user()->id)->exists();
+        return $this->questionLikes()->where('liked_by', Auth::id())->exists();
     }
 }

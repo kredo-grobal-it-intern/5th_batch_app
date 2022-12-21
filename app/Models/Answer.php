@@ -10,6 +10,8 @@ class Answer extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['body','image','user_id','question_id'];
+
     public function user(){
         return $this->belongsTo(User::class);
     }
@@ -27,6 +29,6 @@ class Answer extends Model
     }
 
     public function answerIsLiked(){
-        return $this->answerLikes()->where('liked_by', Auth::user()->id)->exists();
+        return $this->answerLikes()->where('liked_by', Auth::id())->exists();
     }
 }

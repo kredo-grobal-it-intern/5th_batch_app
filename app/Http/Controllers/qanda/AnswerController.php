@@ -10,18 +10,20 @@ use Illuminate\Support\Facades\Auth;
 
 class AnswerController extends Controller
 {
-    private $answer;
+    // private $answer;
     const LOCAL_STORAGE_FOLDER = 'public/images/answers';
 
-    public function __construct(Answer $answer)
-    {
-        $this->answer = $answer;
-    }
+    // public function __construct(Answer $answer)
+    // {
+    //     $this->answer = $answer;
+    // }
 
 
-    public function show($id)
+    public function show(Answer $answer)
     {
-        $question = Question::findOrFail($id);
+        dd('Hello World');
+        // $question = Question::findOrFail($id);
+        $question = $answer->question;
         $best_answer = $question->answers()->where('best_answer', 1)->first();
         $all_answers = $question->answers()->where('best_answer', null)->latest()->get();
 
@@ -32,11 +34,18 @@ class AnswerController extends Controller
     public function store(Request $request)
     {
         // Save without category
-        $this->answer->body = $request->answer;
-        $this->answer->image = $this->saveAnswerImage($request);
-        $this->answer->user_id = Auth::id();
-        $this->answer->question_id = $request->question_id;
-        $this->answer->save();
+        // $this->answer->body = $request->answer;
+        // $this->answer->image = $this->saveAnswerImage($request);
+        // $this->answer->user_id = Auth::id();
+        // $this->answer->question_id = $request->question_id;
+        // $this->answer->save();
+
+        Answer::create([
+            "body" => $request->answer,
+            "image" => $this->saveAnswerImage($request),
+            "user_id" => Auth::id(),
+            "question_id" => $request->question_id
+        ]);
 
         return redirect()->back();
     }
@@ -63,9 +72,9 @@ class AnswerController extends Controller
     // }
 
 
-    public function destroy(Answer $answer, $id)
+    public function destroy(Answer $answer)
     {
-        $answer = $this->answer->findOrFail($id);
+        // $answer = $this->answer->findOrFail($id);
         // $this->deleteAnswerImage($answer->image);
         $answer->delete();
 
