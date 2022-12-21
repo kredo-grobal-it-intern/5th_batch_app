@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="w-75 mx-auto">
-        <form action="{{ route('Q-A.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('question.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="text-center mb-3">
                 <h1 class="font-mask">Q&A</h1>

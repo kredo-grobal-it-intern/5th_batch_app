@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         <div class="col-4">
-                            @if($best_answer->user->id === Auth::user()->id)
+                            @if($best_answer->user->id === Auth::id())
                                 <div class="float-end">
                                     <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#deleteAnswer-{{ $best_answer->id }}">Delete</button>
                                 </div>
@@ -65,7 +65,7 @@
                                                 @endif
                                             </div>
                                             <div class="modal-footer">
-                                                <form action="{{ route('Answer.destroy', $best_answer->id) }}" method="post">
+                                                <form action="{{ route('answer.destroy', $best_answer->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="button" class="btn btn-outline-danger btn-sm" data-mdb-dismiss="modal">Close</button>
@@ -103,14 +103,14 @@
                         <i class="fas fa-share-alt text-muted p-md-1 my-1 me-2" data-mdb-toggle="tooltip"
                             data-mdb-placement="top" title="Share this post"></i>
                         @if ($best_answer->answerIsLiked())
-                            <form action="{{ route('Answer_Reaction.destroy', $best_answer->id ) }}" method="post">
+                            <form action="{{ route('answer_reaction.destroy', $best_answer->id ) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn btn-light text-danger p-md-1 my-1 me-0"><i class="fas fa-heart unlike fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
                                 title="Remove like"></i></button>
                             </form>
                         @else
-                            <form action="{{ route('Answer_Reaction.store') }}" method="post">
+                            <form action="{{ route('answer_reaction.store') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $best_answer->id }}">
                                 <button type="submit" class="btn btn-light text-muted p-md-1 my-1 me-0"><i class="fas fa-heart like fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
@@ -118,7 +118,7 @@
                             </form>
                         @endif
                     </div><br>
-                    <form action="{{ route('Answer_Comment.store') }}" method="post">
+                    <form action="{{ route('answer_comment.store') }}" method="post">
                         @csrf
                         <input type="hidden" name="answer_id" value="{{ $best_answer->id }}">
                         <label for="comment" class="form-label">Comment</label>
@@ -139,19 +139,19 @@
                                     <a href="#" class="text-decoration-none text-dark fw-bold">{{ $comment->user->name }}</a>
                                     &nbsp;
                                     <p class="d-inline fw-light">{{ $comment->body }}</p>
-                                    <form action="{{ route('Answer_Comment.destroy', $comment->id ) }}" method="post">
+                                    <form action="{{ route('answer_comment.destroy', $comment->id ) }}" method="post">
                                         @method('DELETE')
                                         @csrf
 
                                         <p class="text-muted small d-inline me-1">{{ $comment->created_at->diffForHumans() }}</p>
-                                        @if ($comment->user->id === Auth::user()->id)
+                                        @if ($comment->user->id === Auth::id())
                                             <button type="submit" class="border-0 bg-transparent small text-danger p-0"> Delete</button>
                                         @endif
                                     </form>
                                 </div>
                                 @if ($best_answer->comments->count() > 3 AND $loop->last)
                                     <li class="list-group-item border-0 p-0 text-dark mb-2" style="background-color: #f8f8f8">
-                                        <a href="{{ route('Answer_Comment.show', $best_answer->id ) }}" class="text-decoration-underline small">View all comments ({{ $best_answer->comments->count() }})</a>
+                                        <a href="{{ route('answer_comment.show', $best_answer->id ) }}" class="text-decoration-underline small">View all comments ({{ $best_answer->comments->count() }})</a>
                                     </li>
                                 @endif
                             @endforeach
@@ -184,7 +184,7 @@
                             </div>
                         </div>
                         <div class="col-4">
-                            @if($answer->user->id === Auth::user()->id)
+                            @if($answer->user->id === Auth::id())
                                 <div class="float-end">
                                     <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#deleteAnswer-{{ $answer->id }}">Delete</button>
                                 </div>
@@ -220,7 +220,7 @@
                                                 @endif
                                             </div>
                                             <div class="modal-footer">
-                                                <form action="{{ route('Answer.destroy', $answer->id) }}" method="post">
+                                                <form action="{{ route('answer.destroy', $answer->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="button" class="btn btn-outline-danger btn-sm" data-mdb-dismiss="modal">Close</button>
@@ -258,14 +258,14 @@
                         <i class="fas fa-share-alt text-muted p-md-1 my-1 me-2" data-mdb-toggle="tooltip"
                             data-mdb-placement="top" title="Share this post"></i>
                         @if ($answer->answerIsLiked())
-                            <form action="{{ route('Answer_Reaction.destroy', $answer->id ) }}" method="post">
+                            <form action="{{ route('answer_reaction.destroy', $answer->id ) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn btn-light text-danger p-md-1 my-1 me-0"><i class="fas fa-heart unlike fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
                                 title="Remove like"></i></button>
                             </form>
                         @else
-                            <form action="{{ route('Answer_Reaction.store') }}" method="post">
+                            <form action="{{ route('answer_reaction.store') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $answer->id }}">
                                 <button type="submit" class="btn btn-light text-muted p-md-1 my-1 me-0"><i class="fas fa-heart like fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
@@ -273,7 +273,7 @@
                             </form>
                         @endif
                     </div><br>
-                    <form action="{{ route('Answer_Comment.store') }}" method="post">
+                    <form action="{{ route('answer_comment.store') }}" method="post">
                         @csrf
                         <input type="hidden" name="answer_id" value="{{ $answer->id }}">
                         <label for="comment" class="form-label">Comment</label>
@@ -294,26 +294,26 @@
                                     <a href="#" class="text-decoration-none text-dark fw-bold">{{ $comment->user->name }}</a>
                                     &nbsp;
                                     <p class="d-inline fw-light">{{ $comment->body }}</p>
-                                    <form action="{{ route('Answer_Comment.destroy', $comment->id ) }}" method="post">
+                                    <form action="{{ route('answer_comment.destroy', $comment->id ) }}" method="post">
                                         @method('DELETE')
                                         @csrf
 
                                         <p class="text-muted small d-inline me-1">{{ $comment->created_at->diffForHumans() }}</p>
-                                        @if ($comment->user->id === Auth::user()->id)
+                                        @if ($comment->user->id === Auth::id())
                                             <button type="submit" class="border-0 bg-transparent small text-danger p-0"> Delete</button>
                                         @endif
                                     </form>
                                 </div>
                                 @if ($answer->comments->count() > 3 AND $loop->last)
                                     <li class="list-group-item border-0 p-0 text-dark mb-2" style="background-color: #f8f8f8">
-                                        <a href="{{ route('Answer_Comment.show', $answer->id ) }}" class="text-decoration-underline small">View all comments ({{ $answer->comments->count() }})</a>
+                                        <a href="{{ route('answer_comment.show', $answer->id ) }}" class="text-decoration-underline small">View all comments ({{ $answer->comments->count() }})</a>
                                     </li>
                                 @endif
                             @endforeach
                         </div>
                     @endif
                 </div>
-                @if ($question->user->id === Auth::user()->id && $answer->user->id !== Auth::user()->id)
+                @if ($question->user->id === Auth::id() && $answer->user->id !== Auth::id())
                     @if ( $question->IsSelectedBestAnswer() )
 
                     @else

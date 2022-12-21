@@ -30,11 +30,16 @@ Route::get('/categories',[CategoryController::class, 'generateQuestionCategories
 
 Route::group(["middleware"=>"auth"], function() {
     #question
-    Route::resource('/Q-A', QuestionController::class);
-    Route::resource('/Answer', AnswerController::class);
-    Route::resource('/Answer_Comment', AnswerCommentController::class);
-    Route::resource('/Question_Reaction', QuestionReactionController::class);
-    Route::resource('/Answer_Reaction', AnswerReactionController::class);
+    Route::group(['prefix' => 'q-a', 'middleware' => 'verified'], function () {
+        Route::resource('/question', QuestionController::class);
+        Route::resource('/answer', AnswerController::class);
+        Route::resource('/answer_comment', AnswerCommentController::class);
+        Route::resource('/question_reaction', QuestionReactionController::class);
+        Route::resource('/answer_reaction', AnswerReactionController::class);
+    });
+
     #Best answer
-    Route::patch('/BestAnswer/{id}',[AnswerController::class, 'selectBestAnswer'])->name('SelectBestAnswer');
+    Route::patch('/best_answer/{id}',[AnswerController::class, 'selectBestAnswer'])->name('SelectBestAnswer');
 });
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

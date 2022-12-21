@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <div class="col-4">
-                            @if($question->user->id === Auth::user()->id)
+                            @if($question->user->id === Auth::id())
                                 <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#deleteQuestion-{{ $question->id }}">Delete</button>
                                 <button type="button" class="btn btn-white" data-mdb-toggle="modal" data-mdb-target="#editQuestion-{{ $question->id }}">Edit</button>
 
@@ -61,7 +61,7 @@
                                                 @endif
                                             </div>
                                             <div class="modal-footer">
-                                                <form action="{{ route('Q-A.destroy', $question->id) }}" method="post">
+                                                <form action="{{ route('question.destroy', $question->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="button" class="btn btn-outline-danger btn-sm" data-mdb-dismiss="modal">Close</button>
@@ -82,7 +82,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="mx-auto">
-                                                    <form action="{{ route('Q-A.update', $question->id) }}" method="post" enctype="multipart/form-data">
+                                                    <form action="{{ route('question.update', $question->id) }}" method="post" enctype="multipart/form-data">
                                                         @csrf
                                                         @method('PATCH')
                                                         <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
@@ -169,7 +169,7 @@
                             <a class="btn btn-link link-danger p-md-1 my-1 fs-6 border border-danger" data-mdb-toggle="collapse" href="#collapseContent{{ $question->id }}"
                                 role="button" aria-expanded="false" aria-controls="collapseContent">Read more</a>
                                 @if ($question->answers->count() > 0)
-                                    <a href="{{ route('Answer.show', $question->id ) }}" class=""><i class="fa-solid fa-comment p-md-1 my-2 ms-2" data-mdb-toggle="tooltip"
+                                    <a href="{{ route('answer.show', $question->id ) }}" class=""><i class="fa-solid fa-comment p-md-1 my-2 ms-2" data-mdb-toggle="tooltip"
                                         data-mdb-placement="top" title="Show All Answers"> {{$question->answers->count()}}</i></a>
                                 @else
                                     <i class="fa-solid fa-comment p-md-1 my-2 ms-2" data-mdb-toggle="tooltip" data-mdb-placement="top" title="No answers yet"> {{$question->answers->count()}}</i>
@@ -179,14 +179,14 @@
                             <i class="fas fa-share-alt text-muted p-md-1 my-1 me-2" data-mdb-toggle="tooltip"
                                 data-mdb-placement="top" title="Share this post"></i>
                             @if ($question->questionIsLiked())
-                                <form action="{{ route('Question_Reaction.destroy', $question->id ) }}" method="post">
+                                <form action="{{ route('question_reaction.destroy', $question->id ) }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-light text-danger p-md-1 my-1 me-0"><i class="fas fa-heart unlike fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
                                     title="Remove like"></i></button>
                                 </form>
                             @else
-                                <form action="{{ route('Question_Reaction.store') }}" method="post">
+                                <form action="{{ route('question_reaction.store') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $question->id }}">
                                     <button type="submit" class="btn btn-light text-muted p-md-1 my-1 me-0"><i class="fas fa-heart like fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
@@ -195,7 +195,7 @@
                             @endif
                         </div>
                     </div>
-                    <form action="{{ route('Answer.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('answer.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="question_id" value="{{ $question->id }}">
                         <label for="answer" class="form-label">Answer</label>

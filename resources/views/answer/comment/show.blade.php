@@ -52,7 +52,7 @@
                     <i class="fas fa-heart text-muted p-md-1 my-1 me-0" data-mdb-toggle="tooltip" data-mdb-placement="top"
                         title="I like it"></i>
                 </div>
-                <form action="{{ route('Answer_Comment.store') }}" method="post">
+                <form action="{{ route('answer_comment.store') }}" method="post">
                     @csrf
                     <input type="hidden" name="answer_id" value="{{ $answer->id }}">
                     <label for="comment" class="form-label">Comment</label>
@@ -71,12 +71,12 @@
                             <a href="#" class="text-decoration-none text-dark fw-bold">{{ $comment->user->name }}</a>
                             &nbsp;
                             <p class="d-inline fw-light">{{ $comment->body }}</p>
-                            <form action="{{ route('Answer_Comment.destroy', $comment->id ) }}" method="post">
+                            <form action="{{ route('answer_comment.destroy', $comment->id ) }}" method="post">
                                 @method('DELETE')
                                 @csrf
 
                                 <p class="text-muted small d-inline me-1">{{ $comment->created_at->diffForHumans() }}</p>
-                                @if ($comment->user->id === Auth::user()->id)
+                                @if ($comment->user->id === Auth::id())
                                     <button type="submit" class="border-0 bg-transparent small text-danger p-0"> Delete</button>
                                 @endif
                             </form>
