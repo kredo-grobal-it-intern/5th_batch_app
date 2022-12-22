@@ -14,6 +14,9 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/stripe_form.scss', 'public/css')
+    .sass('resources/sass/pay_method.scss', 'public/css')
+    .sass('resources/sass/careful.scss', 'public/css')
+    .sass('resources/sass/input_pet_name.scss', 'public/css')
     .sass('resources/sass/map.scss', 'public/css')
     .js('resources/js/stripe.form.js', 'public/js')
     .sourceMaps();

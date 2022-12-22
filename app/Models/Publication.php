@@ -9,8 +9,10 @@ class Publication extends Model
 {
     use HasFactory;
 
+    protected $table = 'pets';
     protected $gurarded = [];
-    
+
+
     public function user()
     {
         return $this->belongsTo(User::class);
