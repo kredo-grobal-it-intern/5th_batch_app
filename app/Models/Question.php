@@ -31,11 +31,11 @@ class Question extends Model
         return $this->answers()->where('best_answer', 1)->exists();
     }
 
-    public function questionLikes(){
-        return $this->hasMany(QuestionReaction::class);
+    public function userReaction(){
+        return $this->questionReactions()->wherePivot('liked_by', Auth::id())->first();
     }
 
-    public function questionIsLiked(){
-        return $this->questionLikes()->where('liked_by', Auth::id())->exists();
+    public function questionReactions() {
+        return $this->belongsToMany(User::class, 'question_reactions', 'question_id', 'liked_by');
     }
 }

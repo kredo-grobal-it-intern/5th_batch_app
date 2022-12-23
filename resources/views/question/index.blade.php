@@ -170,20 +170,16 @@
                         <div class="d-inline d-flex">
                             <i class="fas fa-share-alt text-muted p-md-1 my-1 me-2" data-mdb-toggle="tooltip"
                                 data-mdb-placement="top" title="Share this post"></i>
-                            @if ($question->questionIsLiked())
-                                <form action="{{ route('question_reaction.destroy', $question->id ) }}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-light text-danger p-md-1 my-1 me-0"><i class="fas fa-heart unlike fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
-                                    title="Remove like"></i></button>
-                                </form>
+                            @if ($question->userReaction())
+                                <button type="button" data-question-id="{{ $question->id }}" class="btn btn-light text-danger p-md-1 my-1 me-0 remove-reaction">
+                                    <i class="fas fa-heart unlike fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
+                                    title="Remove like"></i>
+                                </button>
                             @else
-                                <form action="{{ route('question_reaction.store') }}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="id" value="{{ $question->id }}">
-                                    <button type="submit" class="btn btn-light text-muted p-md-1 my-1 me-0"><i class="fas fa-heart like fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
-                                    title="I like it"></i></button>
-                                </form>
+                                <button type="button" data-question-id="{{ $question->id }}" class="btn btn-light text-muted p-md-1 my-1 me-0 react">
+                                    <i class="fas fa-heart like fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
+                                    title="I like it"></i>
+                                </button>
                             @endif
                         </div>
                     </div>
@@ -205,5 +201,61 @@
             </div>
         </section>
     @endforeach
+@endsection
 
+@section('script')
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.remove-reaction', function() {
+                let question_id = $(this).data('question-id');
+                let self = this;
+                $.ajax({
+                    url: `/q-a/question_reaction/${question_id}`,
+                    method: 'DELETE',
+                    success: function(res) {
+                        $(self).removeClass('remove-reaction')
+                            .addClass('react')
+                            .removeClass('text-danger')
+                            .addClass('text-muted')
+                            .find('i')
+                            .removeClass('unlike')
+                            .addClass('like')
+                            .tooltip('hide')
+                            .attr('data-mdb-original-title', 'I like it')
+                            .tooltip('show');
+                    },
+                    headers : {
+                        'X-CSRF-Token' : $('meta[name="csrf-token"]').attr('content'),
+                    }
+                });
+            });
+
+            $(document).on('click', '.react', function() {
+                let question_id = $(this).data('question-id');
+                let self = this;
+                $.ajax({
+                    url: `/q-a/question_reaction`,
+                    method: 'POST',
+                    data: {
+                        question_id
+                    },
+                    success: function(res) {
+                        $(self).addClass('remove-reaction')
+                            .removeClass('react')
+                            .addClass('text-danger')
+                            .removeClass('text-muted')
+                            .find('i')
+                            .addClass('unlike')
+                            .removeClass('like')
+                            .attr('data-mdb-original-title', 'Remove like')
+                            .tooltip('show');
+                    },
+                    headers : {
+                        'X-CSRF-Token' : $('meta[name="csrf-token"]').attr('content'),
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
