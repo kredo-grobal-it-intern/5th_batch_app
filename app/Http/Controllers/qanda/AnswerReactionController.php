@@ -5,6 +5,7 @@ namespace App\Http\Controllers\qanda;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AnswerReaction;
+use App\Models\Answer;
 use Illuminate\Support\Facades\Auth;
 
 class AnswerReactionController extends Controller
@@ -16,6 +17,13 @@ class AnswerReactionController extends Controller
     //     $this->answer_reaction = $answer_reaction;
     // }
 
+    public function index(){
+
+    }
+
+    public function show($id){
+        $answer = Answer::findOrFail($id);
+    }
 
     public function store(Request $request)
     {

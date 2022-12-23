@@ -5,13 +5,13 @@
 @section('content')
     <div class="text-center mb-2">
         <h1 class="font-mask">All Answers</h1><br>
-        <h3 class="text-decoration-underline">Q.{{ $question->title }}</h3>
+        <h3 class="text-decoration-underline"><a href="{{ route('questions.index') }}" class="text-dark">Q.{{ $question->title }}</a></h3>
     </div>
     {{-- Best Answer --}}
     @if ( $question->IsSelectedBestAnswer() )
         <section class="mx-auto my-5 pb-5 w-75">
             <h3 class="text-primary">The Best Answer</h3>
-            <div class="card" style="background-color: #f8f8f8">
+            <div class="card" style="background-color: #f8f8f8; position: relative;">
                 <div class="card-header" style="background-color: #faca7b">
                     <div class="row">
                         <div class="col-2">
@@ -65,7 +65,7 @@
                                                 @endif
                                             </div>
                                             <div class="modal-footer">
-                                                <form action="{{ route('answer.destroy', $best_answer->id) }}" method="post">
+                                                <form action="{{ route('answers.destroy', $best_answer->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="button" class="btn btn-outline-danger btn-sm" data-mdb-dismiss="modal">Close</button>
@@ -89,16 +89,8 @@
                             <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                         </a>
                     </div>
-                @else
-                    <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
-                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/full page/2.jpg"
-                        alt="Card image cap" />
-                        <a href="#!">
-                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                        </a>
-                    </div>
                 @endif
-                <div class="card-body pt-2" >
+                <div class="card-body pt-2">
                     <div class="float-end d-inline d-flex">
                         <i class="fas fa-share-alt text-muted p-md-1 my-1 me-2" data-mdb-toggle="tooltip"
                             data-mdb-placement="top" title="Share this post"></i>
@@ -158,11 +150,11 @@
                         </div>
                     @endif
                 </div>
+                <div class="">
+                    <img src="{{ asset('/storage/images/resources/best_answer.png') }}" class="best_answer" style="" alt="">
+                </div>
             </div>
         </section>
-        <div class="" style="position: relative;">
-            <img src="{{ asset('/storage/images/resources/best_answer.png') }}" class="best_answer" style="" alt="">
-        </div>
     @endif
     @foreach ($all_answers as $answer)
         <section class="mx-auto my-5 w-75">
@@ -220,7 +212,7 @@
                                                 @endif
                                             </div>
                                             <div class="modal-footer">
-                                                <form action="{{ route('answer.destroy', $answer->id) }}" method="post">
+                                                <form action="{{ route('answers.destroy', $answer->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="button" class="btn btn-outline-danger btn-sm" data-mdb-dismiss="modal">Close</button>
@@ -240,14 +232,6 @@
                 @if ($answer->image)
                     <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
                         <img src="{{ asset('/storage/images/answers/' . $answer->image) }}" class="img-fluid" alt="{{ $answer->image }}">
-                        <a href="#!">
-                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                        </a>
-                    </div>
-                @else
-                    <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
-                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/full page/2.jpg"
-                        alt="Card image cap" />
                         <a href="#!">
                             <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                         </a>

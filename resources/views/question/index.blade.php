@@ -61,7 +61,7 @@
                                                 @endif
                                             </div>
                                             <div class="modal-footer">
-                                                <form action="{{ route('question.destroy', $question->id) }}" method="post">
+                                                <form action="{{ route('questions.destroy', $question->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="button" class="btn btn-outline-danger btn-sm" data-mdb-dismiss="modal">Close</button>
@@ -82,7 +82,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="mx-auto">
-                                                    <form action="{{ route('question.update', $question->id) }}" method="post" enctype="multipart/form-data">
+                                                    <form action="{{ route('questions.update', $question->id) }}" method="post" enctype="multipart/form-data">
                                                         @csrf
                                                         @method('PATCH')
                                                         <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
@@ -153,14 +153,6 @@
                             <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                         </a>
                     </div>
-                @else
-                    <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
-                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/full page/2.jpg"
-                        alt="Card image cap" />
-                        <a href="#!">
-                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                        </a>
-                    </div>
                 @endif
                 <div class="card-body" style="background-color: #f8f8f8">
                     <p class="card-text collapse" id="collapseContent{{ $question->id }}">{{ $question->content }}</p>
@@ -169,7 +161,7 @@
                             <a class="btn btn-link link-danger p-md-1 my-1 fs-6 border border-danger" data-mdb-toggle="collapse" href="#collapseContent{{ $question->id }}"
                                 role="button" aria-expanded="false" aria-controls="collapseContent">Read more</a>
                                 @if ($question->answers->count() > 0)
-                                    <a href="{{ route('answer.show', $question->id ) }}" class=""><i class="fa-solid fa-comment p-md-1 my-2 ms-2" data-mdb-toggle="tooltip"
+                                    <a href="{{ route('answers.show', $question->id ) }}" class=""><i class="fa-solid fa-comment p-md-1 my-2 ms-2" data-mdb-toggle="tooltip"
                                         data-mdb-placement="top" title="Show All Answers"> {{$question->answers->count()}}</i></a>
                                 @else
                                     <i class="fa-solid fa-comment p-md-1 my-2 ms-2" data-mdb-toggle="tooltip" data-mdb-placement="top" title="No answers yet"> {{$question->answers->count()}}</i>
@@ -195,7 +187,7 @@
                             @endif
                         </div>
                     </div>
-                    <form action="{{ route('answer.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('answers.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="question_id" value="{{ $question->id }}">
                         <label for="answer" class="form-label">Answer</label>

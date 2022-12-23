@@ -5,6 +5,7 @@ namespace App\Http\Controllers\qanda;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\QuestionReaction;
+use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionReactionController extends Controller
@@ -21,7 +22,7 @@ class QuestionReactionController extends Controller
     }
 
     public function show($id){
-        dd($id);
+        $question = Question::findOrFail($id);
     }
 
     public function store(Request $request)
@@ -48,10 +49,12 @@ class QuestionReactionController extends Controller
     // }
 
     public function destroy(QuestionReaction $question_reaction) {
-        $question_reaction->where('liked_by', Auth::id())->delete();
+        $question_reaction->delete();
+
+        return redirect()->back();
     }
 
     public function create(){
-        
+
     }
 }

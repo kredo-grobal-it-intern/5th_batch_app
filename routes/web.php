@@ -31,8 +31,8 @@ Route::get('/categories',[CategoryController::class, 'generateQuestionCategories
 Route::group(["middleware"=>"auth"], function() {
     #question
     Route::group(['prefix' => 'q-a', 'middleware' => 'verified'], function () {
-        Route::resource('/question', QuestionController::class);
-        Route::resource('/answer', AnswerController::class);
+        Route::resource('/questions', QuestionController::class);
+        Route::resource('/answers', AnswerController::class);
         Route::resource('/answer_comment', AnswerCommentController::class);
         Route::resource('/question_reaction', QuestionReactionController::class);
         Route::resource('/answer_reaction', AnswerReactionController::class);

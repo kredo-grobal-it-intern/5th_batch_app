@@ -31,6 +31,10 @@ class QuestionController extends Controller
                     ->with('all_question_categories', $all_question_categories);
     }
 
+    public function show(){
+
+    }
+
 
     public function create()
     {
@@ -55,7 +59,7 @@ class QuestionController extends Controller
         // $this->question->SelectedCategory()->createMany($question_category);
         $this->question->createSelectedCategory()->createMany($question_category);
 
-        return redirect()->route('question.index');
+        return redirect()->route('questions.index');
     }
 
 
@@ -100,7 +104,7 @@ class QuestionController extends Controller
         }
         $question->createSelectedCategory()->createMany($question_category);
 
-        return redirect()->route('question.index');
+        return redirect()->route('questions.index');
     }
 
 

@@ -10,6 +10,8 @@ class AnswerReaction extends Model
     use HasFactory;
     public $timestamps = false;
 
+    protected $fillable = ['liked_by','answer_id'];
+
     public function liked_by(){
         return $this->belongsTo(User::class);
     }

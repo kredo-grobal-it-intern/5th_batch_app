@@ -27,7 +27,7 @@ class AnswerController extends Controller
     {
         // todo: make model binding work
         // $answer = Answer::find($id);
-        
+
         $question = Question::findOrFail($id);
         // $question = $answer->question;
         $best_answer = $question->answers()->where('best_answer', 1)->first();
@@ -88,9 +88,9 @@ class AnswerController extends Controller
     }
 
 
-    public function selectBestAnswer(Request $request, $id)
+    public function selectBestAnswer(Request $request, Answer $answer, $id)
     {
-        $answer = $this->answer->findOrFail($id);
+        $answer = $answer->findOrFail($id);
 
         $answer->best_answer = 1;
         $answer->update();
