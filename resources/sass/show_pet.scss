@@ -75,7 +75,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #DFDFDF;;
+    background: #FACA7B;
     text-align: center;
     line-height: 50px;
 
@@ -110,7 +110,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #DFDFDF;;
+    background: #DFDFDF;
     text-align: center;
     line-height: 50px;
 
@@ -121,7 +121,6 @@
     color: #181818;
 
 }
-
 
 .circle_title_3{
     position: absolute;
@@ -185,4 +184,55 @@
 
     color: #181818;
 
+}
+
+.back_button{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    left: 250px;
+    top: 550px;
+
+
+    background: #FFFFFF;
+    /* main */
+
+    border: 1px solid #FACA7B;
+    border-radius: 12px;
+
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.confirm_button{
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    left: 550px;
+    top: 550px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 22px;
+    /* ボックスの高さと同一 */
+
+    text-align: center;
+
+    /* black */
+
+    color: #181818;
+
+
+    /* main */
+
+    background: #FACA7B;
+    border-radius: 12px;
 }

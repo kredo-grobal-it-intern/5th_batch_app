@@ -75,7 +75,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #DFDFDF;;
+    background: #FACA7B;
     text-align: center;
     line-height: 50px;
 
@@ -110,7 +110,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #DFDFDF;;
+    background: #FACA7B;
     text-align: center;
     line-height: 50px;
 
@@ -121,7 +121,6 @@
     color: #181818;
 
 }
-
 
 .circle_title_3{
     position: absolute;
@@ -138,27 +137,21 @@
     color: #181818;
 }
 
-.p_form{
-    width: 852px;
+.complete_message{
     position: absolute;
-    left: 474px;
-    top: 270px;
-}
-
-.name{
-    position: absolute;
-    width: 43px;
-    height: 22px;
-    left: 385px;
+    width: 446px;
+    height: 80px;
+    left: 589px;
     top: 356px;
 
     font-family: 'Nunito';
     font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
-    /* ボックスの高さと同一 */
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 40px;
+    /* または167% */
 
+    text-align: center;
 
     /* black */
 
@@ -166,23 +159,25 @@
 
 }
 
-.age{
+.back_home{
     position: absolute;
-    width: 30px;
-    height: 22px;
-    left: 730px;
-    top: 356px;
+    width: 200px;
+    height: 50px;
+    left: 812px;
+    top: 496px;
+
+    background: #FACA7B;
+    border-radius: 12px;
 
     font-family: 'Nunito';
     font-style: normal;
-    font-weight: 400;
+    font-weight: 900;
     font-size: 16px;
     line-height: 22px;
     /* ボックスの高さと同一 */
 
-
-    /* black */
-
+    text-align: center;
     color: #181818;
 
 }
+
