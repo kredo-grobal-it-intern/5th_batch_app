@@ -78,6 +78,7 @@ Route::group(["middleware" => "auth"], function () {
         Route::post('/publication/request',[PublicationController::class,'request'])->name('request');
         //store  function
         Route::get('/publication/input',[PublicationController::class,'input'])->name('input');
+        Route::delete('/publication/{id}/destroy',[PublicationController::class,'destroy'])->name('destroy');
         Route::get('/publication/confirm',[PublicationController::class,'confirm'])->name('confirm');
         Route::get('/publication/completed',[PublicationController::class,'completed'])->name('completed');
      });

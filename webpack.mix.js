@@ -17,6 +17,8 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/pay_method.scss', 'public/css')
     .sass('resources/sass/careful.scss', 'public/css')
     .sass('resources/sass/input_pet_name.scss', 'public/css')
+    .sass('resources/sass/show_pet.scss', 'public/css')
+    .sass('resources/sass/completed_publication.scss', 'public/css')
     .sass('resources/sass/map.scss', 'public/css')
     .js('resources/js/stripe.form.js', 'public/js')
     .sourceMaps();
