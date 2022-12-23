@@ -17,14 +17,17 @@
     <div class="circle_1">
       <div class="my-auto">1</div>
     </div>
+    <div class="circle_title_1">Application</div>
 
     <div class="circle_2">
         <div class="mx-auto">2</div>
     </div>
+    <div class="circle_title_2">Confimation</div>
 
     <div class="circle_3">
         <div class="my-auto">3</div>
     </div>
+    <div class="circle_title_3">Complete</div>
 
     <div class="p_form">
       <form action="{{ route('publication.request') }}" method="post" enctype="multipart/form-data">
@@ -35,14 +38,14 @@
         </div>
         <div class="row my-1">
             {{-- name --}}
-            <div class="col"><input type="text" name="name" id="name" class="form-control" autofocus>
+            <div class="col"><input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" autofocus>
                 @error('name')
                     <p class="text-danger small">{{ $message }}</p>
                 @enderror
             </div>
            {{-- age --}}
-            <div class="col"><input type="number" id="date_of_brith" name="date_of_brith" class="form-control"autofocus>
-                @error('age')
+            <div class="col"><input type="number" id="date_of_brith" name="date_of_brith" class="form-control" value="{{ old('date_of_brith') }}" autofocus>
+                @error('date_of_brith')
                     <p class="text-danger small">{{ $message }}</p>
                  @enderror
             </div>
@@ -54,13 +57,13 @@
         </div>
         <div class="row my-1">
             {{-- name --}}
-            <div class="col"><input type="text" name="breed" id="breed" class="form-control" autofocus>
+            <div class="col"><input type="text" name="breed" id="breed" class="form-control" value="{{ old('breed') }}" autofocus>
                 @error('breed')
                     <p class="text-danger small">{{ $message }}</p>
                 @enderror
             </div>
            {{-- age --}}
-            <div class="col"><input type="text" id="weight" name="weight" class="form-control"autofocus>
+            <div class="col"><input type="text" id="weight" name="weight" class="form-control" autofocus>
                 @error('weight')
                     <p class="text-danger small">{{ $message }}</p>
                  @enderror

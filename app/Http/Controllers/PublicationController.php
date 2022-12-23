@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Storage;
 
 class PublicationController extends Controller
 {
-    private $publication;
+
     const LOCAL_STORAGE_FOLDER = 'public/images/';
+    private $publication;
 
     public function __construct(Publication $publication)
     {
@@ -45,7 +46,9 @@ class PublicationController extends Controller
 
          $this->pet->save();
 
-        return redirect()->back();
+         return redirect()->route('publication.confirm');
+        // return redirect()->back();
+        // return view('publications.show');
     }
 
     public function saveImage($request){
@@ -59,6 +62,14 @@ class PublicationController extends Controller
         }
     }
 
+      public function show($id)
+    {
+        $all_publications = $this->pet->findOrFail($id);
+
+        return view('publications.show')
+                ->with('all_publications', $all_publications);
+    }
+
     public function input()
     {
         return view('publications.input');
@@ -66,11 +77,50 @@ class PublicationController extends Controller
 
     public function confirm()
     {
-        return view('publications.index');
+        $all_publications = $this->pet->latest()->get();
+        // $all_publications = $this->pet->findOrFail($id);
+        // $all_publications  = Publication::all()->first();
+
+        return view('publications.show')
+                ->with('all_publications', $all_publications);
     }
+
+    private function deleteImage($image_name){
+        $image_path = self::LOCAL_STORAGE_FOLDER . $image_name;
+        //$image_path = "/public/images/filename.jpg";
+
+        if(Storage::disk('local')->exists($image_path)){
+            Storage::disk('local')->delete($image_path);
+        }
+    }
+
+    public function destroy($id){
+        $publication = $this->pet->findOrFail($id);
+        $this->deleteImage($publication->image);
+        //$this->deleteImage(filename.jpg);
+
+        $this->pet->destroy($id);
+
+        return redirect()->route('publication.input');
+
+     }
 
     public function completed()
     {
-        return view('publications.index');
+        $all_publications = $this->pet->latest()->get();
+
+        return view('publications.completed')
+        ->with('all_publications', $all_publications);
     }
+
+    // public function back_home($id){
+    //     $publication = $this->pet->findOrFail($id);
+    //     $this->deleteImage($publication->image);
+    //     //$this->deleteImage(filename.jpg);
+
+    //     $this->pet->destroy($id);
+
+    //     return view('donates.help_animal_top');
+
+    //  }
 }
