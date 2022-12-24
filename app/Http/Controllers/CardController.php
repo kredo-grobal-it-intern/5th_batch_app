@@ -45,7 +45,7 @@ class CardController extends Controller
                     "description" => "Donation for lovely pets"
                 ]);
 
-                return view('donates.help_animal_top');
+                return view('donates.complete_donate');
 
     }
 
