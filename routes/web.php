@@ -7,7 +7,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\NewsController;
 
 use App\Http\Controllers\qanda\QuestionController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\qanda\CategoryController;
+use App\Http\Controllers\Admin\AdminEventController;
 
 
 /*
@@ -63,3 +65,13 @@ Route::get('map/all', function () {
 Route::get('map/saved', function () {
     return view('maps.saved');
 });
+
+// contact form
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'sendMail']);
+Route::get('/contact/complete', [ContactController::class, 'complete'])->name('contact.complete');
+
+// events
+Route::get('/admin/events', [AdminEventController::class, 'index'])->name('admin.events.index');
+Route::get('/admin/events/create', [AdminEventController::class, 'create'])->name('admin.events.create');
+Route::post('/admin/events', [AdminEventController::class, 'store'])->name('admin.events.store');
