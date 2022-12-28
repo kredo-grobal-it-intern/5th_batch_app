@@ -24,6 +24,11 @@ class PublicationController extends Controller
         return view('publications.index');
     }
 
+    public function input()
+    {
+        return view('publications.input');
+    }
+
     public function request(Request $request)
     {
         $request->validate([
@@ -64,25 +69,61 @@ class PublicationController extends Controller
 
       public function show($id)
     {
-        $all_publications = $this->pet->findOrFail($id);
+        $publication = $this->pet->findOrFail($id);
 
         return view('publications.show')
-                ->with('all_publications', $all_publications);
+                ->with('publication', $publication);
     }
 
-    public function input()
+    public function edit($id)
     {
-        return view('publications.input');
+        $publication = $this->pet->findOrFail($id);
+
+        if($publication->user->id != Auth::user()->id){
+            return redirect()->back();
+        }
+
+        return view('publications.edit')->with('publication',$publication);
     }
 
-    public function confirm()
+    public function update(Request $request, $id)
     {
-        $all_publications = $this->pet->latest()->get();
-        // $all_publications = $this->pet->findOrFail($id);
-        // $all_publications  = Publication::all()->first();
+        $request->validate([
+            'name'  =>      'required|min:1|max:1000',
+            'image' =>      'required|mimes:jpg,jpeg,png,gif|max:1048',
+            'date_of_brith'  => 'required',
+            'breed'  => 'required',
+            'weight'  => 'required',
+            'gender'  => 'required',
+            'url'  => 'required',
+            'pet_type'  => 'required',
+            'netured_status'  => 'required',
+            'charateristic'  => 'required',
+        ]);
 
-        return view('publications.show')
-                ->with('all_publications', $all_publications);
+        $publication       = $this->pet->findOrFail($id);
+        $publication->name = $request->name;
+        $publication->date_of_brith = $request->date_of_brith;
+        $publication->breed = $request->breed;
+        $publication->weight = $request->weight;
+        $publication->gender = $request->gender;
+        $publication->url = $request->url;
+        $publication->pet_type = $request->pet_type;
+        $publication->netured_status = $request->netured_status;
+        $publication->charateristic = $request->charateristic;
+
+        #If there is a new image.......
+        if ($request->image){
+            #Delete the previous image from the local storage
+            $this->deleteImage($publication->image);
+
+            #Move the new image to local storage
+            $publication->image = $this->saveImage($request);
+
+        }
+
+        $publication->save();
+        return redirect()->route('publication.show', $id);
     }
 
     private function deleteImage($image_name){
@@ -94,6 +135,16 @@ class PublicationController extends Controller
         }
     }
 
+    public function confirm()
+    {
+        $all_publications = $this->pet->latest()->get();
+        // $all_publications = $this->pet->findOrFail($id);
+        // $all_publications  = Publication::all()->first();
+
+        return view('publications.confirm')
+                ->with('all_publications', $all_publications);
+    }
+
     public function destroy($id){
         $publication = $this->pet->findOrFail($id);
         $this->deleteImage($publication->image);
@@ -101,26 +152,16 @@ class PublicationController extends Controller
 
         $this->pet->destroy($id);
 
-        return redirect()->route('publication.input');
+        $all_publications = $this->pet->latest()->get();
+
+        return view('publications.confirm')
+           ->with('all_publications', $all_publications);;
 
      }
 
     public function completed()
     {
-        $all_publications = $this->pet->latest()->get();
+        return view('publications.completed');
 
-        return view('publications.completed')
-        ->with('all_publications', $all_publications);
     }
-
-    // public function back_home($id){
-    //     $publication = $this->pet->findOrFail($id);
-    //     $this->deleteImage($publication->image);
-    //     //$this->deleteImage(filename.jpg);
-
-    //     $this->pet->destroy($id);
-
-    //     return view('donates.help_animal_top');
-
-    //  }
 }

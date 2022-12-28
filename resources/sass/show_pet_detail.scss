@@ -21,29 +21,8 @@
 }
 .pet{
     position: absolute;
-    top: 350px;
+    top: 280px;
     left: 184px;
-}
-
-.your_publication{
-    position: absolute;
-    width: 262px;
-    height: 33px;
-    left: 200px;
-    top: 320px;
-
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 22px;
-    line-height: 33px;
-    /* ボックスの高さと同一 */
-
-    text-align: center;
-
-    /* black */
-
-    color: #181818;
 }
 
 // .card{
@@ -167,81 +146,19 @@
     color: #181818;
 }
 
-.name{
+.p_form{
+    width: 852px;
     position: absolute;
-    width: 43px;
-    height: 22px;
-    left: 385px;
-    top: 356px;
-
+    top: 270px;
     font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
-    /* ボックスの高さと同一 */
-
-
-    /* black */
-
-    color: #181818;
-
 }
 
-.age{
+.edit_button{
     position: absolute;
-    width: 30px;
-    height: 22px;
-    left: 730px;
-    top: 356px;
-
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
-    /* ボックスの高さと同一 */
-
-
-    /* black */
-
-    color: #181818;
-
-}
-
-.back_button{
-    box-sizing: border-box;
-
-    position: absolute;
-    width: 200px;
+    width: 120px;
     height: 50px;
-    left: 1380px;
-    top: 280px;
-
-
-
-    background: #FFFFFF;
-    /* main */
-
-    border: 2px solid #FACA7B;
-    border-radius: 12px;
-
-
-
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 22px;
-}
-
-.confirm_button{
-
-    position: absolute;
-    width: 200px;
-    height: 50px;
-    left:1100px;
-    top: 280px;
+    left: 800px;
+    top: 20px;
 
     font-family: 'Nunito';
     font-style: normal;
@@ -261,5 +178,59 @@
 
     background: #FACA7B;
     border-radius: 12px;
+}
+
+.back_button{
+    position: absolute;
+    width: 120px;
+    height: 50px;
+    left: 800px;
+    top: 140px;
+
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 22px;
+    /* ボックスの高さと同一 */
+
+    text-align: center;
+
+    /* black */
+
+    color: #181818;
+
+
+    /* main */
+
+    background: #FFFFFF;
+    border: 1px solid #FACA7B;
+    border-radius: 12px;
+}
+
+.delete_button{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 120px;
+    height: 50px;
+    left: 800px;
+    top: 80px;
+
+
+
+    background: #f22a2a;
+    color:  #FFFFFF;
+    /* main */
+    border-radius: 12px;
+
+
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 22px;
 }
 

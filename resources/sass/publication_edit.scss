@@ -19,37 +19,7 @@
     color: #181818;
 
 }
-.pet{
-    position: absolute;
-    top: 350px;
-    left: 184px;
-}
 
-.your_publication{
-    position: absolute;
-    width: 262px;
-    height: 33px;
-    left: 200px;
-    top: 320px;
-
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 22px;
-    line-height: 33px;
-    /* ボックスの高さと同一 */
-
-    text-align: center;
-
-    /* black */
-
-    color: #181818;
-}
-
-// .card{
-//     width: 100px;
-//     height: 100px;
-// }
 .number_border{
     position: absolute;
     width: 852px;
@@ -105,7 +75,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #FACA7B;
+    background: #DFDFDF;;
     text-align: center;
     line-height: 50px;
 
@@ -140,7 +110,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #DFDFDF;
+    background: #DFDFDF;;
     text-align: center;
     line-height: 50px;
 
@@ -151,6 +121,7 @@
     color: #181818;
 
 }
+
 
 .circle_title_3{
     position: absolute;
@@ -165,6 +136,13 @@
 
 
     color: #181818;
+}
+
+.p_form{
+    width: 852px;
+    position: absolute;
+    left: 474px;
+    top: 270px;
 }
 
 .name{
@@ -207,59 +185,5 @@
 
     color: #181818;
 
-}
-
-.back_button{
-    box-sizing: border-box;
-
-    position: absolute;
-    width: 200px;
-    height: 50px;
-    left: 1380px;
-    top: 280px;
-
-
-
-    background: #FFFFFF;
-    /* main */
-
-    border: 2px solid #FACA7B;
-    border-radius: 12px;
-
-
-
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 22px;
-}
-
-.confirm_button{
-
-    position: absolute;
-    width: 200px;
-    height: 50px;
-    left:1100px;
-    top: 280px;
-
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 22px;
-    /* ボックスの高さと同一 */
-
-    text-align: center;
-
-    /* black */
-
-    color: #181818;
-
-
-    /* main */
-
-    background: #FACA7B;
-    border-radius: 12px;
 }
 

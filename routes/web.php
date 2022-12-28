@@ -81,6 +81,9 @@ Route::group(["middleware" => "auth"], function () {
         Route::delete('/publication/{id}/destroy',[PublicationController::class,'destroy'])->name('destroy');
         Route::get('/publication/confirm',[PublicationController::class,'confirm'])->name('confirm');
         Route::get('/publication/completed',[PublicationController::class,'completed'])->name('completed');
+        Route::get('/publication/{id}/show',[PublicationController::class,'show'])->name('show');
+        Route::get('/{id}/edit', [PublicationController::class, 'edit'])->name('edit');
+        Route::patch('/{id}/update', [PublicationController::class, 'update'])->name('update');
      });
 
  });
