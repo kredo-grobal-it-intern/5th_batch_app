@@ -49,8 +49,9 @@
                                  <div class="col">{{ $publication->date_of_brith }} years old</div>
                             </div>
                             <div class="row">
-                                <div class="col">Registerd: {{ $publication->created_at->diffForHumans() }}</div>
+                                <div class="col">Registerd: {{ $publication->created_at }}</div>
                             </div>
+
                         </div>
                     </div>
                  </div>
@@ -65,6 +66,7 @@
     </div>
 
     @endforelse
+    {{ $all_publications->links()}}
 </div>
 
  {{-- Complete Publication --}}

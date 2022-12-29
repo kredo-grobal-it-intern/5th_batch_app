@@ -116,8 +116,8 @@
                 </div>
 
                 <label for="Characteristics" class="my-1">Characteristics</label>
-            {{-- URL --}}
-            <div class="h5">{{ $publication->url }}</div>
+            {{-- charateristic --}}
+            <div class="h5">{{ $publication->charateristic }}</div>
         </div>
       </div>
     </div>

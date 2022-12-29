@@ -33,7 +33,15 @@ class PublicationController extends Controller
     {
         $request->validate([
             'name'  =>      'required|min:1|max:1000',
-            'image' =>      'required|mimes:jpg,jpeg,png,gif|max:1048'
+            'image' =>      'required|mimes:jpg,jpeg,png,gif|max:1048',
+            'date_of_brith'  => 'required',
+            'breed'  => 'required',
+            'weight'  => 'required',
+            'gender'  => 'required',
+            'url'  => 'required',
+            'pet_type'  => 'required',
+            'netured_status'  => 'required',
+            'charateristic'  => 'required',
         ]);
         // saving the pet in the post table
          $this->pet->user_id = Auth::user()->id;
@@ -137,9 +145,10 @@ class PublicationController extends Controller
 
     public function confirm()
     {
-        $all_publications = $this->pet->latest()->get();
+        // $all_publications = $this->pet->latest()->get();
         // $all_publications = $this->pet->findOrFail($id);
         // $all_publications  = Publication::all()->first();
+        $all_publications = DB::table('pets')->simplePaginate(4);
 
         return view('publications.confirm')
                 ->with('all_publications', $all_publications);
