@@ -60,8 +60,6 @@ class QuestionReactionController extends Controller
     public function show($id)
     {
         $question = Question::findOrFail($id);
-
-        dd($question);
     }
 
     /**

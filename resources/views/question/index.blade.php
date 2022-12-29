@@ -168,16 +168,16 @@
                                 @endif
                         </div>
                         <div class="d-inline d-flex">
-                            <i class="fas fa-share-alt text-muted p-md-1 my-1 me-2" data-mdb-toggle="tooltip"
+                            <i class="fas fa-share-alt text-muted p-md-1 my-2 me-2" data-mdb-toggle="tooltip"
                                 data-mdb-placement="top" title="Share this post"></i>
                             @if ($question->userReaction())
-                                <button type="button" data-question-id="{{ $question->id }}" class="btn btn-light text-danger p-md-1 my-1 me-0 remove-reaction">
-                                    <i class="fas fa-heart unlike fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
+                                <button type="button" data-question-id="{{ $question->id }}" class="btn btn-outline-light text-danger p-md-1 my-1 me-0 remove-reaction" style="border: none; outline: none; background: transparent;">
+                                    <i class="fas fa-heart fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
                                     title="Remove like"></i>
                                 </button>
                             @else
-                                <button type="button" data-question-id="{{ $question->id }}" class="btn btn-light text-muted p-md-1 my-1 me-0 react">
-                                    <i class="fas fa-heart like fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
+                                <button type="button" data-question-id="{{ $question->id }}" class="btn btn-outline-light text-muted p-md-1 my-1 me-0 react" style="border: none; outline: none; background: transparent;">
+                                    <i class="fas fa-heart fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
                                     title="I like it"></i>
                                 </button>
                             @endif
@@ -219,8 +219,6 @@
                             .removeClass('text-danger')
                             .addClass('text-muted')
                             .find('i')
-                            .removeClass('unlike')
-                            .addClass('like')
                             .tooltip('hide')
                             .attr('data-mdb-original-title', 'I like it')
                             .tooltip('show');
@@ -246,8 +244,6 @@
                             .addClass('text-danger')
                             .removeClass('text-muted')
                             .find('i')
-                            .addClass('unlike')
-                            .removeClass('like')
                             .attr('data-mdb-original-title', 'Remove like')
                             .tooltip('show');
                     },

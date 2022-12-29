@@ -24,11 +24,12 @@ class Answer extends Model
         return $this->hasMany(AnswerComment::class);
     }
 
-    public function answerLikes(){
-        return $this->hasMany(AnswerReaction::class);
+    public function userReaction(){
+        return $this->answerReactions()->wherePivot('liked_by', Auth::id())->first();
     }
 
-    public function answerIsLiked(){
-        return $this->answerLikes()->where('liked_by', Auth::id())->exists();
+    public function answerReactions() {
+        return $this->belongsToMany(User::class, 'answer_reactions', 'answer_id', 'liked_by');
+        // belongsToMany('関係するモデル', '中間テーブルのテーブル名', '中間テーブル内で対応しているID名', '関係するモデルで対応しているID名');
     }
 }

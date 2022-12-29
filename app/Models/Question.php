@@ -37,5 +37,6 @@ class Question extends Model
 
     public function questionReactions() {
         return $this->belongsToMany(User::class, 'question_reactions', 'question_id', 'liked_by');
+        // belongsToMany('関係するモデル', '中間テーブルのテーブル名', '中間テーブル内で対応しているID名', '関係するモデルで対応しているID名');
     }
 }

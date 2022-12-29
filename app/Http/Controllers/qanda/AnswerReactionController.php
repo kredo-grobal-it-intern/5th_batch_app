@@ -10,13 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AnswerReactionController extends Controller
 {
-    // private $answer_reaction;
-
-    // public function __construct(AnswerReaction $answer_reaction)
-    // {
-    //     $this->answer_reaction = $answer_reaction;
-    // }
-
     public function index(){
 
     }
@@ -25,30 +18,48 @@ class AnswerReactionController extends Controller
         $answer = Answer::findOrFail($id);
     }
 
-    public function store(Request $request)
-    {
-        // $this->answer_reaction->liked_by = Auth::id();
-        // $this->answer_reaction->answer_id = $request->id;
+    public function create(){
 
-        // $this->answer_reaction->save();
-
-        AnswerReaction::create([
-            "like_by" => Auth::id(),
-            "answer_id" => $request->id
-        ]);
-
-        return redirect()->back();
     }
 
+    public function store(Request $request)
+    {
+        $answer = Answer::findOrFail($request->answer_id);
+        if(!$answer->userReaction()) {
+            $answer->answerReactions()->attach(Auth::id());
+            return response()->json([
+                "message" => "Horray! Reaction has been made"
+            ], 200);
+        }
 
-    // public function destroy($id)
-    // {
-    //     $this->answer_reaction->where('liked_by', Auth::id())
-    //                             ->where('answer_id', $id)->delete();
-    //     return redirect()->back();
-    // }
+        return response()->json([
+            "message" => "Oops! Failed to react!"
+        ], 500);
+    }
 
-    public function destroy(AnswerReaction $answer_reaction) {
-        $answer_reaction->where('liked_by', Auth::id())->delete();
+    public function edit($id)
+    {
+        //
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function destroy($id) {
+
+        $answer = Answer::find($id);
+
+        if($answer->userReaction()) {
+            $answer->answerReactions()->detach(Auth::id());
+            return response()->json([
+                "message" => "We successfully removed your reaction!"
+            ], 200);
+        }
+
+        return response()->json([
+            "message" => "Sorry! We can't removed your reaction."
+        ], 500);
     }
 }
