@@ -1,0 +1,45 @@
+.find_search{
+    padding: 1rem;
+    margin-bottom: 0,7rem;
+    margin-top: 1rem;
+    background-color: #F8F8F8;
+    width: 75%;
+    height: 200px
+}
+.search_button{
+    position: absolute;
+    left: 1180px;
+    top:115px;
+
+    width: 8rem;
+    height: 36px;
+    background: #FACA7B;
+    text-align: center;
+    line-height: 18px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    color: #181818;
+}
+
+.apply_fillter{
+    background: #FACA7B;
+    border-radius: 12px;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 22px;
+    /* ボックスの高さと同一 */
+
+    text-align: center;
+
+    /* black */
+
+    color: #181818;
+
+}
+
+
