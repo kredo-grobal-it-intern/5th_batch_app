@@ -10,6 +10,8 @@ class Question extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title','image','user_id','content'];
+
     public function user(){
         return $this->belongsTo(User::class);
     }

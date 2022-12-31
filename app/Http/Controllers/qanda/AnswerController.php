@@ -10,14 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AnswerController extends Controller
 {
-    // private $answer;
     const LOCAL_STORAGE_FOLDER = 'public/images/answers';
-
-    // public function __construct(Answer $answer)
-    // {
-    //     $this->answer = $answer;
-    // }
-
 
     public function index(){
 
@@ -48,9 +41,9 @@ class AnswerController extends Controller
 
         Answer::create([
             "body" => $request->answer,
-            "image" => $this->saveAnswerImage($request),
+            "image" => self::saveAnswerImage($request),
             "user_id" => Auth::id(),
-            "question_id" => $request->question_id
+            "question_id" => $request->question_id,
         ]);
 
         return redirect()->back();

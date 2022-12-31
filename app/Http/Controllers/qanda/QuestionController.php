@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\Storage;
 
 class QuestionController extends Controller
 {
-    private $question;
+    // private $question;
     const LOCAL_STORAGE_FOLDER = 'public/images/questions';
 
 
-    public function __construct(Question $question){
-        $this->question = $question;
-    }
+    // public function __construct(Question $question){
+    //     $this->question = $question;
+    // }
 
 
     public function index()
@@ -46,18 +46,25 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         // Save without category
-        $this->question->title = $request->title;
-        $this->question->content = $request->content;
-        $this->question->image = $this->saveQuestionImage($request);
-        $this->question->user_id = Auth::id();
-        $this->question->save();
+        // $this->question->title = $request->title;
+        // $this->question->content = $request->content;
+        // $this->question->image = $this->saveQuestionImage($request);
+        // $this->question->user_id = Auth::id();
+        // $this->question->save();
+
+        $question = Question::create([
+            "title" => $request->title,
+            "content" => $request->content,
+            "image" => self::saveQuestionImage($request),
+            "user_id" => Auth::id(),
+        ]);
 
         // save categories [1,2,3] -> [category_id => 1,category_id => 2,category_id => 3]
         foreach($request->category as $category_id){
             $question_category[] = ["category_id"=>$category_id];
         }
         // $this->question->SelectedCategory()->createMany($question_category);
-        $this->question->createSelectedCategory()->createMany($question_category);
+        $question->createSelectedCategory()->createMany($question_category);
 
         return redirect()->route('questions.index');
     }
@@ -86,14 +93,14 @@ class QuestionController extends Controller
 
     public function update(Request $request, $id)
     {
-        $question = $this->question->findOrFail($id);
+        $question = Question::findOrFail($id);
         $question->title = $request->title;
         $question->content = $request->content;
         $question->user_id = Auth::id();
         if($request->image):
-            $this->deleteQuestionImage($question->image);
+            self::deleteQuestionImage($question->image);
 
-            $question->image = $this->saveQuestionImage($request);
+            $question->image = self::saveQuestionImage($request);
         endif;
         $question->save();
 
