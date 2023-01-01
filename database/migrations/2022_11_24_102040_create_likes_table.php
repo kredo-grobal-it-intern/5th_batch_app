@@ -20,6 +20,7 @@ class CreateLikesTable extends Migration
 
             // need foreign key
             // need foreign key
+
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
