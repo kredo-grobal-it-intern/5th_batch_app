@@ -38,6 +38,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -92,6 +93,7 @@
         </nav>
 
         <main class="py-4">
+
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-9">
@@ -109,5 +111,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script>
 
     @yield('script')
+
+    {{-- iconify for some icons --}}
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
 </body>
 </html>
