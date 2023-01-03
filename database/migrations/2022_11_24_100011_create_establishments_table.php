@@ -24,7 +24,6 @@ class CreateEstablishmentsTable extends Migration
             $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');
-
         });
     }
 

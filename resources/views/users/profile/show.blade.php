@@ -17,7 +17,7 @@
     <div class="col-md-8">
       <div class="row">
         <h1>{{ $user->name }}</h1>
-        @if ($user->id == Auth::user()->id)
+        @if ($user->id == Auth::id())
           <a class="btn btn-outline-dark common-btn edit-profile-btn" href="/users/edit">Edit Profile</a>
           <a class="btn btn-outline-dark common-btn edit-profile-btn" rel="nofollow" data-method="POST" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
