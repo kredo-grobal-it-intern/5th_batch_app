@@ -145,10 +145,10 @@ class PublicationController extends Controller
 
     public function confirm()
     {
-        // $all_publications = $this->pet->latest()->get();
+        $all_publications = $this->pet->latest()->get();
         // $all_publications = $this->pet->findOrFail($id);
         // $all_publications  = Publication::all()->first();
-        $all_publications = DB::table('pets')->simplePaginate(4);
+        // $all_publications = DB::table('pets')->simplePaginate(4);
 
         return view('publications.confirm')
                 ->with('all_publications', $all_publications);

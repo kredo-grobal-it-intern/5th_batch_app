@@ -66,7 +66,6 @@
     </div>
 
     @endforelse
-    {{ $all_publications->links()}}
 </div>
 
  {{-- Complete Publication --}}

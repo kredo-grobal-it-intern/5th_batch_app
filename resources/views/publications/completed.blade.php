@@ -37,7 +37,7 @@
     </div>
 
          {{-- Back input --}}
-          <button  type="submit" class="back_home"><a href="{{ route('help_animal_top.index') }}">Back to homepage</a></button>
+          <button  type="submit" class="back_home"><a href="{{ route('animal_care.index') }}">Back to homepage</a></button>
     </form>
 
 
