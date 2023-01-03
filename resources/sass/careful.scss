@@ -1,0 +1,144 @@
+.title{
+    position: absolute;
+    width: 262px;
+    height: 33px;
+    left: 589px;
+    top: 130px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 33px;
+    /* ボックスの高さと同一 */
+
+    text-align: center;
+
+    /* black */
+
+    color: #181818;
+
+}
+
+.section-title{
+    position: absolute;
+    width: 110px;
+    height: 27px;
+    left: 385px;
+    top: 180px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 27px;
+
+    /* black */
+
+    color: #181818;
+
+}
+
+.section-content{
+    position: absolute;
+    width: 670px;
+    height: 180px;
+    left: 385px;
+    top: 241px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+
+    /* black */
+
+    color: #181818;
+
+ }
+
+ .contain_background{
+    position: absolute;
+    width: 670px;
+    height:  321px;
+    left: 385px;
+    top: 451px;
+
+    background: #F8F8F8;
+    border-radius: 12px;
+ }
+
+ .contain_title{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+
+/* black */
+
+color: #181818;
+
+ }
+
+.form-check{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 35px;
+    /* または219% */
+
+
+    /* black */
+
+    color: #181818;
+}
+
+.button_title{
+    position: absolute;
+    width: 590px;
+    height: 22px;
+    left: 425px;
+    top: 792px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    /* ボックスの高さと同一 */
+
+    text-align: center;
+
+    /* black */
+
+    color: #181818;
+ }
+
+ .button{
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    left: 685px;
+    top: 834px;
+
+    /* main */
+
+    background: #FACA7B;
+    border-radius: 12px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 22px;
+    /* ボックスの高さと同一 */
+
+    text-align: center;
+
+    /* black */
+
+    color: #181818;
+ }

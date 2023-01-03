@@ -1,0 +1,123 @@
+.pet_name{
+    position: absolute;
+    width: 9%;
+    height: 26px;
+    left: 29rem;
+    top: 8.6rem;
+
+    text-align: center;
+    background: #FFFFFF;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 0px 0px 30px 30px;
+    line-height: 26px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+}
+
+.font_con{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+
+    /* または32px */
+
+    text-align: left;
+
+    /* black */
+
+    color: #181818;
+    }
+
+.p_form{
+    width: 55%;
+    left: 23rem;
+    position: absolute;
+    top: 5rem;
+    font-family: 'Nunito';
+
+}
+
+.edit_button{
+    position: absolute;
+    width: 120px;
+    height: 50px;
+    right: 1rem;
+    top: 3rem;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 22px;
+    /* ボックスの高さと同一 */
+
+    text-align: center;
+
+    /* black */
+
+    color: #181818;
+
+
+    /* main */
+
+    background: #FACA7B;
+    border-radius: 12px;
+}
+
+.back_button{
+    position: absolute;
+    width: 120px;
+    height: 50px;
+    right: 1rem;
+    top: 7rem;
+
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 22px;
+    /* ボックスの高さと同一 */
+
+    text-align: center;
+
+    /* black */
+
+    color: #181818;
+
+
+    /* main */
+
+    background: #FFFFFF;
+    border: 1px solid #FACA7B;
+    border-radius: 12px;
+}
+
+.delete_button{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 120px;
+    height: 50px;
+    right: 1rem;
+    top: 11rem;
+
+
+
+    background: #f22a2a;
+    color:  #FFFFFF;
+    /* main */
+    border-radius: 12px;
+
+
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 22px;
+}
+

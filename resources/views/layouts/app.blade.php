@@ -22,6 +22,10 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/q_and_a.css') }}" rel="stylesheet">
 
+    @yield('style')
+
+    <script src="https://kit.fontawesome.com/eea364082e.js" crossorigin="anonymous"></script>
+
     {{-- for mdbootstrap --}}
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -38,7 +42,6 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -93,7 +96,6 @@
         </nav>
 
         <main class="py-4">
-
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-9">
@@ -109,10 +111,7 @@
 
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script>
-
-    @yield('script')
-
-    {{-- iconify for some icons --}}
     <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+    @yield('script');
 </body>
 </html>

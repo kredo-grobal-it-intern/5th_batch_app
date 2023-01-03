@@ -16,6 +16,7 @@ class CreatePetsTable extends Migration
         Schema::create('pets', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->text('name');
             $table->enum('pet_type', ['dog', 'cat']);
             $table->text('breed');
             $table->text('weight');
@@ -25,7 +26,8 @@ class CreatePetsTable extends Migration
             $table->enum('gender', ['Male', 'Female']);
             $table->string('url');
             $table->string('date_of_brith');
-            $table->tinyInteger('neutered');
+            $table->enum('netured_status', ['Compeleted', 'Not yet']);
+            // $table->tinyInteger('neutered');
             $table->timestamps();
             $table->softDeletes();
 
