@@ -3,34 +3,12 @@
 @section('title', 'Donate page')
 
 @section('style')
-     <link rel="stylesheet" href="{{ mix('/css/publication_edit.css') }}">
+     <link rel="stylesheet" href="{{ mix('/css/edit_find_animal.css') }}">
 @endsection
 
 @section('content')
-
-    <div class="title col-4 mx-5">
-        Request for Publication
-    </div>
-
-    <div class="number_border">
-    </div>
-    <div class="circle_1">
-      <div class="my-auto">1</div>
-    </div>
-    <div class="circle_title_1">Application</div>
-
-    <div class="circle_2">
-        <div class="mx-auto">2</div>
-    </div>
-    <div class="circle_title_2">Confimation</div>
-
-    <div class="circle_3">
-        <div class="my-auto">3</div>
-    </div>
-    <div class="circle_title_3">Complete</div>
-
     <div class="p_form">
-      <form action="{{ route('publication.update', $publication->id) }}" method="post" enctype="multipart/form-data">
+      <form action="{{ route('find_animal.find_animal.update', $publication->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <div class="row my-1">

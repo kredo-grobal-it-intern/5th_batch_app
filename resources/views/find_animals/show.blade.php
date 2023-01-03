@@ -3,46 +3,25 @@
 @section('title', 'Donate page')
 
 @section('style')
-     <link rel="stylesheet" href="{{ mix('/css/show_pet_detail.css') }}">
+     <link rel="stylesheet" href="{{ mix('/css/show_find_animal.css') }}">
 @endsection
 
 @section('content')
-
-    <div class="title col-4 mx-5">
-        Request for Publication
-    </div>
-
-    <div class="number_border">
-    </div>
-    <div class="circle_1">
-      <div class="my-auto">1</div>
-    </div>
-    <div class="circle_title_1">Application</div>
-
-    <div class="circle_2">
-        <div class="mx-auto">2</div>
-    </div>
-
-
-    <div class="circle_3">
-        <div class="my-auto">3</div>
-    </div>
-    <div class="circle_title_3">Complete</div>
-    <div class="circle_title_2">Confimation</div>
-
    <div class="p_form">
     <div class="row mt-5">
         <div class="col">
             <img src="{{ asset('/storage/images/' . $publication->image) }}" alt="{{ $publication->image }}" class="w-75">
+            <div class="font_con">Registered Date:{{ $publication->created_at }}</div>
+            <div class="font_con">Updated at:{{ $publication->updated_at }}</div>
         </div>
 
         <div class="col">
-            <button  type="submit" class="back_button" ><a href="{{ route('publication.confirm') }}" class="link-dark">Back</a></button>
+            <button  type="submit" class="back_button" ><a href="{{ route('find_animal.index') }}" class="link-dark">Back</a></button>
              {{-- if the owner of the post is the Auth user, show Edit and Delete button --}}
 
-            <button  type="submit" class="edit_button" ><a href="{{ route('publication.edit',$publication->id) }}" class="link-dark">Edit</a></button>
+            <button  type="submit" class="edit_button" ><a href="{{ route('find_animal.find_animal.edit',$publication->id) }}" class="link-dark">Edit</a></button>
 
-            <form action="{{ route('publication.destroy', $publication->id) }}" method="post" class="d-inline">
+            <form action="{{ route('find_animal.find_animal.destroy',$publication->id) }}" method="post" class="d-inline">
                 @csrf {{-- cross site reference forgeries --}}
                 @method('DELETE')
 
@@ -52,8 +31,8 @@
 
 
                 <div class="row my-1">
-                    <div class="col">pet_name</div>
-                    <div class="col">age</div>
+                    <div class="col font_con">pet_name</div>
+                    <div class="col font_con">age</div>
                 </div>
                 <div class="row my-1">
                     {{-- name --}}
@@ -65,8 +44,8 @@
                 </div>
 
                 <div class="row my-1">
-                    <div class="col">breed</div>
-                    <div class="col">weight</div>
+                    <div class="col font_con">breed</div>
+                    <div class="col font_con">weight</div>
                 </div>
                 <div class="row my-1">
                     {{-- breed --}}
@@ -77,8 +56,8 @@
                 </div>
 
                 <div class="row my-1">
-                    <div class="col">Gender</div>
-                    <div class="col">Kind</div>
+                    <div class="col font_con">Gender</div>
+                    <div class="col font_con">Kind</div>
                 </div>
                 <div class="row my-1">
                     {{-- Gender --}}
@@ -88,8 +67,8 @@
                 </div>
 
                 <div class="row my-1">
-                    <div class="col">Spaying</div>
-                    <div class="col">Vaccine</div>
+                    <div class="col font_con">Spaying</div>
+                    <div class="col font_con">Vaccine</div>
                 </div>
                 <div class="row my-1">
                     {{-- Spaying --}}
@@ -100,8 +79,8 @@
 
                 <div class="row my-1">
                     {{-- Delivery Area --}}
-                    <div class="col">Delivery Areas</div>
-                    <div class="col">URL</div>
+                    <div class="col font_con">Location prefecture</div>
+                    <div class="col font_con">URL</div>
                 </div>
                 <div class="row my-1">
                     {{-- Delivery Area --}}
@@ -115,11 +94,11 @@
                     <div class="col h5">{{ $publication->url }}</div>
                 </div>
 
-                <label for="Characteristics" class="my-1">Characteristics</label>
+                <label for="Characteristics" class="my-1 font_con">Characteristics</label>
             {{-- charateristic --}}
             <div class="h5">{{ $publication->charateristic }}</div>
         </div>
       </div>
     </div>
-
-@endsection
+    <div class="pet_name">{{ $publication->name }}</div>
+    @endsection
