@@ -8,7 +8,10 @@ use App\Http\Controllers\NewsController;
 
 use App\Http\Controllers\qanda\QuestionController;
 use App\Http\Controllers\qanda\CategoryController;
-
+use App\Http\Controllers\qanda\AnswerController;
+use App\Http\Controllers\qanda\AnswerCommentController;
+use App\Http\Controllers\qanda\QuestionReactionController;
+use App\Http\Controllers\qanda\AnswerReactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,12 +30,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
-
 Route::resource('/article', ArticleController::class);
 Route::resource('/pet-news', NewsController::class);
-
 
 Route::group(["prefix"=>"pet-news", "as"=>"pet-news."],function(){
     Route::group(["prefix"=>"show", "as"=>"show."],function(){
@@ -49,8 +48,20 @@ Route::get('/categories',[CategoryController::class, 'generateQuestionCategories
 
 Route::group(["middleware"=>"auth"], function() {
     #question
-    Route::resource('/Q-A', QuestionController::class);
+    Route::group(['prefix' => 'q-a', 'middleware' => 'verified'], function () {
+        Route::resource('/questions', QuestionController::class);
+        Route::resource('/answers', AnswerController::class);
+        Route::resource('/answer_comment', AnswerCommentController::class);
+        Route::resource('/question_reaction', QuestionReactionController::class);
+        Route::resource('/answer_reaction', AnswerReactionController::class);
+    });
+
+    #Best answer
+    Route::patch('/best_answer/{id}',[AnswerController::class, 'selectBestAnswer'])->name('SelectBestAnswer');
 });
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('map', function () {
     return view('maps.index');

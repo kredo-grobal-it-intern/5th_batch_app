@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <div class="col-4">
-                            @if($question->user->id === Auth::user()->id)
+                            @if($question->user->id === Auth::id())
                                 <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#deleteQuestion-{{ $question->id }}">Delete</button>
                                 <button type="button" class="btn btn-white" data-mdb-toggle="modal" data-mdb-target="#editQuestion-{{ $question->id }}">Edit</button>
 
@@ -61,7 +61,7 @@
                                                 @endif
                                             </div>
                                             <div class="modal-footer">
-                                                <form action="{{ route('Q-A.destroy', $question->id) }}" method="post">
+                                                <form action="{{ route('questions.destroy', $question->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="button" class="btn btn-outline-danger btn-sm" data-mdb-dismiss="modal">Close</button>
@@ -82,7 +82,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="mx-auto">
-                                                    <form action="{{ route('Q-A.update', $question->id) }}" method="post" enctype="multipart/form-data">
+                                                    <form action="{{ route('questions.update', $question->id) }}" method="post" enctype="multipart/form-data">
                                                         @csrf
                                                         @method('PATCH')
                                                         <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
@@ -138,7 +138,11 @@
                                 </span>
                             @endforeach
                         </span>
-                        <span class="badge bg-opacity-50 my-auto pt-2" style="background-color: skyblue; height: 30px; width: 70px;">Solved <i class="fa-regular fa-circle-check" style="color: #faca7b"></i></span>
+                        @if ($question->IsSelectedBestAnswer())
+                            <span class="badge bg-opacity-50 my-auto pt-2" style="background-color: green; height: 30px; width: 80px;">Solved <i class="fa-regular fa-circle-check" style="color: #faca7b"></i></span>
+                        @else
+                            <span class="badge bg-opacity-50 my-auto pt-2" style="background-color: skyblue; height: 30px; width: 150px;">Answer acceptance <i class="fa-solid fa-paw"></i></span>
+                        @endif
                     </div>
                     <h4 class="card-title text-decoration-underline px-3 py-3 mb-0" style="background-color: #f8f8f8">Q. {{ $question->title }}</h4>
                 </div>
@@ -149,28 +153,37 @@
                             <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                         </a>
                     </div>
-                @else
-                    <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
-                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/full page/2.jpg"
-                        alt="Card image cap" />
-                        <a href="#!">
-                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                        </a>
-                    </div>
                 @endif
                 <div class="card-body" style="background-color: #f8f8f8">
                     <p class="card-text collapse" id="collapseContent{{ $question->id }}">{{ $question->content }}</p>
                     <div class="d-flex justify-content-between mb-3">
-                        <a class="btn btn-link link-danger p-md-1 my-1 fs-6 border border-danger" data-mdb-toggle="collapse" href="#collapseContent{{ $question->id }}"
-                            role="button" aria-expanded="false" aria-controls="collapseContent">Read more</a>
-                        <div>
-                            <i class="fas fa-share-alt text-muted p-md-1 my-1 me-2" data-mdb-toggle="tooltip"
+                        <div class="div">
+                            <a class="btn btn-link link-danger p-md-1 my-1 fs-6 border border-danger" data-mdb-toggle="collapse" href="#collapseContent{{ $question->id }}"
+                                role="button" aria-expanded="false" aria-controls="collapseContent">Read more</a>
+                                @if ($question->answers->count() > 0)
+                                    <a href="{{ route('answers.show', $question->id ) }}" class=""><i class="fa-solid fa-comment p-md-1 my-2 ms-2" data-mdb-toggle="tooltip"
+                                        data-mdb-placement="top" title="Show All Answers"> {{$question->answers->count()}}</i></a>
+                                @else
+                                    <i class="fa-solid fa-comment p-md-1 my-2 ms-2" data-mdb-toggle="tooltip" data-mdb-placement="top" title="No answers yet"> {{$question->answers->count()}}</i>
+                                @endif
+                        </div>
+                        <div class="d-inline d-flex">
+                            <i class="fas fa-share-alt text-muted p-md-1 my-2 me-2" data-mdb-toggle="tooltip"
                                 data-mdb-placement="top" title="Share this post"></i>
-                            <i class="fas fa-heart text-muted p-md-1 my-1 me-0" data-mdb-toggle="tooltip" data-mdb-placement="top"
-                                title="I like it"></i>
+                            @if ($question->userReaction())
+                                <button type="button" data-question-id="{{ $question->id }}" class="btn btn-outline-light text-danger p-md-1 my-1 me-0 remove-reaction" style="border: none; outline: none; background: transparent;">
+                                    <i class="fas fa-heart fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
+                                    title="Remove like"></i>
+                                </button>
+                            @else
+                                <button type="button" data-question-id="{{ $question->id }}" class="btn btn-outline-light text-muted p-md-1 my-1 me-0 react" style="border: none; outline: none; background: transparent;">
+                                    <i class="fas fa-heart fs-6" data-mdb-toggle="tooltip" data-mdb-placement="top"
+                                    title="I like it"></i>
+                                </button>
+                            @endif
                         </div>
                     </div>
-                    <form action="{{ route('Answer.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('answers.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="question_id" value="{{ $question->id }}">
                         <label for="answer" class="form-label">Answer</label>
@@ -184,14 +197,61 @@
                             <button type="submit" class="btn w-50 mt-2" style="background-color: #faca7b">Post your Answer</button>
                         </div>
                     </form>
-                    <div class="text-center">
-                        @if ($question->answers->count() > 0)
-                            <a href="{{ route('Answer.show', $question->id ) }}" class="text-decoration-underline">Show All Answers ({{$question->answers->count()}})</a>
-                        @endif
-                    </div>
                 </div>
             </div>
         </section>
     @endforeach
+@endsection
 
+@section('script')
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.remove-reaction', function() {
+                let question_id = $(this).data('question-id');
+                let self = this;
+                $.ajax({
+                    url: `/q-a/question_reaction/${question_id}`,
+                    method: 'DELETE',
+                    success: function(res) {
+                        $(self).removeClass('remove-reaction')
+                            .addClass('react')
+                            .removeClass('text-danger')
+                            .addClass('text-muted')
+                            .find('i')
+                            .tooltip('hide')
+                            .attr('data-mdb-original-title', 'I like it')
+                            .tooltip('show');
+                    },
+                    headers : {
+                        'X-CSRF-Token' : $('meta[name="csrf-token"]').attr('content'),
+                    }
+                });
+            });
+
+            $(document).on('click', '.react', function() {
+                let question_id = $(this).data('question-id');
+                let self = this;
+                $.ajax({
+                    url: `/q-a/question_reaction`,
+                    method: 'POST',
+                    data: {
+                        question_id
+                    },
+                    success: function(res) {
+                        $(self).addClass('remove-reaction')
+                            .removeClass('react')
+                            .addClass('text-danger')
+                            .removeClass('text-muted')
+                            .find('i')
+                            .attr('data-mdb-original-title', 'Remove like')
+                            .tooltip('show');
+                    },
+                    headers : {
+                        'X-CSRF-Token' : $('meta[name="csrf-token"]').attr('content'),
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

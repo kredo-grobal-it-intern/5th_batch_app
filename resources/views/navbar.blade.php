@@ -11,7 +11,7 @@
               <a class="btn btn-primary" href="/posts/new">Post</a>
             </li>
             <li>
-              <a class="nav-link commonNavIcon profile-icon" href="/users/{{ Auth::user()->id }}"></a>
+              <a class="nav-link commonNavIcon profile-icon" href="/users/{{ Auth::id() }}"></a>
             </li>
           </ul>
         </div>
