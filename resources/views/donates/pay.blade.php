@@ -19,7 +19,7 @@
                         <div class="mb-3">
                             <label for="card-element">Please enter the money you wish to donate</label>
                             <div class="input-group">
-                                <div class="input-group-text">$</div>
+                                <div class="input-group-text">¥</div>
                                 <input type="number" name="amount" id="amount" class="form-control" step="any">
                             </div>
                             @error('price')

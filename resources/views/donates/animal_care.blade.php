@@ -4,7 +4,7 @@
 
 @section('content')
    <div class="mt-5">
-    <img src="{{ asset('/storage/images/help_animal_top.png') }}" class="rounded mx-auto d-block pt-1 rounded-7" width="200" height="200" style="border-radius: 30px" style="border: 6px solid #FFFFFF">
+    <img src="{{ asset('/assets/images/help_animal_top.png') }}" class="rounded mx-auto d-block pt-1 rounded-7" width="200" height="200" style="border-radius: 30px" style="border: 6px solid #FFFFFF">
    </div>
 
    <div class="p-3 m-2 text-white  mx-auto row"  style=" height: 340px;background:#F8F8F8;">

@@ -45,9 +45,9 @@ Route::group(["middleware" => "auth"], function () {
 
 
     #Help_animal_top
-    Route::name('help_animal_top.')
+    Route::name('animal_care.')
     ->group (function () {
-    Route::get('/help_animal_top', [DonationController::class, 'index'])->name('index');
+    Route::get('/animal_care', [DonationController::class, 'index'])->name('index');
     });
 
     #Donation by Credit Card

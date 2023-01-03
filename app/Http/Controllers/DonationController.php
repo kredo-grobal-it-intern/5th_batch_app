@@ -16,7 +16,7 @@ class DonationController extends Controller
 
     public function index()
     {
-        return view('donates.help_animal_top');
+        return view('donates.animal_care');
     }
 
 }
