@@ -45,9 +45,9 @@ Route::group(["middleware" => "auth"], function () {
 
 
     #Help_animal_top
-    Route::name('help_animal_top.')
+    Route::name('animal_care.')
     ->group (function () {
-    Route::get('/help_animal_top', [DonationController::class, 'index'])->name('index');
+    Route::get('/animal_care', [DonationController::class, 'index'])->name('index');
     });
 
     #Donation by Credit Card
@@ -64,6 +64,7 @@ Route::group(["middleware" => "auth"], function () {
     Route::get('/find_animal/index',[FindController::class,'index'])->name('index');
     Route::get('/find_animal/confirm',[FindController::class,'confirm'])->name('confirm');
     Route::get('/find_animal/completed',[FindController::class,'completed'])->name('completed');
+    Route::get('/find_animal/search',[FindController::class,'search'])->name('search');
    });
 
    Route::name('find_animal.')

@@ -31,7 +31,7 @@
         <div class="p-4 m-3 mx-auto row h5 text-center"  style=" height: 150px;background:#F8F8F8;border-radius: 12px;">
                 <div class="row">
                     <div class="col .hand_money_image">
-                        <img src="{{ asset('/storage/images/hand_money.png') }}">
+                        <img src="{{ asset('/assets/images/hand_money.png') }}">
                     </div>
                     <div class="col arrow-icon">
                         <i class="fa-solid fa-arrow-right"></i>
@@ -43,7 +43,7 @@
 
                 <div class="row">
                     <div class="col h5">
-                    <p>$1000</p>
+                    <p>¥1000</p>
                     </div>
                     <div class="col">
 

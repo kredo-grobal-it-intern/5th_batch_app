@@ -9,12 +9,14 @@
 @section('content')
 
 <div class="find_search mx-auto">
-    <form>
         {{-- Search keyword --}}
         <div class="mb-3">
-          <input type="text" class="form-control col" id="keyword" aria-describedby="keyword-search" placeholder="Search keyword here...">
+         <form class="form-inline" action="{{ route('find_animal.search') }}">
+          <input type="text" name="key" class="form-control col" id="keyword" aria-describedby="keyword-search" placeholder="Search keyword here...">
+          <button type="submit" class="search_button">Search</button>
+        </form>
         </div>
-        <button type="submit" class="search_button">Search</button>
+
 
         {{-- Fillter by --}}
         <label for="Filler" class="h5">Filter by:</label>
