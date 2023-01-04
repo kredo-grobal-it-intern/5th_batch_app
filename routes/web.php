@@ -53,13 +53,6 @@ Route::group(["middleware"=>"auth"], function() {
 });
 
 Route::get('map', function () {
-    return view('maps.index');
+    return view('maps.map');
 });
 
-Route::get('map/all', function () {
-    return view('maps.viewAll');
-});
-
-Route::get('map/saved', function () {
-    return view('maps.saved');
-});
