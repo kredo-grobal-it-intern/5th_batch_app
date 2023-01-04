@@ -64,6 +64,7 @@ Route::group(["middleware" => "auth"], function () {
     Route::get('/find_animal/index',[FindController::class,'index'])->name('index');
     Route::get('/find_animal/confirm',[FindController::class,'confirm'])->name('confirm');
     Route::get('/find_animal/completed',[FindController::class,'completed'])->name('completed');
+    Route::get('/find_animal/search',[FindController::class,'search'])->name('search');
    });
 
    Route::name('find_animal.')
