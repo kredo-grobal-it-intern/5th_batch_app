@@ -10,7 +10,7 @@
 @section('content')
         <div class="row mt-5">
             <div class="col">
-                <img src="{{ asset('/storage/images/donation.png') }}">
+                <img src="{{ asset('/assets/images/donation.png') }}">
             </div>
             <div class="col mt-2">
                 <form action="{{ route('card.pay_price') }}" method="POST"id="payment-form">

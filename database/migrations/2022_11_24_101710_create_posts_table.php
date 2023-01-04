@@ -23,7 +23,6 @@ class CreatePostsTable extends Migration
 
             // need foreign key
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
         });
     }
 

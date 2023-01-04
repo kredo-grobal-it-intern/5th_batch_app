@@ -132,9 +132,9 @@
             <div class="col"><input type="text" class="form-control" id="url" name="url"  value="{{ old('url',$publication->url) }}" autofocus></div>
         </div>
 
-         <label for="Characteristics" class="my-1">Characteristics</label>
+         <label for="charateristic" class="my-1">Characteristics</label>
         <textarea id="charateristic" name="charateristic"
-          rows="5" class="form-control" value="{{ old('charateristic',$publication->charateristic) }}" autofocus></textarea>
+          rows="5" class="form-control" autofocus>{{ old('charateristic',$publication->charateristic) }}</textarea>
 
         <label for="UploadImage" class="my-1">UploadImage</label>
         <br>

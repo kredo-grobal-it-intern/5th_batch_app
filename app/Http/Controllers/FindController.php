@@ -172,6 +172,4 @@ class FindController extends Controller
         $all_publications = $query->orderBy('created_at', 'desc')->paginate(8);
         return view('find_animals.index', compact('all_publications'));
     }
-
-
 }
