@@ -17,7 +17,7 @@
             </form>
         </div>
 
-
+      <form class="form-inline" action="{{ route('find_animal.category_search') }}">
         {{-- Fillter by --}}
         <label for="Filler" class="h5">Filter by:</label>
         {{-- Select area  --}}
@@ -30,11 +30,11 @@
             {{-- Select classfication--}}
         <div class="row g-3 align-items-center">
             <div class="col-auto">
-                <select class="col-form-select form-select-sm" aria-label=".form-select-sm example">
-                    <option selected>All</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select class="col-form-select form-select-sm" aria-label=".form-select-sm example" id="category" name="category">
+                    <option selected>Category</option>
+                    @foreach(config('category') as $key => $score)
+                    <option value="{{ $score }}">{{ $score }}</option>
+                    @endforeach
                 </select>
              {{-- Select area--}}
                 <select class="col-form-select form-select-sm  mx-5" aria-label=".form-select-sm example">
@@ -45,6 +45,7 @@
                 </select>
                 {{-- Apply Filter --}}
                 <button type="submit" class="apply_fillter">Apply Fillter</button>
+        </form>
           </div>
         </div>
     </div>

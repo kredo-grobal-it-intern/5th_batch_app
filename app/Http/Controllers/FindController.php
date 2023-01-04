@@ -149,11 +149,29 @@ class FindController extends Controller
         $query = Find::query();
 
         if (!empty($key)) {
-            $query->where('name', 'like', '%' . $key . '%')->orWhere('pet_type', 'like', '%' . $key . '%')->orWhere('pet_type', 'like', '%' . $key . '%')->orWhere('breed', 'like', '%' . $key . '%')->orWhere('weight', 'like', '%' . $key . '%')->orWhere('charateristic', 'like', '%' . $key . '%')->orWhere('netured_status', 'like', '%' . $key . '%')->orWhere('gender', 'like', '%' . $key . '%')->orWhere('date_of_brith', 'like', '%' . $key . '%');
+            $query->where('name', 'like', '%' . $key . '%')->orWhere('pet_type', 'like', '%' . $key . '%')->orWhere('breed', 'like', '%' . $key . '%')->orWhere('weight', 'like', '%' . $key . '%')->orWhere('charateristic', 'like', '%' . $key . '%')->orWhere('netured_status', 'like', '%' . $key . '%')->orWhere('gender', 'like', '%' . $key . '%')->orWhere('date_of_brith', 'like', '%' . $key . '%');
         }
 
         $all_publications = $query->orderBy('created_at', 'desc')->paginate(8);
         return view('find_animals.index', compact('all_publications'));
     }
+
+    public function category_search(Request $request)
+    {
+        $key = $request->category;
+
+        $search_category = $request->input('category');
+
+
+        $query = Find::query();
+
+           if ($search_category!=null) {
+            $query->where('pet_type', $search_category)->orWhere('gender', $search_category);
+        }
+
+        $all_publications = $query->orderBy('created_at', 'desc')->paginate(8);
+        return view('find_animals.index', compact('all_publications'));
+    }
+
 
 }
