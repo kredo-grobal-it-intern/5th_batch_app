@@ -12,14 +12,14 @@
         <div class="row text-center" style="height: 75px;">
             @include('menu-bar.menu')
         </div>
+    
+
+
+        <div class="row mt-5 mx-auto" style="">
+            <input id="pac-input" class="controls w-50 mt-4 ms-5 ps-4 fs-6" type="text" placeholder="Search Box" style="height: 40px;" />
+            <div id="map" style=" height: 600px;" class="mx-auto p-0" ></div>
+        </div>
     </div>
-
-
-    <div class="mt-5 col-8 mx-auto" style="">
-        <input id="pac-input" class="controls w-50 mt-4 ms-5 ps-4 fs-6" type="text" placeholder="Search Box" style="height: 40px; position: relative; left: 20px;" />
-        <div id="map" style="width: 100%; height: 600px;" class="mx-auto" ></div>
-    </div>
-
     @section('scripts')
         @parent
 
