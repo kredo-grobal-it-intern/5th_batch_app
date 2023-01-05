@@ -1,0 +1,236 @@
+.title{
+    position: absolute;
+    width: 262px;
+    height: 33px;
+    left: 589px;
+    top: 130px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 33px;
+    /* ボックスの高さと同一 */
+
+    text-align: center;
+
+    /* black */
+
+    color: #181818;
+
+}
+.pet{
+    position: absolute;
+    top: 280px;
+    left: 184px;
+}
+
+// .card{
+//     width: 100px;
+//     height: 100px;
+// }
+.number_border{
+    position: absolute;
+    width: 852px;
+    height: 0px;
+    left: 500px;
+    top: 222px;
+
+    opacity: 0.1;
+    /* black */
+
+    border: 1px solid #181818
+}
+.circle_1{
+    position: absolute;
+    left: 474px;
+    top:200px;
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #FACA7B;
+    text-align: center;
+    line-height: 50px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    color: #181818;
+
+}
+
+.circle_title_1{
+    position: absolute;
+    left: 465px;
+    top:248px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+
+
+
+    color: #181818;
+}
+
+.circle_2{
+    position: absolute;
+    left: 900px;
+    top:200px;
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #FACA7B;
+    text-align: center;
+    line-height: 50px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    color: #181818;
+
+}
+
+.circle_title_2{
+    position: absolute;
+    left:888px;
+    top:248px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+
+
+
+    color: #181818;
+}
+
+.circle_3{
+    position: absolute;
+    left: 1326px;
+    top:200px;
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #DFDFDF;
+    text-align: center;
+    line-height: 50px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    color: #181818;
+
+}
+
+.circle_title_3{
+    position: absolute;
+    left: 1317px;
+    top:248px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+
+
+
+    color: #181818;
+}
+
+.p_form{
+    width: 852px;
+    position: absolute;
+    top: 270px;
+    font-family: 'Nunito';
+}
+
+.edit_button{
+    position: absolute;
+    width: 120px;
+    height: 50px;
+    left: 800px;
+    top: 20px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 22px;
+    /* ボックスの高さと同一 */
+
+    text-align: center;
+
+    /* black */
+
+    color: #181818;
+
+
+    /* main */
+
+    background: #FACA7B;
+    border-radius: 12px;
+}
+
+.back_button{
+    position: absolute;
+    width: 120px;
+    height: 50px;
+    left: 800px;
+    top: 140px;
+
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 22px;
+    /* ボックスの高さと同一 */
+
+    text-align: center;
+
+    /* black */
+
+    color: #181818;
+
+
+    /* main */
+
+    background: #FFFFFF;
+    border: 1px solid #FACA7B;
+    border-radius: 12px;
+}
+
+.delete_button{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 120px;
+    height: 50px;
+    left: 800px;
+    top: 80px;
+
+
+
+    background: #f22a2a;
+    color:  #FFFFFF;
+    /* main */
+    border-radius: 12px;
+
+
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 22px;
+}
+

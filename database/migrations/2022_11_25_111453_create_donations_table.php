@@ -15,12 +15,12 @@ class CreateDonationsTable extends Migration
     {
         Schema::create('donations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('pet_id')->nullable();
-            $table->string('facility');
-            $table->enum('contributor', ['individual', 'oraganization']);//contributor
-            $table->integer('amount')->nullable();
-            $table->enum('donation_type', ['cash', 'pet']); //donation_type
+            $table->string('facility')->nullable();
+            $table->enum('contributor', ['individual', 'Oraganization'])->nullable();//contributor
+            $table->integer('amount');
+            $table->enum('donation_type', ['cash', 'pet'])->nullable(); //donation_type
             $table->integer('delivery_area')->nullable();
             $table->timestamps();
 
