@@ -27,7 +27,7 @@ class CreatePetsTable extends Migration
             $table->string('url');
             $table->string('date_of_brith');
             $table->enum('netured_status', ['Compeleted', 'Not yet']);
-            // $table->tinyInteger('neutered');
+            $table->text('area');
             $table->timestamps();
             $table->softDeletes();
 

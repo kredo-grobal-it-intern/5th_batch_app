@@ -2,7 +2,7 @@
 
 @section('title', 'Donate page')
 
-@section('style')
+@section('style') 
      <link rel="stylesheet" href="{{ mix('/css/show_pet.css') }}">
 @endsection
 
@@ -49,9 +49,8 @@
                                  <div class="col">{{ $publication->date_of_brith }} years old</div>
                             </div>
                             <div class="row">
-                                <div class="col">Registerd: {{ $publication->created_at }}</div>
+                                <div class="col">Registerd: {{ $publication->created_at->diffForHumans() }}</div>
                             </div>
-
                         </div>
                     </div>
                  </div>
@@ -66,7 +65,6 @@
     </div>
 
     @endforelse
-    {{ $all_publications->links()}}
 </div>
 
  {{-- Complete Publication --}}

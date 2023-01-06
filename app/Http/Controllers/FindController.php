@@ -82,6 +82,7 @@ class FindController extends Controller
             'pet_type'  => 'required',
             'netured_status'  => 'required',
             'charateristic'  => 'required',
+            'area'  => 'required',
         ]);
 
         $publication       = $this->pet->findOrFail($id);
@@ -94,6 +95,7 @@ class FindController extends Controller
         $publication->pet_type = $request->pet_type;
         $publication->netured_status = $request->netured_status;
         $publication->charateristic = $request->charateristic;
+        $publication->area = $request->area;
 
         #If there is a new image.......
         if ($request->image){
@@ -107,7 +109,7 @@ class FindController extends Controller
 
         $publication->save();
 
-        return redirect()->route('find_animal.index');
+        return redirect()->route('find_animal.find_animal.show', $id);
     }
 
     private function deleteImage($image_name){
@@ -130,18 +132,6 @@ class FindController extends Controller
         return redirect()->route('find_animal.index');
     }
 
-
-    public function confirm()
-    {
-        return view('find_animals.confirm');
-    }
-
-
-    public function completed()
-    {
-        return view('find_animals.complete');
-    }
-
     public function search(Request $request)
     {
         $key = $request->key;
@@ -162,7 +152,6 @@ class FindController extends Controller
 
         $search_category = $request->input('category');
 
-
         $query = Find::query();
 
            if ($search_category!=null) {
@@ -172,4 +161,46 @@ class FindController extends Controller
         $all_publications = $query->orderBy('created_at', 'desc')->paginate(8);
         return view('find_animals.index', compact('all_publications'));
     }
+
+    public function search_area(Request $request)
+    {
+        $search_area = $request->input('area');
+
+        $query = Find::query();
+
+        if ($search_area!=null) {
+         $query->where('area', $search_area);
+        }
+
+        $all_publications = $query->orderBy('created_at', 'desc')->paginate(8);
+        return view('find_animals.index', compact('all_publications'));
+
+    }
+
+
+    public function contact($id)
+    {
+        $publication = $this->pet->findOrFail($id);
+
+        return view('find_animals.contact')->with('publication',$publication);
+    }
+
+    public function contact_input($id)
+    {
+        $publication = $this->pet->findOrFail($id);
+
+        return view('find_animals.contact_input')->with('publication',$publication);
+    }
+
+    public function confirm()
+    {
+        return view('find_animals.confirm');
+    }
+
+
+    public function completed()
+    {
+        return view('find_animals.complete');
+    }
+
 }
