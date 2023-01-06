@@ -94,6 +94,9 @@ Route::get('/contact/complete', [ContactController::class, 'complete'])->name('c
 Route::get('/admin/events', [AdminEventController::class, 'index'])->name('admin.events.index');
 Route::get('/admin/events/create', [AdminEventController::class, 'create'])->name('admin.events.create');
 Route::post('/admin/events', [AdminEventController::class, 'store'])->name('admin.events.store');
+Route::get('/admin/events/{event}', [AdminEventController::class, 'edit'])->name('admin.events.edit');
+Route::put('/admin/events/{event}', [AdminEventController::class, 'update'])->name('admin.events.update');
+Route::delete('/admin/events/{event}', [AdminEventController::class, 'destroy'])->name('admin.events.destroy');
 
 #Donation by Credit Card
 Route::name('card.')
