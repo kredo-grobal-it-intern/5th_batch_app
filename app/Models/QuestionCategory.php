@@ -11,7 +11,7 @@ class QuestionCategory extends Model
 
     protected $guarded = [];
 
-    public function selectedCategories(){
-        return $this->hasMany(SelectedCategory::class);
-    }
+    // public function selectedCategories(){
+    //     return $this->hasMany(SelectedCategory::class);
+    // }
 }

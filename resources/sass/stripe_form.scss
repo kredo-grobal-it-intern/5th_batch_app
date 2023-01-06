@@ -1,0 +1,18 @@
+.StripeElement {
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px 12px;
+    border: 1px solid #c8c8c8;
+    border-radius: 4px;
+    background-color: white;
+    margin-bottom: 10px;
+
+    // should have this on scss
+    &.invalid {
+        border-color: orange;
+    }
+
+    &--webkit-autofill {
+        background-color: #fefde5 !important;
+    }
+}
