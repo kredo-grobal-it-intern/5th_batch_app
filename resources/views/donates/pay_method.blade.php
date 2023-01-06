@@ -10,7 +10,7 @@
 
 <div class="row mt-5">
     <div class="col-5">
-        <img src="{{ asset('/storage/images/donation.png') }}">
+        <img src="{{ asset('/assets/images/donation.png') }}">
     </div>
     <div class="col-7">
         <div class="mx-auto row request">

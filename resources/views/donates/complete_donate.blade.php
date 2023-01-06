@@ -10,7 +10,7 @@
 
 <div class="row mt-5">
     <div class="col-5">
-        <img src="{{ asset('/storage/images/donation.png') }}">
+        <img src="{{ asset('/assets/images/donation.png') }}">
     </div>
     <div class="col-7">
 
@@ -28,7 +28,7 @@
           <div><a href="{{ route('card.pay') }}"><div class="donate_again">Donate Again</div></a></div>
 
           {{-- Back homepage --}}
-          <div><a href="{{ route('help_animal_top.index') }}"><div class="back_home link-dark">Back to homepage</div></a></div>
+          <div><a href="{{ route('animal_care.index') }}"><div class="back_home link-dark">Back to homepage</div></a></div>
     </div>
 </div>
 
