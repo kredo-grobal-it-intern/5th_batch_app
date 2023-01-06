@@ -6,11 +6,11 @@ use App\Http\Controllers\FindController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 
-
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\DonationController;
-
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\qanda\AnswerController;
 use App\Http\Controllers\qanda\CategoryController;
@@ -39,8 +39,8 @@ Route::get('/', function () {
 Route::resource('/article', ArticleController::class);
 Route::resource('/pet-news', NewsController::class);
 
-Route::group(["prefix"=>"pet-news", "as"=>"pet-news."],function(){
-    Route::group(["prefix"=>"show", "as"=>"show."],function(){
+Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
+    Route::group(["prefix" => "show", "as" => "show."], function () {
         Route::get('/amusement', [NewsController::class, 'showAmusement']);
         Route::get('/cafe', [NewsController::class, 'showCafe']);
         Route::get('/dogrun', [NewsController::class, 'showDogrun']);
@@ -48,13 +48,13 @@ Route::group(["prefix"=>"pet-news", "as"=>"pet-news."],function(){
         Route::get('/result', [NewsController::class, 'search']);
     });
 
-        #creating categories (When you want to add a new category, you can use this route)
-    Route::get('/categories',[CategoryController::class, 'generateQuestionCategories']);
-        #question
+    #creating categories (When you want to add a new category, you can use this route)
+    Route::get('/categories', [CategoryController::class, 'generateQuestionCategories']);
+    #question
     Route::resource('/Q-A', QuestionController::class);
 });
 
-Route::group(["middleware"=>"auth"], function() {
+Route::group(["middleware" => "auth"], function () {
     #question
     Route::group(['prefix' => 'q-a', 'middleware' => 'verified'], function () {
         Route::resource('/questions', QuestionController::class);
@@ -65,7 +65,7 @@ Route::group(["middleware"=>"auth"], function() {
     });
 
     #Best answer
-    Route::patch('/best_answer/{id}',[AnswerController::class, 'selectBestAnswer'])->name('SelectBestAnswer');
+    Route::patch('/best_answer/{id}', [AnswerController::class, 'selectBestAnswer'])->name('SelectBestAnswer');
 });
 
 
@@ -75,69 +75,86 @@ Route::get('map', function () {
     return view('maps.map');
 });
 
-    #Help_animal_top
-    Route::name('animal_care.')
-    ->group (function () {
-    Route::get('/animal_care', [DonationController::class, 'index'])->name('index');
+#Help_animal_top
+Route::name('animal_care.')
+    ->group(function () {
+        Route::get('/animal_care', [DonationController::class, 'index'])->name('index');
     });
 
-    #Donation by Credit Card
-    Route::name('card.')
-    ->group (function () {
-    Route::get('/card',[CardController::class,'index'])->name('index');
-    Route::get('/card/pay',[CardController::class,'pay'])->name('pay');
-    Route::post('/card/pay_price',[CardController::class,'pay_price'])->name('pay_price');
+Route::get('map/saved', function () {
+    return view('maps.saved');
+});
+
+// contact form
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'sendMail']);
+Route::get('/contact/complete', [ContactController::class, 'complete'])->name('contact.complete');
+
+// events
+Route::get('/admin/events', [AdminEventController::class, 'index'])->name('admin.events.index');
+Route::get('/admin/events/create', [AdminEventController::class, 'create'])->name('admin.events.create');
+Route::post('/admin/events', [AdminEventController::class, 'store'])->name('admin.events.store');
+Route::get('/admin/events/{event}', [AdminEventController::class, 'edit'])->name('admin.events.edit');
+Route::put('/admin/events/{event}', [AdminEventController::class, 'update'])->name('admin.events.update');
+Route::delete('/admin/events/{event}', [AdminEventController::class, 'destroy'])->name('admin.events.destroy');
+
+#Donation by Credit Card
+Route::name('card.')
+    ->group(function () {
+        Route::get('/card', [CardController::class, 'index'])->name('index');
+        Route::get('/card/pay', [CardController::class, 'pay'])->name('pay');
+        Route::post('/card/pay_price', [CardController::class, 'pay_price'])->name('pay_price');
     });
 
-    #Find animal
-    Route::name('find_animal.')
-    ->group (function () {
-    Route::get('/find_animal/index',[FindController::class,'index'])->name('index');
-    Route::get('/find_animal/confirm',[FindController::class,'confirm'])->name('confirm');
-    Route::get('/find_animal/completed',[FindController::class,'completed'])->name('completed');
-    Route::get('/find_animal/search',[FindController::class,'search'])->name('search');
-    Route::get('/find_animal/category_search',[FindController::class,'category_search'])->name('category_search');
-   });
+#Find animal
+Route::name('find_animal.')
+    ->group(function () {
+        Route::get('/find_animal/index', [FindController::class, 'index'])->name('index');
+        Route::get('/find_animal/confirm', [FindController::class, 'confirm'])->name('confirm');
+        Route::get('/find_animal/completed', [FindController::class, 'completed'])->name('completed');
+        Route::get('/find_animal/search', [FindController::class, 'search'])->name('search');
+        Route::get('/find_animal/category_search', [FindController::class, 'category_search'])->name('category_search');
+    });
 
-   Route::name('find_animal.')
-   ->group (function () {
-       Route::resource('/find_animal',FindController::class);
-   });
+Route::name('find_animal.')
+    ->group(function () {
+        Route::resource('/find_animal', FindController::class);
+    });
 
-     #Request Publication
-     Route::name('publication.')
-     ->group (function () {
-        Route::get('/publication',[PublicationController::class,'index'])->name('index');
-        Route::post('/publication/request',[PublicationController::class,'request'])->name('request');
+#Request Publication
+Route::name('publication.')
+    ->group(function () {
+        Route::get('/publication', [PublicationController::class, 'index'])->name('index');
+        Route::post('/publication/request', [PublicationController::class, 'request'])->name('request');
         //store  function
-        Route::get('/publication/input',[PublicationController::class,'input'])->name('input');
-        Route::delete('/publication/{id}/destroy',[PublicationController::class,'destroy'])->name('destroy');
-        Route::get('/publication/confirm',[PublicationController::class,'confirm'])->name('confirm');
-        Route::get('/publication/completed',[PublicationController::class,'completed'])->name('completed');
-        Route::get('/publication/{id}/show',[PublicationController::class,'show'])->name('show');
+        Route::get('/publication/input', [PublicationController::class, 'input'])->name('input');
+        Route::delete('/publication/{id}/destroy', [PublicationController::class, 'destroy'])->name('destroy');
+        Route::get('/publication/confirm', [PublicationController::class, 'confirm'])->name('confirm');
+        Route::get('/publication/completed', [PublicationController::class, 'completed'])->name('completed');
+        Route::get('/publication/{id}/show', [PublicationController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [PublicationController::class, 'edit'])->name('edit');
         Route::patch('/{id}/update', [PublicationController::class, 'update'])->name('update');
-     });
+    });
 
 
- Route::resource('/article', ArticleController::class);
- Route::resource('/pet-news', NewsController::class);
+Route::resource('/article', ArticleController::class);
+Route::resource('/pet-news', NewsController::class);
 
- Route::group(["prefix"=>"pet-news", "as"=>"pet-news."],function(){
-     Route::group(["prefix"=>"show", "as"=>"show."],function(){
-         Route::get('/amusement', [NewsController::class, 'showAmusement']);
-         Route::get('/cafe', [NewsController::class, 'showCafe']);
-         Route::get('/dogrun', [NewsController::class, 'showDogrun']);
-         Route::get('/hospital', [NewsController::class, 'showHospital']);
-         Route::get('/result', [NewsController::class, 'search']);
-     });
- });
+Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
+    Route::group(["prefix" => "show", "as" => "show."], function () {
+        Route::get('/amusement', [NewsController::class, 'showAmusement']);
+        Route::get('/cafe', [NewsController::class, 'showCafe']);
+        Route::get('/dogrun', [NewsController::class, 'showDogrun']);
+        Route::get('/hospital', [NewsController::class, 'showHospital']);
+        Route::get('/result', [NewsController::class, 'search']);
+    });
+});
 
 
- Route::group(["middleware"=>"auth"], function() {
-     #question
-     Route::resource('/Q-A', QuestionController::class);
- });
+Route::group(["middleware" => "auth"], function () {
+    #question
+    Route::resource('/Q-A', QuestionController::class);
+});
 
  Route::get('map', function () {
      return view('maps.map');
