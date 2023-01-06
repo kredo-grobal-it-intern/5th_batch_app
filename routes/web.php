@@ -72,7 +72,7 @@ Route::group(["middleware"=>"auth"], function() {
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('map', function () {
-    return view('maps.index');
+    return view('maps.map');
 });
 
     #Help_animal_top
@@ -140,13 +140,7 @@ Route::get('map', function () {
  });
 
  Route::get('map', function () {
-     return view('maps.index');
+     return view('maps.map');
  });
 
- Route::get('map/all', function () {
-     return view('maps.viewAll');
- });
 
- Route::get('map/saved', function () {
-     return view('maps.saved');
- });
