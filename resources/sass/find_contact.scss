@@ -1,0 +1,68 @@
+.pet_name{
+    position: absolute;
+    width: 9%;
+    height: 26px;
+    left: 35.5rem;
+    top: 8rem;
+
+    text-align: center;
+    background: #FFFFFF;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 0px 0px 30px 30px;
+    line-height: 26px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+}
+
+.font_con{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+
+    /* または32px */
+
+    text-align: left;
+
+    /* black */
+
+    color: #181818;
+    }
+
+.confimation{
+    background: #F8F8F8;
+    border-radius: 14px;
+}
+
+.title{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    margin-right: 2px;
+    margin-top: 3px;
+
+    /* ボックスの高さと同一 */
+
+    text-align: left;
+
+    /* black */
+
+    color: #181818;
+}
+
+p{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    /* または219% */
+
+
+    /* black */
+
+    color: #181818;
+
+}

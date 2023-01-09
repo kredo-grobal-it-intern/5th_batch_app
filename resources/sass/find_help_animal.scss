@@ -24,7 +24,54 @@
     color: #181818;
 }
 
-.apply_fillter{
+.classfication{
+    position: absolute;
+    right: 1055px;
+    top:193px;
+    font-size: 22px;
+}
+
+.target_area{
+    position: absolute;
+    right: 770px;
+    top:193px;
+    font-size: 22px;
+}
+
+.category_fileter{
+    position: absolute;
+    top:230px;
+    right:  1020px;
+
+}
+
+.animal_search{
+    position: absolute;
+    top:230px;
+    right: 720px;
+
+}
+
+.apply_category{
+    background: #FACA7B;
+    border-radius: 12px;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 22px;
+    /* ボックスの高さと同一 */
+
+    text-align: center;
+
+    /* black */
+
+    color: #181818;
+
+}
+
+
+.apply_area{
     background: #FACA7B;
     border-radius: 12px;
     font-family: 'Nunito';
