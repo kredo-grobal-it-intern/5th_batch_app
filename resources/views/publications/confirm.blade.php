@@ -2,7 +2,7 @@
 
 @section('title', 'Donate page')
 
-@section('style') 
+@section('style')
      <link rel="stylesheet" href="{{ mix('/css/show_pet.css') }}">
 @endsection
 

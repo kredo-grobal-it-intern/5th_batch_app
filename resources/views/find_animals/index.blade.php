@@ -8,7 +8,7 @@
 
 @section('content')
 
-<div class="find_search mx-auto">
+     <div class="find_search mx-auto">
         {{-- Search keyword --}}
         <div class="mb-3">
             <form class="form-inline" action="{{ route('find_animal.search') }}">
@@ -17,37 +17,36 @@
             </form>
         </div>
 
-      <form class="form-inline" action="{{ route('find_animal.category_search') }}">
-        {{-- Fillter by --}}
-        <label for="Filler" class="h5">Filter by:</label>
-        {{-- Select area  --}}
-        <div class="row g-3 align-items-center">
-            <div class="col-auto">
-              <label for="Classfication" class="col-form-label text-dark">Classfication</label>
-              <label for="Classfication" class="col-form-label text-dark mx-4">Target Areas</label>
-            </div>
-        </div>
-            {{-- Select classfication--}}
-        <div class="row g-3 align-items-center">
-            <div class="col-auto">
-                <select class="col-form-select form-select-sm" aria-label=".form-select-sm example" id="category" name="category">
-                    <option selected>Category</option>
-                    @foreach(config('category') as $key => $score)
-                    <option value="{{ $score }}">{{ $score }}</option>
-                    @endforeach
-                </select>
-             {{-- Select area--}}
-                <select class="col-form-select form-select-sm  mx-5" aria-label=".form-select-sm example">
-                    <option selected>All</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-                {{-- Apply Filter --}}
-                <button type="submit" class="apply_fillter">Apply Fillter</button>
-        </form>
-          </div>
-        </div>
+            {{-- Fillter by --}}
+                <label for="Filler" class="h5">Filter by:</label>
+                    <label for="Classfication" class="classfication">Classfication</label>
+                    <label for="Target_Area" class="target_area">Target Areas</label>
+
+             {{-- Search category --}}
+                <div class="category_fileter">
+                 <form  action="{{ route('find_animal.category_search') }}">
+                        <select class="col-form-select form-select-sm" aria-label=".form-select-sm example" id="category" name="category">
+                            <option selected>Category</option>
+                            @foreach(config('category') as $key => $score)
+                            <option value="{{ $score }}">{{ $score }}</option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="apply_category">Apply Fillter</button>
+                 </form>
+                </div>
+
+              {{-- Select area--}}
+               <div class="animal_search">
+                    <form  action="{{ route('find_animal.search_area') }}">
+                        <select class="col-form-select form-select-sm" aria-label=".form-select-sm example" id="area" name="area">
+                            <option selected>Area</option>
+                            @foreach(config('pref') as $key => $score)
+                            <option value="{{ $score }}">{{ $score }}</option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="apply_area">Apply Fillter</button>
+                    </form>
+                </div>
     </div>
 
         <div class="row mx-auto w-75 pet">

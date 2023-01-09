@@ -36,6 +36,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//  Maru can' logout  Resolved Codes
+Route::get('logout', function ()
+{
+auth()->logout();
+Session()->flush();
+
+return Redirect::to('/');
+
+
+})->name('logout');
+
 Route::resource('/article', ArticleController::class);
 Route::resource('/pet-news', NewsController::class);
 
@@ -93,10 +104,13 @@ Route::get('map', function () {
     Route::name('find_animal.')
     ->group (function () {
     Route::get('/find_animal/index',[FindController::class,'index'])->name('index');
+    Route::get('/find_animal/{id}/contact',[FindController::class,'contact'])->name('contact');
+    Route::get('/find_animal/{id}/contact_input',[FindController::class,'contact_input'])->name('contact_input');
     Route::get('/find_animal/confirm',[FindController::class,'confirm'])->name('confirm');
     Route::get('/find_animal/completed',[FindController::class,'completed'])->name('completed');
     Route::get('/find_animal/search',[FindController::class,'search'])->name('search');
     Route::get('/find_animal/category_search',[FindController::class,'category_search'])->name('category_search');
+    Route::get('/find_animal/search_area',[FindController::class,'search_area'])->name('search_area');
    });
 
    Route::name('find_animal.')
