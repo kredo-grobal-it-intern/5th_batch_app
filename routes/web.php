@@ -33,7 +33,7 @@ use App\Http\Controllers\qanda\QuestionReactionController;
 Auth::routes();
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('top');
 });
 
 Route::resource('/article', ArticleController::class);
@@ -48,9 +48,9 @@ Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
         Route::get('/result', [NewsController::class, 'search']);
     });
 
-    #creating categories (When you want to add a new category, you can use this route)
+        #creating categories (When you want to add a new category, you can use this route)
     Route::get('/categories', [CategoryController::class, 'generateQuestionCategories']);
-    #question
+        #question
     Route::resource('/Q-A', QuestionController::class);
 });
 
@@ -75,10 +75,10 @@ Route::get('map', function () {
     return view('maps.map');
 });
 
-#Help_animal_top
-Route::name('animal_care.')
+    #Help_animal_top
+    Route::name('animal_care.')
     ->group(function () {
-        Route::get('/animal_care', [DonationController::class, 'index'])->name('index');
+    Route::get('/animal_care', [DonationController::class, 'index'])->name('index');
     });
 
 Route::get('map/saved', function () {
@@ -98,16 +98,16 @@ Route::get('/admin/events/{event}', [AdminEventController::class, 'edit'])->name
 Route::put('/admin/events/{event}', [AdminEventController::class, 'update'])->name('admin.events.update');
 Route::delete('/admin/events/{event}', [AdminEventController::class, 'destroy'])->name('admin.events.destroy');
 
-#Donation by Credit Card
-Route::name('card.')
+    #Donation by Credit Card
+    Route::name('card.')
     ->group(function () {
         Route::get('/card', [CardController::class, 'index'])->name('index');
         Route::get('/card/pay', [CardController::class, 'pay'])->name('pay');
         Route::post('/card/pay_price', [CardController::class, 'pay_price'])->name('pay_price');
     });
 
-#Find animal
-Route::name('find_animal.')
+    #Find animal
+    Route::name('find_animal.')
     ->group(function () {
         Route::get('/find_animal/index', [FindController::class, 'index'])->name('index');
         Route::get('/find_animal/confirm', [FindController::class, 'confirm'])->name('confirm');
@@ -116,13 +116,13 @@ Route::name('find_animal.')
         Route::get('/find_animal/category_search', [FindController::class, 'category_search'])->name('category_search');
     });
 
-Route::name('find_animal.')
+    Route::name('find_animal.')
     ->group(function () {
         Route::resource('/find_animal', FindController::class);
     });
 
-#Request Publication
-Route::name('publication.')
+    #Request Publication
+    Route::name('publication.')
     ->group(function () {
         Route::get('/publication', [PublicationController::class, 'index'])->name('index');
         Route::post('/publication/request', [PublicationController::class, 'request'])->name('request');
@@ -156,8 +156,8 @@ Route::group(["middleware" => "auth"], function () {
     Route::resource('/Q-A', QuestionController::class);
 });
 
- Route::get('map', function () {
-     return view('maps.map');
- });
+Route::get('map', function () {
+    return view('maps.map');
+});
 
 
