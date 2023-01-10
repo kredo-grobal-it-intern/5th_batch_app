@@ -10,14 +10,15 @@
         <div class="">
             <h1 class="fw-bolder d-inline" style="font-size: 4rem;">{{ $news->title }}</h1>
 
-            <button type="submit" class="btn btn-sm shadow-none p-0 ms-4 pb-3">
+            {{-- <button type="submit" class="btn btn-sm shadow-none p-0 ms-4 pb-3">
                 <i class="fa-regular fa-bookmark fs-1 float-end mt-3 text-warning"></i>
-            </button>
-            {{-- @if($news->isSaved())
-                <form action="{{ route('save.destroy', $news->id) }}" method="post">
+            </button> --}}
+            
+            @if($news->isSaved())
+                <form action="{{ route('pet-news.save.destroy', $news->id) }}" method="post">
                     @csrf
                     @method('DELETE')
-                    To get post_id
+                    {{-- To get post_id --}}
                     <input type="hidden" name="news_id" value="{{ $news->id }}">
 
                     <button type="submit" class="btn btn-sm shadow-none p-0">
@@ -25,22 +26,21 @@
                     </button>
                 </form>
             @else
-                <form action="{{ route('save.store', $news->id) }}" method="post">
+                <form action="{{ route('pet-news.save.store', $news->id) }}" method="post">
                     @csrf                    
-                     To get post_id 
-                    <input type="hidden" name="news_id" value="{{ $post->id }}">
+                    {{-- To get post_id --}}
+                    <input type="hidden" name="news_id" value="{{ $news->id }}">
 
                     <button type="submit" class="btn btn-sm shadow-none p-0">
                         <i class="fa-regular fa-bookmark fs-1 float-end mt-3"></i>
                     </button>
                 </form>
-            @endif --}}
+            @endif
         </div>
     </div>
 
     <div class="row  mt-5 ">
         <div class="col-5  p-0">
-            {{-- <img src="{{asset('')}}" alt=""> --}}
             <div class="bg-secondary w-100">
                 <img src="{{ $news->image }}" class="w-100 p-0 rounded-top" alt="" >
             </div>
@@ -52,7 +52,7 @@
                     none
                 @endif
             </p>
-            {{-- {{ $article->updated_at->diffForHumans() }} --}}
+            
 
 {{-- if 記載予定（article 書いた本人なら以下のボタンが出る） --}}
             <div class="">
@@ -73,7 +73,8 @@
             </div>
 
         </div>
-        <a href="{{ url()->previous() }}" class="fs-4 w-50 text-decoration-none mt-5 mx-auto">Back</a>
+        <a href="/pet-news" class="fs-4 w-50 text-decoration-none mt-5 mx-auto">Back</a>
+        {{-- <a href="{{ url()->previous() }}" class="fs-4 w-50 text-decoration-none mt-5 mx-auto">Back</a> --}}
     </div>
 </div>
 @endsection

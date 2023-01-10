@@ -5,11 +5,11 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\FindController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\SaveController;
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\qanda\AnswerController;
@@ -36,7 +36,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/article', ArticleController::class);
 Route::resource('/pet-news', NewsController::class);
 
 Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
@@ -52,6 +51,8 @@ Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
     Route::get('/categories', [CategoryController::class, 'generateQuestionCategories']);
     #question
     Route::resource('/Q-A', QuestionController::class);
+
+    Route::resource('/save', SaveController::class)->except('index');
 });
 
 Route::group(["middleware" => "auth"], function () {
@@ -91,12 +92,12 @@ Route::post('/contact', [ContactController::class, 'sendMail']);
 Route::get('/contact/complete', [ContactController::class, 'complete'])->name('contact.complete');
 
 // events
-Route::get('/admin/events', [AdminEventController::class, 'index'])->name('admin.events.index');
-Route::get('/admin/events/create', [AdminEventController::class, 'create'])->name('admin.events.create');
-Route::post('/admin/events', [AdminEventController::class, 'store'])->name('admin.events.store');
-Route::get('/admin/events/{event}', [AdminEventController::class, 'edit'])->name('admin.events.edit');
-Route::put('/admin/events/{event}', [AdminEventController::class, 'update'])->name('admin.events.update');
-Route::delete('/admin/events/{event}', [AdminEventController::class, 'destroy'])->name('admin.events.destroy');
+// Route::get('/admin/events', [AdminEventController::class, 'index'])->name('admin.events.index');
+// Route::get('/admin/events/create', [AdminEventController::class, 'create'])->name('admin.events.create');
+// Route::post('/admin/events', [AdminEventController::class, 'store'])->name('admin.events.store');
+// Route::get('/admin/events/{event}', [AdminEventController::class, 'edit'])->name('admin.events.edit');
+// Route::put('/admin/events/{event}', [AdminEventController::class, 'update'])->name('admin.events.update');
+// Route::delete('/admin/events/{event}', [AdminEventController::class, 'destroy'])->name('admin.events.destroy');
 
 #Donation by Credit Card
 Route::name('card.')
@@ -137,10 +138,11 @@ Route::name('publication.')
     });
 
 
-Route::resource('/article', ArticleController::class);
-Route::resource('/pet-news', NewsController::class);
+
 
 Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
+    Route::resource('/', NewsController::class);
+
     Route::group(["prefix" => "show", "as" => "show."], function () {
         Route::get('/amusement', [NewsController::class, 'showAmusement']);
         Route::get('/cafe', [NewsController::class, 'showCafe']);

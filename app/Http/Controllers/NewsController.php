@@ -8,31 +8,27 @@ use App\Models\News;
 
 class NewsController extends Controller
 {
-    public function __construct(News $news)
-    {
-        $this->news = $news;
-    }
+
     public function index(){
         
         $news_types = ['pet amusement','pet cafe', 'dogrun', 'pet hospital'];
         foreach($news_types as $news_type){
-            $response = Http::get('https://newsapi.org/v2/everything', [
-                'apiKey' => 'ae2fb3a1877c4a459e81a3aadc312dd5',
-                'q' => $news_type   //foreachで 'q' => 'pet amusement'/'q' => 'pet cafe'/'q' => 'dogrun'/'q' => 'pet hospital'
+            $response = Http::get(env('NEWS_API_ENDPOINT'), [
+                'apiKey' => env('NEWS_API_KEY'),
+                'q' => $news_type  
             ]);  
-            // dd($response->object());  //⏪ 取得した API data 一覧確認
 
-            // foreach($response->object()->articles as $article){
-            //     News::create([
-            //         'title' => $article->title,
-            //         'description' => $article->description,
-            //         'author' => $article->author,
-            //         'image' => $article->urlToImage,
-            //         'url' => $article->url,
-            //         'news_type' => $news_type,
-            //         'created_at' => $article->publishedAt
-            //     ]);
-            // }
+            foreach($response->object()->articles as $article){
+                News::create([
+                    'title' => $article->title,
+                    'description' => $article->description,
+                    'author' => $article->author,
+                    'image' => $article->urlToImage,
+                    'url' => $article->url,
+                    'news_type' => $news_type,
+                    'created_at' => $article->publishedAt
+                ]);
+            }
     
         }
     
