@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('phone')->nullable();//電話番号
             $table->string('postcode')->nullable();//郵便番号
+            $table->string('room_num')->nullable();//アパート 部屋番号
             $table->string('street_address')->nullable();//地区、番地
             $table->string('address')->nullable();//市町村
             $table->string('prefecture')->nullable();//都道府県
