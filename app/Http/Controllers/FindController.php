@@ -189,13 +189,10 @@ class FindController extends Controller
     {
         $publication = $this->pet->findOrFail($id);
 
+
         return view('find_animals.contact_input')->with('publication',$publication);
     }
 
-    public function confirm()
-    {
-        return view('find_animals.confirm');
-    }
 
 
     public function completed()
