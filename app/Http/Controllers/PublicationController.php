@@ -141,10 +141,10 @@ class PublicationController extends Controller
 
     public function confirm()
     {
-        $all_publications = $this->pet->latest()->get();
-        // $all_publications = $this->pet->findOrFail($id);
-        // $all_publications  = Publication::all()->first();
-
+        //投稿者したペットテーブルのuser_idとログインしているAuthのuser_idが一致している時
+        //投稿したペットのみ表示
+        $user = Auth::user()->id;
+        $all_publications = $this->pet->where('user_id',$user)->get();
         return view('publications.confirm')
                 ->with('all_publications', $all_publications);
     }

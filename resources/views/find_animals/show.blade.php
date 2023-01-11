@@ -11,9 +11,13 @@
     <div class="row mt-5">
         <div class="col">
             <img src="{{ asset('/storage/images/' . $publication->image) }}" alt="{{ $publication->image }}" class="w-75">
+            <div class="font_con">Submitted by:{{ $publication->user->name }}</div>
             <div class="font_con">Registered Date:{{ $publication->created_at }}</div>
             <div class="font_con">Updated at:{{ $publication->updated_at }}</div>
+        <br>
+        <iframe width="350" height="300" src="{{ $publication->url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture  web-share" allowfullscreen></iframe>
         </div>
+
 
         <div class="col">
             @if( ( $publication->user_id ) === ( Auth::user()->id ) )
@@ -83,14 +87,19 @@
 
                 <div class="row my-1">
                     {{-- Delivery Area --}}
-                    <div class="col font_con">Location prefecture</div>
-                    <div class="col font_con">URL</div>
+                    <div class="font_con">Location prefecture</div>
                 </div>
                 <div class="row my-1">
                     {{-- Delivery Area --}}
-                    <div class="col h5">{{ $publication->area }}</div>
+                    <div class="h5">{{ $publication->area }}</div>
+                </div>
+
+                <div class="row my-1">
+                    <div class="font_con">URL</div>
+                </div>
+                <div class="row my-1">
                     {{-- URL --}}
-                    <div class="col h5">{{ $publication->url }}</div>
+                    <div class="h5">{{ $publication->url }}</div>
                 </div>
 
                 <label for="Characteristics" class="my-1 font_con">Characteristics</label>
