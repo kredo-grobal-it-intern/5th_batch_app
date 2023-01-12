@@ -5,13 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class News extends Model
 {
     use HasFactory;
-
-    use SoftDeletes;
 
     protected $fillable = [
         'title',
@@ -24,11 +21,11 @@ class News extends Model
     ];
 
     public function user(){
-        return $this->belongsTo(User::class)->withTrashed();
+        return $this->belongsTo(User::class);
     }
 
     public function save( $options = Array()){
-        return $this->hasOne(Save::class);
+        return $this->hasMany(Save::class);
     }       
 
     public function isSaved(){

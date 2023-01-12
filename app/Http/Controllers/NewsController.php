@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\News;
+use App\Models\User;
+use App\Models\Save;
+use Illuminate\Support\Facades\Auth; # This is responsible for handling the authentication
+
 
 class NewsController extends Controller
 {
@@ -18,32 +22,37 @@ class NewsController extends Controller
                 'q' => $news_type  
             ]);  
 
-            foreach($response->object()->articles as $article){
-                News::create([
-                    'title' => $article->title,
-                    'description' => $article->description,
-                    'author' => $article->author,
-                    'image' => $article->urlToImage,
-                    'url' => $article->url,
-                    'news_type' => $news_type,
-                    'created_at' => $article->publishedAt
-                ]);
-            }
+            // foreach($response->object()->articles as $article){
+            //     News::create([
+            //         'title' => $article->title,
+            //         'description' => $article->description,
+            //         'author' => $article->author,
+            //         'image' => $article->urlToImage,
+            //         'url' => $article->url,
+            //         'news_type' => $news_type,
+            //         'created_at' => $article->publishedAt
+            //     ]);
+            // }
     
         }
+        
+        
     
         $all_news = News::latest()->get();
         $amusement_news = News::latest()->where('news_type', 'pet amusement')->get()->take(4);
         $cafe_news = News::latest()->where('news_type', 'pet cafe')->get()->take(4);
         $dogrun_news = News::latest()->where('news_type', 'dogrun')->get()->take(4);
         $hospital_news = News::latest()->where('news_type', 'pet hospital')->get()->take(4);
+
+        // get data whose user_id = Auth user's id  from saves table (kinda filtering)
+        $saved = Save::where('user_id', Auth::user()->id)->get();
         
-        // dd($pet_news);
         return view('useful-info.index')->with('all_news', $all_news)
                                         ->with('amusement_news', $amusement_news)
                                         ->with('cafe_news', $cafe_news)
                                         ->with('dogrun_news', $dogrun_news)
-                                        ->with('hospital_news', $hospital_news);
+                                        ->with('hospital_news', $hospital_news)
+                                        ->with('saved', $saved);
         // return $response->object();
     }
 
