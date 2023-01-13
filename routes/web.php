@@ -100,7 +100,7 @@ Route::put('/admin/events/{event}', [AdminEventController::class, 'update'])->na
 Route::delete('/admin/events/{event}', [AdminEventController::class, 'destroy'])->name('admin.events.destroy');
 
 // User Management
-Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create')->middleware('auth');
+Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create')->middleware('auth.admin');
 Route::post('/admin/users/', [UserController::class, 'store'])->name('admin.users.store');
 
 // Admin Auth

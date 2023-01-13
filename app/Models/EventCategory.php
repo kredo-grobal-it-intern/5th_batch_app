@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class EventCategory extends Model
 {
     use HasFactory;
+    protected $table = 'categories';
 
     public function events()
     {

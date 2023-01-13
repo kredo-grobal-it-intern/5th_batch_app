@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Admin\StoreEventRequest;
 use App\Http\Requests\Admin\UpdateEventRequest;
 
-class AdminEventsController extends Controller
+class AdminEventController extends Controller
 {
     // イベント一覧画面
     public function index()
@@ -64,7 +64,9 @@ class AdminEventsController extends Controller
     // 指定したIDのeventの更新処理
     public function update(UpdateEventRequest $request, $id)
     {
+        dd($request->all(), $id);
         $event = Event::findOrFail($id);
+        dd($event);
         $updateData = $request->validated();
 
         // 画像を変更する場合

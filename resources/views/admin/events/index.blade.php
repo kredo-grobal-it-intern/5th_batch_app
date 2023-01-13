@@ -15,9 +15,9 @@
                 <tr class="text-xs text-gray-500 text-left">
                     <th class="font-medium text-center">Title</th>
                     <th class="font-medium">Category</th>
-                    <th class="font-medium">投稿者</th>
-                    <th class="font-medium">更新日時</th>
-                    <th class="font-medium">操作</th>
+                    <th class="font-medium">Post User</th>
+                    <th class="font-medium">Updated_at</th>
+                    <th class="font-medium">Operation</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,8 +27,8 @@
                         <img class="w-12 h-12 mr-4 object-cover rounded-md" src="{{ asset('storage/'. $event->image) }}" alt="">
                         <p class="font-medium"><a href="{{ route('admin.events.edit', ['event' => $event]) }}">{{ $event->title }}</a></p>
                     </td>
-                    <td class="font-medium">{{ $blog->eventCategory }}</td>
-                    <td class="font-medium">高橋</td>
+                    <td class="font-medium">{{ $event->eventCategory->name }}</td>
+                    <td class="font-medium"></td>
                     <td>{{ $event->updated_at }}</td>
                     <td>
                         <div class="flex">
