@@ -47,11 +47,11 @@
                     <div class="mb-6">
                         <label class="block text-sm font-medium mb-2" for="category">Category</label>
                         <div class="flex">
-                            <select id="category" class="appearance-none block pl-4 pr-8 py-3 mb-2 text-sm bg-white border rounded" name="">
-                                <option>Option 1</option>
-                                <option>Option 2</option>
-                                <option>Option 3</option>
-                                <option>Option 4</option>
+                            <select id="category" class="appearance-none block pl-4 pr-8 py-3 mb-2 text-sm bg-white border rounded" name="category_id">
+                                <option value="">Please select</option>
+                                @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" @if($category->id == old('category_id', $event->eventCategory->id)) selected @endif>{{ $category->name }}</option>
+                                @endforeach
                             </select>
                             <div class="pointer-events-none transform -translate-x-full flex items-center px-2 text-gray-500">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20">
@@ -62,12 +62,12 @@
                     </div>
 
                     <div class="mb-6">
-                        <label class="block text-sm font-medium mb-2">登場するねこ</label>
-                        <select id="js-pulldown" class="mr-6 w-full" name="" multiple>
-                            <option selected>Option 1</option>
-                            <option>Option 2</option>
-                            <option selected>Option 3</option>
-                            <option>Option 4</option>
+                        <label class="block text-sm font-medium mb-2">Dogs appearing in</label>
+                        <select id="js-pulldown" class="mr-6 w-full" name="dogs[]" multiple>
+                            <option value="">Please select</option>
+                            @foreach($dogs as $dog)
+                            <option value="{{ $dog->id }}" @if(in_array($dog->id, old('dogs', $event->dogs->pluck('id')->all()))) selected @endif>{{ $dog->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

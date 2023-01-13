@@ -6,15 +6,16 @@ use App\Http\Controllers\FindController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\Admin\AdminEventController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\qanda\AnswerController;
 use App\Http\Controllers\qanda\CategoryController;
 use App\Http\Controllers\qanda\QuestionController;
+use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\qanda\AnswerCommentController;
 use App\Http\Controllers\qanda\AnswerReactionController;
 use App\Http\Controllers\qanda\QuestionReactionController;
@@ -97,6 +98,15 @@ Route::post('/admin/events', [AdminEventController::class, 'store'])->name('admi
 Route::get('/admin/events/{event}', [AdminEventController::class, 'edit'])->name('admin.events.edit');
 Route::put('/admin/events/{event}', [AdminEventController::class, 'update'])->name('admin.events.update');
 Route::delete('/admin/events/{event}', [AdminEventController::class, 'destroy'])->name('admin.events.destroy');
+
+// User Management
+Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create')->middleware('auth');
+Route::post('/admin/users/', [UserController::class, 'store'])->name('admin.users.store');
+
+// Admin Auth
+Route::get('/admin/login', [AuthController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AuthController::class, 'login']);
+Route::post('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 
 #Donation by Credit Card
 Route::name('card.')

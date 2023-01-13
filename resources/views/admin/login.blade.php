@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <title>管理者ログイン</title>
+  <title>Admin login</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="/css/tailwind/tailwind.min.css">
@@ -15,11 +15,11 @@
     <div class="container px-4 mx-auto">
       <div class="flex max-w-md mx-auto flex-col text-center">
         <div class="mt-12 mb-8 p-8 bg-white rounded shadow">
-          <h1 class="mb-6 text-3xl">管理者ログイン</h1>
+          <h1 class="mb-6 text-3xl">Admin login</h1>
 
           @if($errors->any())
             <div class="mb-8 py-4 px-6 border border-red-300 bg-red-50 rounded">
-              <p class="text-red-400">ログインに失敗しました</p>
+              <p class="text-red-400">Login failed.</p>
             </div>
           @endif
 

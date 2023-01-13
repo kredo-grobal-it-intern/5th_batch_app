@@ -1,13 +1,12 @@
-{{ $contactInfo['name'] }} 様よりお問い合わせ下記の内容でお問い合わせがありました
-内容を確認しご対応をお願いします。
+Inquiry from{{ $contactInfo['name'] }} with the following information
+Please check the contents and respond to the request.
 
-【お問い合わせ内容】
-お名前: {{ $contactInfo['name'] }}
-お名前（フリガナ）: {{ $contactInfo['name_kana'] }}
-メールアドレス: {{ $contactInfo['email'] }}
-電話番号: {{ $contactInfo['phone'] }}
-お問い合わせ内容:
+【Inquiry Details】
+Name: {{ $contactInfo['name'] }}
+Email: {{ $contactInfo['email'] }}
+Phone: {{ $contactInfo['phone'] }}
+Inquiry Details:
 {{ $contactInfo['body'] }}
 
-※このメールは配信専用のアドレスで配信されています。
-このメールに返信されても返信内容の確認およびご返答ができませんので、ご了承ください。
+※This email is sent to a delivery-only address.
+Please note that even if you reply to this e-mail, we will not be able to confirm the contents of your reply or reply to you.
