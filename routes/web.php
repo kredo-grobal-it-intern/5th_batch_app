@@ -4,9 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\FindController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\NewsController;
 
-use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\Admin\AuthController;
@@ -37,18 +35,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/article', ArticleController::class);
-Route::resource('/pet-news', NewsController::class);
-
 Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
-    Route::group(["prefix" => "show", "as" => "show."], function () {
-        Route::get('/amusement', [NewsController::class, 'showAmusement']);
-        Route::get('/cafe', [NewsController::class, 'showCafe']);
-        Route::get('/dogrun', [NewsController::class, 'showDogrun']);
-        Route::get('/hospital', [NewsController::class, 'showHospital']);
-        Route::get('/result', [NewsController::class, 'search']);
-    });
-
     #creating categories (When you want to add a new category, you can use this route)
     Route::get('/categories', [CategoryController::class, 'generateQuestionCategories']);
     #question
@@ -145,21 +132,6 @@ Route::name('publication.')
         Route::get('/{id}/edit', [PublicationController::class, 'edit'])->name('edit');
         Route::patch('/{id}/update', [PublicationController::class, 'update'])->name('update');
     });
-
-
-Route::resource('/article', ArticleController::class);
-Route::resource('/pet-news', NewsController::class);
-
-Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
-    Route::group(["prefix" => "show", "as" => "show."], function () {
-        Route::get('/amusement', [NewsController::class, 'showAmusement']);
-        Route::get('/cafe', [NewsController::class, 'showCafe']);
-        Route::get('/dogrun', [NewsController::class, 'showDogrun']);
-        Route::get('/hospital', [NewsController::class, 'showHospital']);
-        Route::get('/result', [NewsController::class, 'search']);
-    });
-});
-
 
 Route::group(["middleware" => "auth"], function () {
     #question
