@@ -64,9 +64,7 @@ class AdminEventController extends Controller
     // 指定したIDのeventの更新処理
     public function update(UpdateEventRequest $request, $id)
     {
-        dd($request->all(), $id);
         $event = Event::findOrFail($id);
-        dd($event);
         $updateData = $request->validated();
 
         // 画像を変更する場合
@@ -81,7 +79,8 @@ class AdminEventController extends Controller
         $event->eventCategory()->associate($updateData['category_id']);
         // 送信されたデータではなくバリデーション済みのデータから取得
         // 多対多のリレーションデータの更新
-        $event->dogs()->sync($request->validated('dogs', []));
+        // $event->dogs()->sync($request->validated('dogs', []));　can't get [] data
+        $event->dogs()->sync($request->validated()['dogs']); //
         $event->update($updateData);
 
         return redirect()->route('admin.events.index')->with('success', 'Events have been updated.');

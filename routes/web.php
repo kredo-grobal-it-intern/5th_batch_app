@@ -92,21 +92,21 @@ Route::post('/contact', [ContactController::class, 'sendMail']);
 Route::get('/contact/complete', [ContactController::class, 'complete'])->name('contact.complete');
 
 // events
-Route::get('/admin/events', [AdminEventController::class, 'index'])->name('admin.events.index');
-Route::get('/admin/events/create', [AdminEventController::class, 'create'])->name('admin.events.create');
-Route::post('/admin/events', [AdminEventController::class, 'store'])->name('admin.events.store');
-Route::get('/admin/events/{event}', [AdminEventController::class, 'edit'])->name('admin.events.edit');
-Route::put('/admin/events/{event}', [AdminEventController::class, 'update'])->name('admin.events.update');
-Route::delete('/admin/events/{event}', [AdminEventController::class, 'destroy'])->name('admin.events.destroy');
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth.admin'], function () {
+    // events
+    Route::resource('/events', AdminEventController::class)->except('show');
 
-// User Management
-Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create')->middleware('auth.admin');
-Route::post('/admin/users/', [UserController::class, 'store'])->name('admin.users.store');
+    // User Management
+    Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+        Route::get('/create', [UserController::class, 'create'])->name('create');
+        Route::post('/', [UserController::class, 'store'])->name('store');
+    });
+});
 
 // Admin Auth
-Route::get('/admin/login', [AuthController::class, 'showLoginForm'])->name('admin.login');
-Route::post('/admin/login', [AuthController::class, 'login']);
-Route::post('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 #Donation by Credit Card
 Route::name('card.')

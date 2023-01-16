@@ -29,7 +29,9 @@ class AuthController extends Controller
 
             // ミドルウェアに対応したリダイレクト(後述)
             // 下記はredirect('/admin/events')に類似
-            return redirect()->intended('/admin/events');
+            if (Auth::user()->isAdmin()) {
+                return redirect()->intended('/admin/events');
+            }
         }
 
         // ログイン情報が正しくない場合のみ実行される処理(return すると以降の処理は実行されないため)
@@ -50,6 +52,6 @@ class AuthController extends Controller
         // セッションを無効化を再生成(セキュリティ対策のため)
         $request->session()->regenerateToken();
 
-        return redirect()->route('admin.login');
+        return redirect()->route('login');
     }
 }

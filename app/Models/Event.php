@@ -18,6 +18,6 @@ class Event extends Model
 
     public function dogs()
     {
-        return $this->belongsToMany(Dog::class)->withTimestamps();
+        return $this->belongsToMany(Dog::class, 'event_dog', 'event_id', 'dog_id')->withTimestamps();
     }
 }

@@ -17,8 +17,8 @@ class AuthAdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::user()) {
-            return redirect()->route('admin.login');
+        if(Auth::user() && Auth::user()->isAdmin()) {
+            return redirect()->route('login');
         }
         return $next($request);
     }

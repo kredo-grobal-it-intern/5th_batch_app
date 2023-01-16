@@ -24,7 +24,7 @@
                 @foreach($events as $event)
                 <tr @class(['text-sm', 'bg-gray-50' => $loop->odd])>
                     <td class="flex px-4 py-3 items-center">
-                        <img class="w-12 h-12 mr-4 object-cover rounded-md" src="{{ asset('storage/'. $event->image) }}" alt="">
+                        <img class="w-12 h-12 mr-4 object-cover rounded-md" src="{{ $event->image }}" alt="">
                         <p class="font-medium"><a href="{{ route('admin.events.edit', ['event' => $event]) }}">{{ $event->title }}</a></p>
                     </td>
                     <td class="font-medium">{{ $event->eventCategory->name }}</td>

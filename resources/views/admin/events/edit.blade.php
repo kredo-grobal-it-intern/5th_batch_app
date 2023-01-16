@@ -77,7 +77,7 @@
 </section>
 
 <script>
-    // ねこちゃんたち追加
+    // dogs
     $('#js-pulldown').select2();
 
     // 画像プレビュー
