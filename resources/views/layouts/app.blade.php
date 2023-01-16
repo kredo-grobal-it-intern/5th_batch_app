@@ -11,16 +11,16 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-
-    
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/q_and_a.css') }}" rel="stylesheet">
 
     @yield('style')
 
@@ -28,7 +28,7 @@
 
     {{-- for mdbootstrap --}}
     <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
@@ -38,13 +38,15 @@
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet"/>
+
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #faca7b">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{-- {{ config('app.name', 'Laravel') }} --}}
+                    <img src="{{ asset('/storage/images/resources/Logo_pet.png') }}" class="img-fluid" alt="logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -61,24 +63,65 @@
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item">
+                                <li class="nav-item me-2">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
-                                <li class="nav-item">
+                                <li class="nav-item me-2">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
+
+                            <li class="nav-item me-2">
+                                <a class="nav-link" href="#">About Us</a>
+                            </li>
+
+                            <li class="nav-item me-2">
+                                <a class="nav-link" href="#">FAQs</a>
+                            </li>
+
+                            <li class="nav-item me-2">
+                                <a class="nav-link" href="#">Contact Us</a>
+                            </li>
                         @else
+                            <li class="nav-item me-2">
+                                <a class="nav-link fs-4" href="#"><i class="fa-solid fa-calendar" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                                    title="Calendar"></i></a>
+                            </li>
+
+                            <li class="nav-item me-2">
+                                <a class="nav-link fs-4" href="#"><i class="fa-solid fa-hand-holding-heart" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                                    title="Donation"></i></a>
+                            </li>
+
+                            <li class="nav-item me-2">
+                                <a class="nav-link fs-4" href="/pet-news"><iconify-icon inline icon="material-symbols:newspaper" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                                    title="News"></iconify-icon></a>
+                            </li>
+
+                            <li class="nav-item me-2">
+                                <a class="nav-link fs-4" href="#"><i class="fa-solid fa-comment-dots" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                                    title="Chat"></i></a>
+                            </li>
+
+                            <li class="nav-item me-2">
+                                <a class="nav-link fs-4" href="{{ route("Q-A.index")}}"><i class="fa-solid fa-pen-to-square" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                                    title="Q&A"></i></a>
+                            </li>
+
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle fs-4" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <i class="fa-regular fa-circle-user"></i>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item fw-bold" href="#">{{ Auth::user()->name }}</a>
+                                    <a class="dropdown-item" href="#">About Us</a>
+                                    <a class="dropdown-item" href="#">FAQs</a>
+                                    <a class="dropdown-item" href="#">Contact Us</a>
+                                    <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -100,7 +143,6 @@
                 <div class="row justify-content-center">
                     <div class="col-9">
                         @yield('content')
-                        @yield('scripts')
                     </div>
                 </div>
             </div>
@@ -113,6 +155,6 @@
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
-    @yield('script');
+    @yield('script')
 </body>
 </html>

@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->role == 1;
     }
+
+    public function save_news()
+    {
+        return $this->belongsToMany(News::class, 'save', 'user_id', 'news_id');
+    }
 }

@@ -4,8 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\FindController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\SaveController;
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Admin\AdminEventController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\UserController;
@@ -32,14 +36,26 @@ use App\Http\Controllers\qanda\QuestionReactionController;
 Auth::routes();
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('top');
 });
 
+Route::resource('/pet-news', NewsController::class);
+
 Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
-    #creating categories (When you want to add a new category, you can use this route)
+    Route::group(["prefix" => "show", "as" => "show."], function () {
+        Route::get('/amusement', [NewsController::class, 'showAmusement']);
+        Route::get('/cafe', [NewsController::class, 'showCafe']);
+        Route::get('/dogrun', [NewsController::class, 'showDogrun']);
+        Route::get('/hospital', [NewsController::class, 'showHospital']);
+        Route::get('/result', [NewsController::class, 'search']);
+    });
+
+        #creating categories (When you want to add a new category, you can use this route)
     Route::get('/categories', [CategoryController::class, 'generateQuestionCategories']);
-    #question
+        #question
     Route::resource('/Q-A', QuestionController::class);
+
+    Route::resource('/save', SaveController::class)->except('index');
 });
 
 Route::group(["middleware" => "auth"], function () {
@@ -63,10 +79,10 @@ Route::get('map', function () {
     return view('maps.map');
 });
 
-#Help_animal_top
-Route::name('animal_care.')
+    #Help_animal_top
+    Route::name('animal_care.')
     ->group(function () {
-        Route::get('/animal_care', [DonationController::class, 'index'])->name('index');
+    Route::get('/animal_care', [DonationController::class, 'index'])->name('index');
     });
 
 Route::get('map/saved', function () {
@@ -95,16 +111,16 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-#Donation by Credit Card
-Route::name('card.')
+    #Donation by Credit Card
+    Route::name('card.')
     ->group(function () {
         Route::get('/card', [CardController::class, 'index'])->name('index');
         Route::get('/card/pay', [CardController::class, 'pay'])->name('pay');
         Route::post('/card/pay_price', [CardController::class, 'pay_price'])->name('pay_price');
     });
 
-#Find animal
-Route::name('find_animal.')
+    #Find animal
+    Route::name('find_animal.')
     ->group(function () {
         Route::get('/find_animal/index', [FindController::class, 'index'])->name('index');
         Route::get('/find_animal/confirm', [FindController::class, 'confirm'])->name('confirm');
@@ -113,13 +129,13 @@ Route::name('find_animal.')
         Route::get('/find_animal/category_search', [FindController::class, 'category_search'])->name('category_search');
     });
 
-Route::name('find_animal.')
+    Route::name('find_animal.')
     ->group(function () {
         Route::resource('/find_animal', FindController::class);
     });
 
-#Request Publication
-Route::name('publication.')
+    #Request Publication
+    Route::name('publication.')
     ->group(function () {
         Route::get('/publication', [PublicationController::class, 'index'])->name('index');
         Route::post('/publication/request', [PublicationController::class, 'request'])->name('request');
@@ -138,8 +154,8 @@ Route::group(["middleware" => "auth"], function () {
     Route::resource('/Q-A', QuestionController::class);
 });
 
- Route::get('map', function () {
-     return view('maps.map');
- });
+Route::get('map', function () {
+    return view('maps.map');
+});
 
 
