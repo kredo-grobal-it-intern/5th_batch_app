@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 use App\Models\News;
 use App\Models\User;
 use App\Models\Save;
-use Illuminate\Support\Facades\Auth; # This is responsible for handling the authentication
+use Illuminate\Support\Facades\Auth; 
 
 
 class NewsController extends Controller
@@ -39,10 +39,10 @@ class NewsController extends Controller
         
     
         $all_news = News::latest()->get();
-        $amusement_news = News::latest()->where('news_type', 'pet amusement')->get()->take(4);
-        $cafe_news = News::latest()->where('news_type', 'pet cafe')->get()->take(4);
-        $dogrun_news = News::latest()->where('news_type', 'dogrun')->get()->take(4);
-        $hospital_news = News::latest()->where('news_type', 'pet hospital')->get()->take(4);
+        $amusement_news = News::latest()->where('news_type', 'pet amusement')->latest()->get()->take(4);
+        $cafe_news = News::latest()->where('news_type', 'pet cafe')->latest()->get()->take(4);
+        $dogrun_news = News::latest()->where('news_type', 'dogrun')->latest()->get()->take(4);
+        $hospital_news = News::latest()->where('news_type', 'pet hospital')->latest()->get()->take(4);
 
         // get data whose user_id = Auth user's id  from saves table (kinda filtering)
         $saved = Save::where('user_id', Auth::user()->id)->get();
@@ -59,7 +59,10 @@ class NewsController extends Controller
     public function show($id){
         
         $news =News::findOrFail($id);
-        return view('useful-info.articles.show')->with('news', $news);
+
+        $bookmark = Save::latest()->where('user_id', Auth::user()->id)->first();
+        return view('useful-info.articles.show')->with('news', $news)
+                                                ->with('bookmark', $bookmark);
     }
 
     public function showAmusement(){
@@ -84,6 +87,12 @@ class NewsController extends Controller
         $hospital_news = News::latest()->where('news_type', 'pet hospital')->paginate(8);
 
         return view('useful-info.all-articles.hospital')->with('hospital_news', $hospital_news);
+    }
+
+    public function showSaved(){
+        $saved_news = Save::latest()->where('user_id', Auth::user()->id)->paginate(8);
+
+        return view('useful-info.all-articles.saved')->with('saved_news', $saved_news);
     }
 
     public function search(Request $request){
