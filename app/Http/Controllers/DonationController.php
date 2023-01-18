@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Enums\DonationType;
-use Illuminate\Http\Request;
+
 use App\Models\Donation;
 
 class DonationController extends Controller
@@ -11,12 +10,10 @@ class DonationController extends Controller
 
     public function __construct(Donation $Donation)
     {
-
     }
 
     public function index()
     {
         return view('donates.animal_care');
     }
-
 }

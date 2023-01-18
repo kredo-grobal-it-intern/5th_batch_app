@@ -51,20 +51,21 @@ class FindController extends Controller
     {
         $publication = $this->pet->findOrFail($id);
 
-        if($publication->user->id != Auth::user()->id){
+        if ($publication->user->id != Auth::user()->id) {
             return redirect()->back();
         }
 
-        return view('find_animals.edit')->with('publication',$publication);
+        return view('find_animals.edit')->with('publication', $publication);
     }
 
-    public function saveImage($request){
-        if ($request->image){
+    public function saveImage($request)
+    {
+        if ($request->image) {
             $image_name = time().".".$request->image->extension();
             $request->image->storeAs(self::LOCAL_STORAGE_FOLDER, $image_name);
 
             return $image_name;
-        }else{
+        } else {
             return null;
         }
     }
@@ -72,8 +73,8 @@ class FindController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'  =>      'required|min:1|max:1000',
-            'image' =>      'required|mimes:jpg,jpeg,png,gif|max:1048',
+            'name'  => 'required|min:1|max:1000',
+            'image' => 'required|mimes:jpg,jpeg,png,gif|max:1048',
             'date_of_brith'  => 'required',
             'breed'  => 'required',
             'weight'  => 'required',
@@ -96,13 +97,12 @@ class FindController extends Controller
         $publication->charateristic = $request->charateristic;
 
         #If there is a new image.......
-        if ($request->image){
+        if ($request->image) {
             #Delete the previous image from the local storage
             $this->deleteImage($publication->image);
 
             #Move the new image to local storage
             $publication->image = $this->saveImage($request);
-
         }
 
         $publication->save();
@@ -110,11 +110,12 @@ class FindController extends Controller
         return redirect()->route('find_animal.index');
     }
 
-    private function deleteImage($image_name){
+    private function deleteImage($image_name)
+    {
         $image_path = self::LOCAL_STORAGE_FOLDER . $image_name;
         //$image_path = "/public/images/filename.jpg";
 
-        if(Storage::disk('local')->exists($image_path)){
+        if (Storage::disk('local')->exists($image_path)) {
             Storage::disk('local')->delete($image_path);
         }
     }
@@ -149,7 +150,14 @@ class FindController extends Controller
         $query = Find::query();
 
         if (!empty($key)) {
-            $query->where('name', 'like', '%' . $key . '%')->orWhere('pet_type', 'like', '%' . $key . '%')->orWhere('breed', 'like', '%' . $key . '%')->orWhere('weight', 'like', '%' . $key . '%')->orWhere('charateristic', 'like', '%' . $key . '%')->orWhere('netured_status', 'like', '%' . $key . '%')->orWhere('gender', 'like', '%' . $key . '%')->orWhere('date_of_brith', 'like', '%' . $key . '%');
+            $query->where('name', 'like', '%' . $key . '%')
+            ->orWhere('pet_type', 'like', '%' . $key . '%')
+            ->orWhere('breed', 'like', '%' . $key . '%')
+            ->orWhere('weight', 'like', '%' . $key . '%')
+            ->orWhere('charateristic', 'like', '%' . $key . '%')
+            ->orWhere('netured_status', 'like', '%' . $key . '%')
+            ->orWhere('gender', 'like', '%' . $key . '%')
+            ->orWhere('date_of_brith', 'like', '%' . $key . '%');
         }
 
         $all_publications = $query->orderBy('created_at', 'desc')->paginate(8);
@@ -165,7 +173,7 @@ class FindController extends Controller
 
         $query = Find::query();
 
-           if ($search_category!=null) {
+        if ($search_category != null) {
             $query->where('pet_type', $search_category)->orWhere('gender', $search_category);
         }
 

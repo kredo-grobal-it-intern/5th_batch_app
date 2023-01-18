@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Mail\ContactAdminMail;
 // use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -15,7 +14,7 @@ class ContactController extends Controller
         return view('contact.index');
     }
 
-    function sendMail(ContactRequest $request)
+    public function sendMail(ContactRequest $request)
     {
         $validated = $request->validated();
 

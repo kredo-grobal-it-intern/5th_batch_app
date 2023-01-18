@@ -12,8 +12,8 @@ class AnswerController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/images/answers';
 
-    public function index(){
-
+    public function index()
+    {
     }
 
     public function show($id)
@@ -50,13 +50,14 @@ class AnswerController extends Controller
     }
 
 
-    public function saveAnswerImage($request){
-        if ($request->image){
+    public function saveAnswerImage($request)
+    {
+        if ($request->image) {
             $image_name = time().".".$request->image->extension();
             $request->image->storeAs(self::LOCAL_STORAGE_FOLDER, $image_name);
 
             return $image_name;
-        }else{
+        } else {
             return null;
         }
     }
@@ -81,7 +82,7 @@ class AnswerController extends Controller
     }
 
 
-    public function selectBestAnswer(Request $request, Answer $answer, $id)
+    public function selectBestAnswer($id)
     {
         $answer = $answer->findOrFail($id);
 

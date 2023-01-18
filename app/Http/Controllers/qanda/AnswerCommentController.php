@@ -42,7 +42,6 @@ class AnswerCommentController extends Controller
         ]);
 
         return redirect()->back();
-
     }
 
 

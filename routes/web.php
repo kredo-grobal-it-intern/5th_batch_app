@@ -8,8 +8,6 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SaveController;
 
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\Admin\AdminEventController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\qanda\AnswerController;
@@ -79,17 +77,17 @@ Route::get('map', function () {
     #Help_animal_top
     Route::name('animal_care.')
     ->group(function () {
-    Route::get('/animal_care', [DonationController::class, 'index'])->name('index');
+        Route::get('/animal_care', [DonationController::class, 'index'])->name('index');
     });
 
-Route::get('map/saved', function () {
-    return view('maps.saved');
-});
+    Route::get('map/saved', function () {
+        return view('maps.saved');
+    });
 
 // contact form
-Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-Route::post('/contact', [ContactController::class, 'sendMail']);
-Route::get('/contact/complete', [ContactController::class, 'complete'])->name('contact.complete');
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+    Route::post('/contact', [ContactController::class, 'sendMail']);
+    Route::get('/contact/complete', [ContactController::class, 'complete'])->name('contact.complete');
 
 // events
 // Route::get('/admin/events', [AdminEventController::class, 'index'])->name('admin.events.index');
@@ -140,26 +138,24 @@ Route::get('/contact/complete', [ContactController::class, 'complete'])->name('c
 
 
 
-Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
-    Route::resource('/', NewsController::class);
+    Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
+        Route::resource('/', NewsController::class);
 
-    Route::group(["prefix" => "show", "as" => "show."], function () {
-        Route::get('/amusement', [NewsController::class, 'showAmusement']);
-        Route::get('/cafe', [NewsController::class, 'showCafe']);
-        Route::get('/dogrun', [NewsController::class, 'showDogrun']);
-        Route::get('/hospital', [NewsController::class, 'showHospital']);
-        Route::get('/result', [NewsController::class, 'search']);
+        Route::group(["prefix" => "show", "as" => "show."], function () {
+            Route::get('/amusement', [NewsController::class, 'showAmusement']);
+            Route::get('/cafe', [NewsController::class, 'showCafe']);
+            Route::get('/dogrun', [NewsController::class, 'showDogrun']);
+            Route::get('/hospital', [NewsController::class, 'showHospital']);
+            Route::get('/result', [NewsController::class, 'search']);
+        });
     });
-});
 
 
-Route::group(["middleware" => "auth"], function () {
-    #question
-    Route::resource('/Q-A', QuestionController::class);
-});
+    Route::group(["middleware" => "auth"], function () {
+        #question
+        Route::resource('/Q-A', QuestionController::class);
+    });
 
-Route::get('map', function () {
-    return view('maps.map');
-});
-
-
+    Route::get('map', function () {
+        return view('maps.map');
+    });
