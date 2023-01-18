@@ -4,7 +4,7 @@
 <section class="py-8">
     <div class="container px-4 mx-auto">
         <div class="py-4 bg-white rounded">
-            <form action="{{ route('admin.blogs.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.events.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="flex px-6 pb-4 border-b">
                     <h3 class="text-xl font-bold">Create Event</h3>
@@ -49,7 +49,7 @@
                             <select id="category" class="appearance-none block pl-4 pr-8 py-3 mb-2 text-sm bg-white border rounded" name="category_id">
                                 <option value="">Please select</option>
                                 @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" @if($category->id == old('category_id', $event->eventCategory->id)) selected @endif>{{ $category->name }}</option>
+                                <option value="{{ $category->id }}" @if($category->id == old('category_id')) selected @endif>{{ $category->name }}</option>
                                 @endforeach
                             </select>
                             <div class="pointer-events-none transform -translate-x-full flex items-center px-2 text-gray-500">
@@ -65,7 +65,8 @@
                         <select id="js-pulldown" class="mr-6 w-full" name="dogs[]" multiple>
                             <option value="">Please select</option>
                             @foreach($dogs as $dog)
-                            <option value="{{ $dog->id }}" @if(in_array($dog->id, old('dogs', $event->dogs->pluck('id')->all()))) selected @endif>{{ $dog->name }}</option>
+                            {{-- <option value="{{ $dog->id }}" @if(in_array($dog->id, old('dogs', $event->dogs->pluck('id')->all()))) selected @endif>{{ $dog->name }}</option> --}}
+                            <option value="{{ $dog->id }}" @if(in_array($dog->id, old('dogs',[]))) selected @endif>{{ $dog->name }}</option>
                             @endforeach
                         </select>
                     </div>

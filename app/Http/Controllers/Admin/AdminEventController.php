@@ -34,7 +34,7 @@ class AdminEventController extends Controller
         $validated = $request->validated();
         $validated['image'] = $request->file('image')->store('events', 'public'); // eventsディレクトリ内
         $event = new Event($validated); // 検証済みのデータを指定
-        $event->category()->associate($validated['category_id']);
+        $event->eventCategory()->associate($validated['category_id']);
         $event->save();
         $event->dogs()->attach($validated['dogs']);
 

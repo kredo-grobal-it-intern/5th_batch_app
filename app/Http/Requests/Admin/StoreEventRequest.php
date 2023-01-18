@@ -34,6 +34,8 @@ class StoreEventRequest extends FormRequest
                 'dimensions:min_width=300,min_height=300,max_width=1200,max_height=1200', // 画像の解像度が300px * 300px ~ 1200px * 1200px
             ],
             'body' => ['required', 'max:20000'],
+            'category_id' => ['required', 'exists:categories,id'],
+            'dogs.*' => ['distinct', 'exists:dogs,id']
         ];
     }
 }
