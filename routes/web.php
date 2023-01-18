@@ -146,3 +146,15 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::get('/{id}/edit', [PublicationController::class, 'edit'])->name('edit');
         Route::patch('/{id}/update', [PublicationController::class, 'update'])->name('update');
     });
+    
+    Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
+        Route::resource('/', NewsController::class);
+
+        Route::group(["prefix" => "show", "as" => "show."], function () {
+            Route::get('/amusement', [NewsController::class, 'showAmusement']);
+            Route::get('/cafe', [NewsController::class, 'showCafe']);
+            Route::get('/dogrun', [NewsController::class, 'showDogrun']);
+            Route::get('/hospital', [NewsController::class, 'showHospital']);
+            Route::get('/result', [NewsController::class, 'search']);
+        });
+    });
