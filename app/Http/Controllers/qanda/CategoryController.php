@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\qanda;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\QuestionCategory;
 
 class CategoryController extends Controller
 {
-    public function generateQuestionCategories(){
+    public function generateQuestionCategories()
+    {
         $catArray = [
             'dog',
             'cat',
@@ -17,12 +17,13 @@ class CategoryController extends Controller
             'trainng',
             'food',
             'health',
-            'other things'
+            'other things',
         ];
 
-        for($x = 0; $x < count($catArray); $x++):
+        $arrayLen = count($catArray);
+        for ($x = 0; $x < $arrayLen; $x++) :
             QuestionCategory::create([
-                'name'=>$catArray[$x]
+                'name' => $catArray[$x]
             ]);
         endfor;
     }

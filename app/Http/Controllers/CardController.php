@@ -3,10 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\DB;
-use Stripe\Stripe;
-use Stripe\Charge;
 use App\Models\Donation;
 
 class CardController extends Controller
@@ -46,7 +42,5 @@ class CardController extends Controller
                 ]);
 
                 return view('donates.complete_donate');
-
     }
-
 }

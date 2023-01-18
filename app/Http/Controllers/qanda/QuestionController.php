@@ -31,8 +31,8 @@ class QuestionController extends Controller
                     ->with('all_question_categories', $all_question_categories);
     }
 
-    public function show(){
-
+    public function show()
+    {
     }
 
 
@@ -60,8 +60,8 @@ class QuestionController extends Controller
         ]);
 
         // save categories [1,2,3] -> [category_id => 1,category_id => 2,category_id => 3]
-        foreach($request->category as $category_id){
-            $question_category[] = ["category_id"=>$category_id];
+        foreach ($request->category as $category_id) {
+            $question_category[] = ["category_id" => $category_id];
         }
         // $this->question->SelectedCategory()->createMany($question_category);
         $question->createSelectedCategory()->createMany($question_category);
@@ -70,22 +70,24 @@ class QuestionController extends Controller
     }
 
 
-    public function saveQuestionImage($request){
-        if ($request->image){
+    public function saveQuestionImage($request)
+    {
+        if ($request->image) {
             $image_name = time().".".$request->image->extension();
             $request->image->storeAs(self::LOCAL_STORAGE_FOLDER, $image_name);
 
             return $image_name;
-        }else{
+        } else {
             return null;
         }
     }
 
 
-    public function deleteQuestionImage($image_name){
+    public function deleteQuestionImage($image_name)
+    {
         $image_path = self::LOCAL_STORAGE_FOLDER.$image_name;
 
-        if(Storage::disk('local')->exists($image_path)):
+        if (Storage::disk('local')->exists($image_path)) :
             Storage::disk('local')->delete($image_path);
         endif;
     }
@@ -97,7 +99,7 @@ class QuestionController extends Controller
         $question->title = $request->title;
         $question->content = $request->content;
         $question->user_id = Auth::id();
-        if($request->image):
+        if ($request->image) :
             self::deleteQuestionImage($question->image);
 
             $question->image = self::saveQuestionImage($request);
@@ -106,8 +108,8 @@ class QuestionController extends Controller
 
         $question->createSelectedCategory()->delete(); // delete all previously selected categories
 
-        foreach($request->category as $category_id){
-            $question_category[] = ["category_id"=>$category_id];
+        foreach ($request->category as $category_id) {
+            $question_category[] = ["category_id" => $category_id];
         }
         $question->createSelectedCategory()->createMany($question_category);
 
@@ -123,5 +125,4 @@ class QuestionController extends Controller
 
         return redirect()->back();
     }
-
 }

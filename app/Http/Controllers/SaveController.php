@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Save;
-use App\Models\User;
-use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; # This is responsible for handling the authentication
 
@@ -13,7 +11,8 @@ class SaveController extends Controller
 
     private $save;
 
-    public function __construct(Save $save){
+    public function __construct(Save $save)
+    {
 
         $this->save = $save;
     }
@@ -46,7 +45,7 @@ class SaveController extends Controller
     public function store(Request $request, Save $save)
     {
         $data = $save->exists();
-        if($data){
+        if ($data) {
             $save->delete(Auth::user()->id);
         }
         $this->save->user_id = Auth::user()->id;
