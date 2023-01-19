@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Dog;
 use App\Models\Event;
-use Illuminate\Http\Request;
 use App\Models\EventCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -58,7 +57,7 @@ class AdminEventController extends Controller
     {
         $categories = EventCategory::all();
         $dogs = Dog::all();
-        return view('admin.events.edit', ['event' => $event, 'categories' => $categories, 'dogs' =>$dogs]);
+        return view('admin.events.edit', ['event' => $event, 'categories' => $categories, 'dogs' => $dogs]);
     }
 
     // 指定したIDのeventの更新処理

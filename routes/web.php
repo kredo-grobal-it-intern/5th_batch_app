@@ -93,21 +93,21 @@ Route::get('map', function () {
     Route::get('/contact/complete', [ContactController::class, 'complete'])->name('contact.complete');
 
 // events
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth.admin'], function () {
-    // events
-    Route::resource('/events', AdminEventController::class)->except('show');
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth.admin'], function () {
+        // events
+        Route::resource('/events', AdminEventController::class)->except('show');
 
-    // User Management
-    Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
-        Route::get('/create', [UserController::class, 'create'])->name('create');
-        Route::post('/', [UserController::class, 'store'])->name('store');
+        // User Management
+        Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+            Route::get('/create', [UserController::class, 'create'])->name('create');
+            Route::post('/', [UserController::class, 'store'])->name('store');
+        });
     });
-});
 
 // Admin Auth
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     #Donation by Credit Card
     Route::name('card.')
