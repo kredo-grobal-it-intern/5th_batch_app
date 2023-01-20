@@ -28,7 +28,7 @@ class ContactAdminMail extends Mailable
     public function build()
     {
         return $this->from($this->contactInfo['email'], $this->contactInfo['name'])
-        ->subject('お問い合わせがありました')
+        ->subject('We have received an inquiry')
         ->text('emails.contact.admin');
     }
 }

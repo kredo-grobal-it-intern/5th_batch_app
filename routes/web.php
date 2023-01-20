@@ -9,6 +9,9 @@ use App\Http\Controllers\SaveController;
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\qanda\AnswerController;
 use App\Http\Controllers\qanda\CategoryController;
@@ -90,12 +93,21 @@ Route::get('map', function () {
     Route::get('/contact/complete', [ContactController::class, 'complete'])->name('contact.complete');
 
 // events
-// Route::get('/admin/events', [AdminEventController::class, 'index'])->name('admin.events.index');
-// Route::get('/admin/events/create', [AdminEventController::class, 'create'])->name('admin.events.create');
-// Route::post('/admin/events', [AdminEventController::class, 'store'])->name('admin.events.store');
-// Route::get('/admin/events/{event}', [AdminEventController::class, 'edit'])->name('admin.events.edit');
-// Route::put('/admin/events/{event}', [AdminEventController::class, 'update'])->name('admin.events.update');
-// Route::delete('/admin/events/{event}', [AdminEventController::class, 'destroy'])->name('admin.events.destroy');
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth.admin'], function () {
+        // events
+        Route::resource('/events', AdminEventController::class)->except('show');
+
+        // User Management
+        Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+            Route::get('/create', [UserController::class, 'create'])->name('create');
+            Route::post('/', [UserController::class, 'store'])->name('store');
+        });
+    });
+
+// Admin Auth
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     #Donation by Credit Card
     Route::name('card.')
@@ -133,29 +145,4 @@ Route::get('map', function () {
         Route::get('/publication/{id}/show', [PublicationController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [PublicationController::class, 'edit'])->name('edit');
         Route::patch('/{id}/update', [PublicationController::class, 'update'])->name('update');
-    });
-
-
-
-
-    Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
-        Route::resource('/', NewsController::class);
-
-        Route::group(["prefix" => "show", "as" => "show."], function () {
-            Route::get('/amusement', [NewsController::class, 'showAmusement']);
-            Route::get('/cafe', [NewsController::class, 'showCafe']);
-            Route::get('/dogrun', [NewsController::class, 'showDogrun']);
-            Route::get('/hospital', [NewsController::class, 'showHospital']);
-            Route::get('/result', [NewsController::class, 'search']);
-        });
-    });
-
-
-    Route::group(["middleware" => "auth"], function () {
-        #question
-        Route::resource('/Q-A', QuestionController::class);
-    });
-
-    Route::get('map', function () {
-        return view('maps.map');
     });
