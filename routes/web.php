@@ -125,6 +125,8 @@ Route::get('map', function () {
         Route::get('/find_animal/completed', [FindController::class, 'completed'])->name('completed');
         Route::get('/find_animal/search', [FindController::class, 'search'])->name('search');
         Route::get('/find_animal/category_search', [FindController::class, 'category_search'])->name('category_search');
+        Route::get('/find_animal/search_area',[FindController::class,'search_area'])->name('search_area');
+        Route::patch('/find_animal/{id}/input_user',[User_inputController::class,'input_user'])->name('input_user');
     });
 
     Route::name('find_animal.')
