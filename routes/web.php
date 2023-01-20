@@ -6,16 +6,17 @@ use App\Http\Controllers\FindController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SaveController;
-
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\qanda\AnswerController;
 use App\Http\Controllers\qanda\CategoryController;
 use App\Http\Controllers\qanda\QuestionController;
+use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\qanda\AnswerCommentController;
 use App\Http\Controllers\qanda\AnswerReactionController;
 use App\Http\Controllers\qanda\QuestionReactionController;
@@ -68,6 +69,13 @@ Route::group(["middleware" => "auth"], function () {
 
     #Best answer
     Route::patch('/best_answer/{id}', [AnswerController::class, 'selectBestAnswer'])->name('SelectBestAnswer');
+
+    // profile
+    Route::resource('/profile', ProfileController::class)->except('index');
+    Route::resource('/follow', FollowController::class)->except('index');
+    // followers
+    Route::get('/profile/{id}/followers', [ProfileController::class, 'followers'])->name('profile.followers');
+    Route::get('/profile/{id}/following', [ProfileController::class, 'following'])->name('profile.following');
 });
 
 

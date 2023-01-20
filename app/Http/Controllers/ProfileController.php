@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -85,40 +86,40 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $user = $this->user->findOrFail($id);
+        $user = $this->user->findOrFail($id);
 
-        // $user->name = $request->name;
-        // $user->email = $request->email;
-        // $user->introduction = $request->introduction;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->introduction = $request->introduction;
 
-        // if($request->avatar):
-        //     if($user->avatar):
-        //         $this->deleteAvatar($user->avatar);
-        //     endif;
+        if ($request->avatar) :
+            if ($user->avatar) :
+                $this->deleteAvatar($user->avatar);
+            endif;
 
-        //     $user->avatar = $this->saveImage($request);
-        // endif;
+            $user->avatar = $this->saveImage($request);
+        endif;
 
-        // $user->save();
+        $user->save();
 
-        // return redirect()->route('profile.show',$id);
+        return redirect()->route('profile.show', $id);
     }
 
     public function saveImage($request)
     {
-        // $image_name = time() . "." . $request->avatar->extension();
-        // $request->avatar->storeAs(self::LOCAL_STORAGE_FOLDER, $image_name);
+        $image_name = time() . "." . $request->avatar->extension();
+        $request->avatar->storeAs(self::LOCAL_STORAGE_FOLDER, $image_name);
 
-        // return $image_name;
+        return $image_name;
     }
 
     public function deleteAvatar($image_name)
     {
-        // $image_path = self::LOCAL_STORAGE_FOLDER . $image_name;
+        $image_path = self::LOCAL_STORAGE_FOLDER . $image_name;
 
-        // if (Storage::disk('local')->exists($image_path)) :
-        //     Storage::disk('local')->delete($image_path);
-        // endif;
+        if (Storage::disk('local')->exists($image_path)) :
+            Storage::disk('local')->delete($image_path);
+        endif;
     }
 
     /**
@@ -132,16 +133,18 @@ class ProfileController extends Controller
         //
     }
 
-    // public function followers($id){
+    public function followers($id)
+    {
 
-    //      $user  = $this->user->findOrFail($id);
+        $user  = $this->user->findOrFail($id);
 
-    //     return view('users.profile.followers')->with('user',$user);
-    // }
+        return view('users.profile.followers')->with('user', $user);
+    }
 
-//     public function following($id){
-//         $user = $this->user->findOrFail($id);
+    public function following($id)
+    {
+        $user = $this->user->findOrFail($id);
 
-//         return view('users.profile.following')->with('user',$user);
-//     }
+        return view('users.profile.following')->with('user', $user);
+    }
 }
