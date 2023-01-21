@@ -3,116 +3,90 @@
 @section('title', 'All Comments')
 
 @section('content')
-    <div class="row">
-        <div class="col-3 border-end p-0">
-            <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" style="position: sticky; top: 150px; z-index: 999;">
-                <div class="position-sticky">
-                    <div class="list-group list-group-flush">
-                        <a href="{{ route('answers.show', $answer->question->id) }}" class="list-group-item list-group-item-action py-3 ripple" aria-current="true">
-                            <i class="fa-solid fa-angles-left me-3 fa-fw"></i><span>Back</span>
-                        </a>
-                        <a href="{{ route('questions.index') }}" class="list-group-item list-group-item-action py-3 ripple" aria-current="true">
-                            <i class="fa-solid fa-house-chimney me-3 fa-fw"></i><span>Home</span>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action py-3 ripple">
-                            <i class="fa-solid fa-magnifying-glass me-3 fa-fw"></i><span>Search</span>
-                        </a>
-                        <a href="{{ route('questions.create') }}" class="list-group-item list-group-item-action py-3 ripple">
-                            <i class="fa-solid fa-square-plus me-3 fa-fw"></i><span>Create a question</span>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action py-3 ripple">
-                            <i class="fa-regular fa-comment me-3 fa-fw"></i><span>Message</span>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action py-3 ripple">
-                            <i class="fa-solid fa-user me-3 fa-fw"></i><span>Profile</span>
-                        </a>
+    <div class="text-center mb-3">
+        <h1 class="font-mask">All Comments</h1>
+    </div>
+    <section class="mx-auto my-5 w-75">
+        <div class="card" style="background-color: #f8f8f8">
+            <div class="card-header" style="background-color: #faca7b">
+                <div class="row">
+                    <div class="col-2">
+                        @if ($answer->user->image)
+                            <i class="fa-solid fa-user"></i>
+                        @else
+                            <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle me-3" height="50px"
+                            width="50px" alt="avatar" />
+                        @endif
                     </div>
-                </div>
-            </nav>
-        </div>
-        <div class="col-9 p-0">
-            <div class="text-center p-4">
-                <h1 class="font-mask">All Comments</h1>
-            </div>
-            <section class="mx-auto my-5 w-75">
-                <div class="card" style="background-color: #f8f8f8">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-2">
-                                @if ($answer->user->image)
-                                    <i class="fa-solid fa-user"></i>
-                                @else
-                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle me-3" height="50px"
-                                    width="50px" alt="avatar" />
-                                @endif
-                            </div>
-                            <div class="col-10">
-                                <div>
-                                    <h5 class="card-title font-weight-bold mb-2">{{ $answer->user->name }} <span class="fs-6 text-muted ms-3 fw-light"> <i class="far fa-clock pe-2"></i>{{ $answer->created_at->diffForHumans() }}</span></h5>
-                                    <p>A. {{ $answer->body }}</p>
-                                </div>
-                            </div>
+                    <div class="col-10">
+                        <div>
+                            <h5 class="card-title font-weight-bold mb-2">{{ $answer->user->name }}</h5>
+                            <p class="card-text"><i class="far fa-clock pe-2"></i>{{ $answer->created_at->diffForHumans() }}</p>
                         </div>
                     </div>
-                    <div class="card-body" style="background-color: #f8f8f8">
-                        <div class="list-group">
-                            @foreach ($all_comments as $comment)
-                                <div class="list-group-item border-0 p-0 mb-2" style="background-color: #f8f8f8">
-                                    <div class="row">
-                                        <div class="col-2">
-                                            @if ($comment->user->image)
-                                                <i class="fa-solid fa-user"></i>
-                                            @else
-                                                <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle me-3" height="50px"
-                                                width="50px" alt="avatar" />
-                                            @endif
-                                        </div>
-                                        <div class="col-10">
-                                            <div>
-                                                <a href="#" class="text-decoration-none text-dark fw-bold">{{ $comment->user->name }} <span class="fs-6 text-muted ms-3 fw-light"> <i class="far fa-clock pe-2"></i>{{ $comment->created_at->diffForHumans() }}</span></a><br>
-                                                <div class="d-flex">
-                                                    <p class="d-inline fw-light me-2">{{ $comment->body }}</p>
-                                                    <form action="{{ route('answer_comment.destroy', $comment->id ) }}" method="post">
-                                                        @method('DELETE')
-                                                        @csrf
+                </div>
+            </div>
+            <div class="container" style="background-color: #f8f8f8">
+                <h4 class="card-title text-decoration-underline px-3 py-3 mb-0" style="background-color: #f8f8f8">A. {{ $answer->body }}</h4>
+            </div>
+            @if ($answer->image)
+                <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
+                    <img src="{{ asset('/storage/images/answers/' . $answer->image) }}" class="img-fluid" alt="{{ $answer->image }}">
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+            @else
+                <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/full page/2.jpg"
+                    alt="Card image cap" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+            @endif
+            <div class="card-body pt-2" style="background-color: #f8f8f8">
+                <div class="text-end">
+                    <i class="fas fa-share-alt text-muted p-md-1 my-1 me-2" data-mdb-toggle="tooltip"
+                        data-mdb-placement="top" title="Share this post"></i>
+                    <i class="fas fa-heart text-muted p-md-1 my-1 me-0" data-mdb-toggle="tooltip" data-mdb-placement="top"
+                        title="I like it"></i>
+                </div>
+                <form action="{{ route('answer_comment.store') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="answer_id" value="{{ $answer->id }}">
+                    <label for="comment" class="form-label">Comment</label>
+                    <div class="row">
+                        <div class="col-8">
+                            <input type="text" name="comment" id="comment" class="form-control mb-3" placeholder="Add comment here!">
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn" style="background-color: #faca7b">Add Comment</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="list-group">
+                    @foreach ($all_comments as $comment)
+                        <div class="list-group-item border-0 p-0 mb-2" style="background-color: #f8f8f8">
+                            <a href="#" class="text-decoration-none text-dark fw-bold">{{ $comment->user->name }}</a>
+                            &nbsp;
+                            <p class="d-inline fw-light">{{ $comment->body }}</p>
+                            <form action="{{ route('answer_comment.destroy', $comment->id ) }}" method="post">
+                                @method('DELETE')
+                                @csrf
 
-                                                        @if ($comment->user->id === Auth::id())
-                                                            <button type="submit" class="border-0 bg-transparent small text-danger p-0"> Delete</button>
-                                                        @endif
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                            <div class="mx-auto mt-3">
-                                {{ $all_comments->links() }}
-                            </div>
-                        </div><hr>
-                        <form action="{{ route('answer_comment.store') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="answer_id" value="{{ $answer->id }}">
-                            <div class="row">
-                                <div class="col-1">
-                                    @if (Auth::user()->image)
-                                        <i class="fa-solid fa-user"></i>
-                                    @else
-                                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle me-3" height="40px"
-                                        width="40px" alt="avatar" />
-                                    @endif
-                                </div>
-                                <div class="col-8">
-                                    <input type="text" name="comment" id="comment" class="form-control mb-3" placeholder="Add a comment as {{ Auth::user()->name }}">
-                                </div>
-                                <div class="col-3">
-                                    <button type="submit" class="btn" style="background-color: #faca7b">Post</button>
-                                </div>
-                            </div>
-                        </form>
+                                <p class="text-muted small d-inline me-1">{{ $comment->created_at->diffForHumans() }}</p>
+                                @if ($comment->user->id === Auth::id())
+                                    <button type="submit" class="border-0 bg-transparent small text-danger p-0"> Delete</button>
+                                @endif
+                            </form>
+                        </div>
+                    @endforeach
+                    <div class="mx-auto mt-3">
+                        {{ $all_comments->links() }}
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
-    </div>
+    </section>
 @endsection
