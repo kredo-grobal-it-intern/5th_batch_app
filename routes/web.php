@@ -16,6 +16,9 @@ use App\Http\Controllers\qanda\QuestionController;
 use App\Http\Controllers\qanda\AnswerCommentController;
 use App\Http\Controllers\qanda\AnswerReactionController;
 use App\Http\Controllers\qanda\QuestionReactionController;
+use App\Http\Controllers\post\PostsController;
+use App\Http\Controllers\post\CommentsController;
+use App\Http\Controllers\post\LikesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +37,9 @@ Route::get('/', function () {
     return view('top');
 });
 
+#creating categories (When you want to add a new category, you can use this route)
+Route::get('/categories', [CategoryController::class, 'generateQuestionCategories']);
+
 Route::resource('/pet-news', NewsController::class);
 
 Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
@@ -45,16 +51,18 @@ Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
         Route::get('/result', [NewsController::class, 'search']);
     });
 
-        #creating categories (When you want to add a new category, you can use this route)
-    Route::get('/categories', [CategoryController::class, 'generateQuestionCategories']);
-        #question
-    Route::resource('/Q-A', QuestionController::class);
-
     Route::resource('/save', SaveController::class)->except('index');
 });
 
 Route::group(["middleware" => "auth"], function () {
-    #question
+    #Post
+    Route::group(['prefix' => 'post', 'middleware' => 'verified'], function (){
+        Route::resource('/post', PostsController::class)->except('show', 'edit');
+        Route::resource('/comments', CommentsController::class);
+        Route::resource('/likes', LikesController::class);
+    });
+
+    #Q&A
     Route::group(['prefix' => 'q-a', 'middleware' => 'verified'], function () {
         Route::resource('/questions', QuestionController::class);
         Route::resource('/answers', AnswerController::class);
@@ -65,6 +73,7 @@ Route::group(["middleware" => "auth"], function () {
 
     #Best answer
     Route::patch('/best_answer/{id}', [AnswerController::class, 'selectBestAnswer'])->name('SelectBestAnswer');
+
 });
 
 
@@ -141,20 +150,14 @@ Route::get('map', function () {
     Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
         Route::resource('/', NewsController::class);
 
-        Route::group(["prefix" => "show", "as" => "show."], function () {
-            Route::get('/amusement', [NewsController::class, 'showAmusement']);
-            Route::get('/cafe', [NewsController::class, 'showCafe']);
-            Route::get('/dogrun', [NewsController::class, 'showDogrun']);
-            Route::get('/hospital', [NewsController::class, 'showHospital']);
-            Route::get('/result', [NewsController::class, 'search']);
-        });
+    Route::group(["prefix" => "show", "as" => "show."], function () {
+        Route::get('/amusement', [NewsController::class, 'showAmusement']);
+        Route::get('/cafe', [NewsController::class, 'showCafe']);
+        Route::get('/dogrun', [NewsController::class, 'showDogrun']);
+        Route::get('/hospital', [NewsController::class, 'showHospital']);
+        Route::get('/result', [NewsController::class, 'search']);
     });
-
-
-    Route::group(["middleware" => "auth"], function () {
-        #question
-        Route::resource('/Q-A', QuestionController::class);
-    });
+});
 
     Route::get('map', function () {
         return view('maps.map');
