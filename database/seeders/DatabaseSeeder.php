@@ -2,7 +2,11 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\DogSeeder;
 use Illuminate\Database\Seeder;
+use Database\Seeders\EventSeeder;
+use Database\Seeders\UsersSeeder;
+use Database\Seeders\EventCategorySeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +17,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            UsersSeeder::class,
+            EventSeeder::class,
+            DogSeeder::class,
+            EventCategorySeeder::class
+        ]);
     }
 }

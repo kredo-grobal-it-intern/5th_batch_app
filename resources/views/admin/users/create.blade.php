@@ -7,9 +7,9 @@
             <form action="" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="flex px-6 pb-4 border-b">
-                    <h3 class="text-xl font-bold">ユーザ登録</h3>
+                    <h3 class="text-xl font-bold">User Registration</h3>
                     <div class="ml-auto">
-                        <button type="submit" class="py-2 px-3 text-xs text-white font-semibold bg-indigo-500 rounded-md">登録</button>
+                        <button type="submit" class="py-2 px-3 text-xs text-white font-semibold bg-indigo-500 rounded-md">Registration</button>
                     </div>
                 </div>
 
@@ -27,27 +27,27 @@
                     <!-- ▲▲▲▲エラーメッセージ▲▲▲▲　-->
 
                     <div class="mb-6">
-                        <label class="block text-sm font-medium mb-2" for="name">名前</label>
+                        <label class="block text-sm font-medium mb-2" for="name">Name</label>
                         <input id="name" class="block w-full px-4 py-3 mb-2 text-sm bg-white border rounded" type="text" name="name" value="{{ old('name') }}">
                     </div>
 
                     <div class="mb-6">
-                        <label class="block text-sm font-medium mb-2" for="email">メールアドレス</label>
+                        <label class="block text-sm font-medium mb-2" for="email">Email</label>
                         <input id="email" class="block w-full px-4 py-3 mb-2 text-sm bg-white border rounded" type="email" name="email" value="{{ old('email') }}">
                     </div>
 
                     <div class="mb-6">
-                        <label class="block text-sm font-medium mb-2" for="password">パスワード</label>
+                        <label class="block text-sm font-medium mb-2" for="password">Password</label>
                         <input id="password" class="block w-full px-4 py-3 mb-2 text-sm bg-white border rounded" type="password" name="password">
                     </div>
 
                     <div class="mb-6">
-                        <label class="block text-sm font-medium mb-2" for="password_confirmation">パスワード(確認)</label>
+                        <label class="block text-sm font-medium mb-2" for="password_confirmation">Password(confirmation)</label>
                         <input id="password_confirmation" class="block w-full px-4 py-3 mb-2 text-sm bg-white border rounded" type="password" name="password_confirmation">
                     </div>
 
                     <div class="mb-6">
-                        <label class="block text-sm font-medium mb-2" for="image">画像</label>
+                        <label class="block text-sm font-medium mb-2" for="image">Image</label>
                         <div class="flex items-end">
                             <img id="previewImage" src="/images/admin/noimage.jpg" data-noimage="/images/admin/noimage.jpg" alt="" class="rounded-full shadow-md w-32">
                             <input id="image" class="block w-full px-4 py-3 mb-2" type="file" accept='image/*' name="image">
@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="mb-6">
-                        <label class="block text-sm font-medium mb-2" for="introduction">自己紹介文</label>
+                        <label class="block text-sm font-medium mb-2" for="introduction">Introduction</label>
                         <textarea id="introduction" class="block w-full px-4 py-3 mb-2 text-sm bg-white border rounded" name="introduction" rows="2">{{ old('introduction') }}</textarea>
                     </div>
                 </div>

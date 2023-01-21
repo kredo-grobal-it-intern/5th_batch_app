@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Dog;
 use App\Models\Event;
+use App\Models\EventCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Admin\StoreEventRequest;
 use App\Http\Requests\Admin\UpdateEventRequest;
 
-class AdminEventsController extends Controller
+class AdminEventController extends Controller
 {
     // イベント一覧画面
     public function index()
@@ -17,23 +19,27 @@ class AdminEventsController extends Controller
         return view('admin.events.index', ['events' => $events]);
     }
 
-    // ブログ投稿画面
+    // event投稿画面
     public function create()
     {
-        return view('admin.events.create');
+        $categories = eventCategory::all();
+        $dogs = Dog::all();
+        return view('admin.events.create', ['categories' => $categories, 'dogs' => $dogs]);
     }
 
-    // ブログ投稿処理
+    // event投稿処理
     public function store(StoreEventRequest $request)
     {
-        $savedImagePath = $request->file('image')->store('events', 'public');
-        $event = new Event($request->validated()); // 検証済みのデータを指定
-        $event->image = $savedImagePath; // 個別に指定
-        $event->save(); // データベースへの追加
+        $validated = $request->validated();
+        $validated['image'] = $request->file('image')->store('events', 'public'); // eventsディレクトリ内
+        $event = new Event($validated); // 検証済みのデータを指定
+        $event->eventCategory()->associate($validated['category_id']);
+        $event->save();
+        $event->dogs()->attach($validated['dogs']);
 
-        // return to_route('admin.events.index')->with('success', 'イベントを登録しました');
-        return redirect()->route('admin.events.index')->with('success', 'イベントを登録しました');
+        return redirect()->route('admin.events.index')->with('success', 'Event posted.');
     }
+
 
     /**
      * Display the specified resource.
@@ -46,14 +52,15 @@ class AdminEventsController extends Controller
         //
     }
 
-    // 指定したIDのブログの編集画面
-    public function edit($id)
+    // 指定したIDのeventの編集画面
+    public function edit(Event $event)
     {
-        $event = Event::findOrFail($id);
-        return view('admin.events.edit', ['event' => $event]);
+        $categories = EventCategory::all();
+        $dogs = Dog::all();
+        return view('admin.events.edit', ['event' => $event, 'categories' => $categories, 'dogs' => $dogs]);
     }
 
-    // 指定したIDのブログの更新処理
+    // 指定したIDのeventの更新処理
     public function update(UpdateEventRequest $request, $id)
     {
         $event = Event::findOrFail($id);
@@ -66,18 +73,25 @@ class AdminEventsController extends Controller
             // 変更後の画像をアップロード、保存パスを更新対象データにセット
             $updateData['image'] = $request->file('image')->store('events', 'public');
         }
+        // $eventインスタンスのeventCategoryメソッドに続けてassociateメソッドを呼び出し、引数には検証済みのcategory_idを指定する
+        // 1対多のリレーションデータの更新
+        $event->eventCategory()->associate($updateData['category_id']);
+        // 送信されたデータではなくバリデーション済みのデータから取得
+        // 多対多のリレーションデータの更新
+        // $event->dogs()->sync($request->validated('dogs', []));　can't get [] data
+        $event->dogs()->sync($request->validated()['dogs']); //
         $event->update($updateData);
 
-        return redirect()->route('admin.events.index')->with('success', 'ブログを更新しました');
+        return redirect()->route('admin.events.index')->with('success', 'Events have been updated.');
     }
 
-    // 指定したIDのブログの削除処理
+    // 指定したIDのeventの削除処理
     public function destroy($id)
     {
         $event = Event::findOrFail($id);
         $event->delete();
         Storage::disk('public')->delete($event->image);
 
-        return redirect()->route('admin.events.index')->with('success', 'ブログを削除しました');
+        return redirect()->route('admin.events.index')->with('success', 'Event has been deleted.');
     }
 }

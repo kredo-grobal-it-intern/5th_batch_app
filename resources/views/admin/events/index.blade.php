@@ -6,7 +6,7 @@
         <div class="flex px-6 pb-4 border-b">
             <h2 class="text-xl font-bold">Event</h2>
             <div class="ml-auto">
-                <a href="/admin/blogs/create" class="py-2 px-3 text-xs text-white font-semibold bg-indigo-500 rounded-md">NewPost</a>
+                <a href="/admin/events/create" class="py-2 px-3 text-xs text-white font-semibold bg-indigo-500 rounded-md">NewPost</a>
             </div>
         </div>
         <div class="pt-4 px-4 overflow-x-auto">
@@ -15,20 +15,20 @@
                 <tr class="text-xs text-gray-500 text-left">
                     <th class="font-medium text-center">Title</th>
                     <th class="font-medium">Category</th>
-                    <th class="font-medium">投稿者</th>
-                    <th class="font-medium">更新日時</th>
-                    <th class="font-medium">操作</th>
+                    <th class="font-medium">Post User</th>
+                    <th class="font-medium">Updated_at</th>
+                    <th class="font-medium">Operation</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($events as $event)
                 <tr @class(['text-sm', 'bg-gray-50' => $loop->odd])>
                     <td class="flex px-4 py-3 items-center">
-                        <img class="w-12 h-12 mr-4 object-cover rounded-md" src="{{ asset('storage/'. $event->image) }}" alt="">
+                        <img class="w-12 h-12 mr-4 object-cover rounded-md" src="{{ asset('storage/'). $event->image }}" alt="">
                         <p class="font-medium"><a href="{{ route('admin.events.edit', ['event' => $event]) }}">{{ $event->title }}</a></p>
                     </td>
-                    <td class="font-medium">成長</td>
-                    <td class="font-medium">高橋</td>
+                    <td class="font-medium">{{ $event->eventCategory->name }}</td>
+                    <td class="font-medium"></td>
                     <td>{{ $event->updated_at }}</td>
                     <td>
                         <div class="flex">
