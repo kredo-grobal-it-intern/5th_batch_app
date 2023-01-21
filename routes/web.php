@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\FindController;
+use App\Http\Controllers\User_inputController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SaveController;
@@ -121,12 +122,15 @@ Route::get('map', function () {
     Route::name('find_animal.')
     ->group(function () {
         Route::get('/find_animal/index', [FindController::class, 'index'])->name('index');
+        Route::get('/find_animal/{id}/contact', [FindController::class, 'contact'])->name('contact');
+        Route::get('/find_animal/{id}/contact_input', [FindController::class, 'contact_input'])->name('contact_input');
+        Route::get('/find_animal/{id}/confirm', [User_inputController::class, 'confirm'])->name('confirm');
+        Route::patch('/find_animal/{id}/input_user', [User_inputController::class, 'input_user'])->name('input_user');
         Route::get('/find_animal/confirm', [FindController::class, 'confirm'])->name('confirm');
         Route::get('/find_animal/completed', [FindController::class, 'completed'])->name('completed');
         Route::get('/find_animal/search', [FindController::class, 'search'])->name('search');
         Route::get('/find_animal/category_search', [FindController::class, 'category_search'])->name('category_search');
-        Route::get('/find_animal/search_area',[FindController::class,'search_area'])->name('search_area');
-        Route::patch('/find_animal/{id}/input_user',[User_inputController::class,'input_user'])->name('input_user');
+        Route::get('/find_animal/search_area', [FindController::class, 'search_area'])->name('search_area');
     });
 
     Route::name('find_animal.')

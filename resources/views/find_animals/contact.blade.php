@@ -8,6 +8,9 @@
 
 @section('content')
 
+ <div class="row justify-content-center">
+    <div class="col-9">
+
         <div class="pet_name">{{ $publication->name }}</div>
         <div class="row mt-5">
             <div class="col">
@@ -71,4 +74,6 @@
             </div>
       </form>
     </div>
+  </div>
+ </div>
 @endsection

@@ -6,10 +6,9 @@
      <link rel="stylesheet" href="{{ mix('/css/stripe_form.css') }}">
 @endsection
 
-
 @section('content')
-        <div class="row mt-5">
-            <div class="col">
+        <div class="row mt-5 col-9">
+            <div class="col mx-5">
                 <img src="{{ asset('/assets/images/donation.png') }}">
             </div>
             <div class="col mt-2">
@@ -27,6 +26,8 @@
                             @enderror
                         </div>
 
+
+                        
                         <!--
                           Or create a <label> with a 'for' attribute,
                           referencing the ID of your container.
