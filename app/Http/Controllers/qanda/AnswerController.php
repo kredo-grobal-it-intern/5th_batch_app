@@ -82,7 +82,7 @@ class AnswerController extends Controller
     }
 
 
-    public function selectBestAnswer($id)
+    public function selectBestAnswer(Answer $answer, $id)
     {
         $answer = $answer->findOrFail($id);
 

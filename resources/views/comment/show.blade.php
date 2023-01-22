@@ -8,17 +8,17 @@
             <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" style="position: sticky; top: 150px; z-index: 999;">
                 <div class="position-sticky">
                     <div class="list-group list-group-flush">
-                        <a href="{{ route('answers.show', $answer->question->id) }}" class="list-group-item list-group-item-action py-3 ripple" aria-current="true">
+                        <a href="{{ route('post.index') }}" class="list-group-item list-group-item-action py-3 ripple" aria-current="true">
                             <i class="fa-solid fa-angles-left me-3 fa-fw"></i><span>Back</span>
                         </a>
-                        <a href="{{ route('questions.index') }}" class="list-group-item list-group-item-action py-3 ripple" aria-current="true">
+                        <a href="{{ route('post.index') }}" class="list-group-item list-group-item-action py-3 ripple" aria-current="true">
                             <i class="fa-solid fa-house-chimney me-3 fa-fw"></i><span>Home</span>
                         </a>
                         <a href="#" class="list-group-item list-group-item-action py-3 ripple">
                             <i class="fa-solid fa-magnifying-glass me-3 fa-fw"></i><span>Search</span>
                         </a>
-                        <a href="{{ route('questions.create') }}" class="list-group-item list-group-item-action py-3 ripple">
-                            <i class="fa-solid fa-square-plus me-3 fa-fw"></i><span>Create a question</span>
+                        <a href="{{ route('post.create') }}" class="list-group-item list-group-item-action py-3 ripple">
+                            <i class="fa-solid fa-square-plus me-3 fa-fw"></i><span>Create</span>
                         </a>
                         <a href="#" class="list-group-item list-group-item-action py-3 ripple">
                             <i class="fa-regular fa-comment me-3 fa-fw"></i><span>Message</span>
@@ -34,12 +34,12 @@
             <div class="text-center p-4">
                 <h1 class="font-mask">All Comments</h1>
             </div>
-            <section class="mx-auto my-5 w-75">
+            <section class="mx-auto w-75">
                 <div class="card" style="background-color: #f8f8f8">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-2">
-                                @if ($answer->user->image)
+                                @if ($post->user->image)
                                     <i class="fa-solid fa-user"></i>
                                 @else
                                     <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle me-3" height="50px"
@@ -48,8 +48,8 @@
                             </div>
                             <div class="col-10">
                                 <div>
-                                    <h5 class="card-title font-weight-bold mb-2">{{ $answer->user->name }} <span class="fs-6 text-muted ms-3 fw-light"> <i class="far fa-clock pe-2"></i>{{ $answer->created_at->diffForHumans() }}</span></h5>
-                                    <p>A. {{ $answer->body }}</p>
+                                    <h5 class="card-title font-weight-bold mb-2">{{ $post->user->name }} <span class="fs-6 text-muted ms-3 fw-light"> <i class="far fa-clock pe-2"></i>{{ $post->created_at->diffForHumans() }}</span></h5>
+                                    <p>{{ $post->body }}</p>
                                 </div>
                             </div>
                         </div>
@@ -57,10 +57,10 @@
                     <div class="card-body" style="background-color: #f8f8f8">
                         <div class="list-group">
                             @foreach ($all_comments as $comment)
-                                <div class="list-group-item border-0 p-0 mb-2" style="background-color: #f8f8f8">
+                                <div class="list-group-item border-0 p-0 mb-3" style="background-color: #f8f8f8">
                                     <div class="row">
                                         <div class="col-2">
-                                            @if ($comment->user->image)
+                                            @if ($post->user->image)
                                                 <i class="fa-solid fa-user"></i>
                                             @else
                                                 <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle me-3" height="50px"
@@ -72,7 +72,7 @@
                                                 <a href="#" class="text-decoration-none text-dark fw-bold">{{ $comment->user->name }} <span class="fs-6 text-muted ms-3 fw-light"> <i class="far fa-clock pe-2"></i>{{ $comment->created_at->diffForHumans() }}</span></a><br>
                                                 <div class="d-flex">
                                                     <p class="d-inline fw-light me-2">{{ $comment->body }}</p>
-                                                    <form action="{{ route('answer_comment.destroy', $comment->id ) }}" method="post">
+                                                    <form action="{{ route('comments.destroy', $comment->id ) }}" method="post">
                                                         @method('DELETE')
                                                         @csrf
 
@@ -90,9 +90,9 @@
                                 {{ $all_comments->links() }}
                             </div>
                         </div><hr>
-                        <form action="{{ route('answer_comment.store') }}" method="post">
+                        <form action="{{ route('comments.store') }}" method="post">
                             @csrf
-                            <input type="hidden" name="answer_id" value="{{ $answer->id }}">
+                            <input type="hidden" name="post_id" value="{{ $post->id }}">
                             <div class="row">
                                 <div class="col-1">
                                     @if (Auth::user()->image)
