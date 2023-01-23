@@ -105,18 +105,14 @@
                 </div>
                 <div class="row my-1">
                     {{-- Delivery Area --}}
-                    <div class="col"><select type="checkbox" class="form-control" name="area">
-                        @foreach(config('pref') as $key => $score)
-                            <option value="{{ $score }}">{{ $score }}</option>
-                        @endforeach
-                    </select>
-                    </div>
+                    <div class="col h5">{{ $publication->area }}</div>
+
                     {{-- URL --}}
                     <div class="col h5">{{ $publication->url }}</div>
                 </div>
 
                 <label for="Characteristics" class="my-1">Characteristics</label>
-            {{-- charateristic --}}
+            {{-- URL --}}
             <div class="h5">{{ $publication->charateristic }}</div>
         </div>
       </div>

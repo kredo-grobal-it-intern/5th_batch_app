@@ -8,8 +8,8 @@
 }
 .search_button{
     position: absolute;
-    left: 1180px;
-    top:115px;
+    left: 96rem;
+    top:9.8rem;
 
     width: 8rem;
     height: 36px;
@@ -41,5 +41,74 @@
     color: #181818;
 
 }
+
+
+.classfication{
+    position: absolute;
+    left: 35rem;
+    top:13rem;
+    font-size: 25px;
+}
+
+.target_area{
+    position: absolute;
+    right: 38rem;
+    top:13rem;
+    font-size: 25px;
+}
+
+.category_fileter{
+    position: absolute;
+    top:16rem;
+    left:32rem;
+
+}
+
+// Target area choose
+.animal_search{
+    position: absolute;
+    right: 35rem;
+    top:16rem;
+
+}
+
+.apply_category{
+    background: #FACA7B;
+    border-radius: 12px;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 22px;
+    line-height: 22px;
+    /* ボックスの高さと同一 */
+
+    text-align: center;
+
+    /* black */
+
+    color: #181818;
+
+}
+
+
+.apply_area{
+    background: #FACA7B;
+    border-radius: 12px;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 22px;
+    line-height: 22px;
+    /* ボックスの高さと同一 */
+
+    text-align: center;
+
+    /* black */
+
+    color: #181818;
+
+}
+
+
 
 

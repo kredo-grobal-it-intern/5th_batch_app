@@ -93,7 +93,7 @@
                             </li>
 
                             <li class="nav-item me-2">
-                                <a class="nav-link fs-4" href="#"><i class="fa-solid fa-hand-holding-heart" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                                <a class="nav-link fs-4" href="{{ route('animal_care.index') }}"><i class="fa-solid fa-hand-holding-heart" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
                                     title="Donation"></i></a>
                             </li>
 
@@ -108,7 +108,7 @@
                             </li>
 
                             <li class="nav-item me-2">
-                                <a class="nav-link fs-4" href="{{ route('questions.index')}}"><i class="fa-solid fa-pen-to-square" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                                <a class="nav-link fs-4" href="{{ route("questions.index")}}"><i class="fa-solid fa-pen-to-square" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
                                     title="Q&A"></i></a>
                             </li>
 
@@ -139,8 +139,7 @@
             </div>
         </nav>
 
-        <main>
-            @yield('content')
+        <main class="py-4">
             {{-- <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-9">
@@ -148,6 +147,8 @@
                     </div>
                 </div>
             </div> --}}
+            @yield('content')
+            @yield('scripts')
         </main>
     </div>
 
