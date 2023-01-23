@@ -4,28 +4,28 @@ namespace App\Http\Controllers\qanda;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\AnswerReaction;
 use App\Models\Answer;
 use Illuminate\Support\Facades\Auth;
 
 class AnswerReactionController extends Controller
 {
-    public function index(){
-
+    public function index()
+    {
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $answer = Answer::findOrFail($id);
     }
 
-    public function create(){
-
+    public function create()
+    {
     }
 
     public function store(Request $request)
     {
         $answer = Answer::findOrFail($request->answer_id);
-        if(!$answer->userReaction()) {
+        if (!$answer->userReaction()) {
             $answer->answerReactions()->attach(Auth::id());
             return response()->json([
                 "message" => "Horray! Reaction has been made"
@@ -47,11 +47,12 @@ class AnswerReactionController extends Controller
         //
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
 
         $answer = Answer::find($id);
 
-        if($answer->userReaction()) {
+        if ($answer->userReaction()) {
             $answer->answerReactions()->detach(Auth::id());
             return response()->json([
                 "message" => "We successfully removed your reaction!"

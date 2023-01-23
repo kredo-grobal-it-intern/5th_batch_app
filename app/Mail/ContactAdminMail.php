@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -29,7 +28,7 @@ class ContactAdminMail extends Mailable
     public function build()
     {
         return $this->from($this->contactInfo['email'], $this->contactInfo['name'])
-        ->subject('お問い合わせがありました')
+        ->subject('We have received an inquiry')
         ->text('emails.contact.admin');
     }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\qanda;
 
 use App\Models\Question;
 use Illuminate\Http\Request;
-use App\Models\QuestionReaction;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,7 +38,7 @@ class QuestionReactionController extends Controller
     public function store(Request $request)
     {
         $question = Question::findOrFail($request->question_id);
-        if(!$question->userReaction()) {
+        if (!$question->userReaction()) {
             $question->questionReactions()->attach(Auth::id());
             return response()->json([
                 "message" => "Horray! Reaction has been made"
@@ -95,7 +94,7 @@ class QuestionReactionController extends Controller
     {
         $question = Question::find($id);
 
-        if($question->userReaction()) {
+        if ($question->userReaction()) {
             $question->questionReactions()->detach(Auth::id());
             return response()->json([
                 "message" => "We successfully removed your reaction!"

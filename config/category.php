@@ -5,4 +5,3 @@ return array(
   '2' => 'Male',
   '3' => 'Female',
 );
-?>
