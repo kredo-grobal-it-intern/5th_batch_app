@@ -14,7 +14,7 @@ class NewsController extends Controller
     public function index()
     {
         
-        $news_types = ['pet amusement','pet cafe', 'dogrun', 'pet hospital'];
+        $news_types = ['pet amusement','pet cafe', 'dog park', 'pet hospital'];
         foreach ($news_types as $news_type) {
             $response = Http::get(env('NEWS_API_ENDPOINT'), [
                 'apiKey' => env('NEWS_API_KEY'),
@@ -39,7 +39,7 @@ class NewsController extends Controller
         $all_news = News::latest()->get();
         $amusement_news = News::latest()->where('news_type', 'pet amusement')->latest()->get()->take(4);
         $cafe_news = News::latest()->where('news_type', 'pet cafe')->latest()->get()->take(4);
-        $dogrun_news = News::latest()->where('news_type', 'dogrun')->latest()->get()->take(4);
+        $dogrun_news = News::latest()->where('news_type', 'dog park')->latest()->get()->take(4);
         $hospital_news = News::latest()->where('news_type', 'pet hospital')->latest()->get()->take(4);
 
         // get data whose user_id = Auth user's id  from saves table (kinda filtering)
