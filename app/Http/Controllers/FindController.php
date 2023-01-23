@@ -140,7 +140,14 @@ class FindController extends Controller
         $query = Find::query();
 
         if (!empty($key)) {
-            $query->where('name', 'like', '%' . $key . '%')->orWhere('pet_type', 'like', '%' . $key . '%')->orWhere('breed', 'like', '%' . $key . '%')->orWhere('weight', 'like', '%' . $key . '%')->orWhere('charateristic', 'like', '%' . $key . '%')->orWhere('netured_status', 'like', '%' . $key . '%')->orWhere('gender', 'like', '%' . $key . '%')->orWhere('date_of_brith', 'like', '%' . $key . '%');
+            $query->where('name', 'like', '%' . $key . '%')
+            ->orWhere('pet_type', 'like', '%' . $key . '%')
+            ->orWhere('breed', 'like', '%' . $key . '%')
+            ->orWhere('weight', 'like', '%' . $key . '%')
+            ->orWhere('charateristic', 'like', '%' . $key . '%')
+            ->orWhere('netured_status', 'like', '%' . $key . '%')
+            ->orWhere('gender', 'like', '%' . $key . '%')
+            ->orWhere('date_of_brith', 'like', '%' . $key . '%');
         }
 
         $all_publications = $query->orderBy('created_at', 'desc')->paginate(8);
