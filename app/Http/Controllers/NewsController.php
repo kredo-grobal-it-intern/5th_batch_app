@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\News;
+use App\Models\Save;
+use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
@@ -12,7 +14,7 @@ class NewsController extends Controller
     public function index()
     {
         
-        $news_types = ['pet amusement','pet cafe', 'dogrun', 'pet hospital'];
+        $news_types = ['pet amusement','pet cafe', 'dog park', 'pet hospital'];
         foreach ($news_types as $news_type) {
             $response = Http::get(env('NEWS_API_ENDPOINT'), [
                 'apiKey' => env('NEWS_API_KEY'),
@@ -31,19 +33,24 @@ class NewsController extends Controller
                 ]);
             }
         }
+        
+        
     
         $all_news = News::latest()->get();
-        $amusement_news = News::latest()->where('news_type', 'pet amusement')->get()->take(4);
-        $cafe_news = News::latest()->where('news_type', 'pet cafe')->get()->take(4);
-        $dogrun_news = News::latest()->where('news_type', 'dogrun')->get()->take(4);
-        $hospital_news = News::latest()->where('news_type', 'pet hospital')->get()->take(4);
+        $amusement_news = News::latest()->where('news_type', 'pet amusement')->latest()->get()->take(4);
+        $cafe_news = News::latest()->where('news_type', 'pet cafe')->latest()->get()->take(4);
+        $dogrun_news = News::latest()->where('news_type', 'dog park')->latest()->get()->take(4);
+        $hospital_news = News::latest()->where('news_type', 'pet hospital')->latest()->get()->take(4);
+
+        // get data whose user_id = Auth user's id  from saves table (kinda filtering)
+        $saved = Save::where('user_id', Auth::id())->get();
         
-        // dd($pet_news);
         return view('useful-info.index')->with('all_news', $all_news)
                                         ->with('amusement_news', $amusement_news)
                                         ->with('cafe_news', $cafe_news)
                                         ->with('dogrun_news', $dogrun_news)
-                                        ->with('hospital_news', $hospital_news);
+                                        ->with('hospital_news', $hospital_news)
+                                        ->with('saved', $saved);
         // return $response->object();
     }
 
@@ -51,7 +58,10 @@ class NewsController extends Controller
     {
         
         $news = News::findOrFail($id);
-        return view('useful-info.articles.show')->with('news', $news);
+
+        $bookmark = Save::latest()->where('user_id', Auth::id())->first();
+        return view('useful-info.articles.show')->with('news', $news)
+                                                ->with('bookmark', $bookmark);
     }
 
     public function showAmusement()
@@ -80,6 +90,13 @@ class NewsController extends Controller
         $hospital_news = News::latest()->where('news_type', 'pet hospital')->paginate(8);
 
         return view('useful-info.all-articles.hospital')->with('hospital_news', $hospital_news);
+    }
+
+    public function showSaved()
+    {
+        $saved_news = Save::latest()->where('user_id', Auth::id())->paginate(8);
+
+        return view('useful-info.all-articles.saved')->with('saved_news', $saved_news);
     }
 
     public function search(Request $request)

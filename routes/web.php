@@ -46,6 +46,7 @@ Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
         Route::get('/dogrun', [NewsController::class, 'showDogrun']);
         Route::get('/hospital', [NewsController::class, 'showHospital']);
         Route::get('/result', [NewsController::class, 'search']);
+        Route::get('/all_saved', [NewsController::class, 'showSaved'])->name('saved');
     });
 
         #creating categories (When you want to add a new category, you can use this route)
