@@ -43,7 +43,7 @@ class NewsController extends Controller
         $hospital_news = News::latest()->where('news_type', 'pet hospital')->latest()->get()->take(4);
 
         // get data whose user_id = Auth user's id  from saves table (kinda filtering)
-        $saved = Save::where('user_id', Auth::user()->id)->get();
+        $saved = Save::where('user_id', Auth::id())->get();
         
         return view('useful-info.index')->with('all_news', $all_news)
                                         ->with('amusement_news', $amusement_news)
@@ -59,7 +59,7 @@ class NewsController extends Controller
         
         $news = News::findOrFail($id);
 
-        $bookmark = Save::latest()->where('user_id', Auth::user()->id)->first();
+        $bookmark = Save::latest()->where('user_id', Auth::id())->first();
         return view('useful-info.articles.show')->with('news', $news)
                                                 ->with('bookmark', $bookmark);
     }
@@ -94,7 +94,7 @@ class NewsController extends Controller
 
     public function showSaved()
     {
-        $saved_news = Save::latest()->where('user_id', Auth::user()->id)->paginate(8);
+        $saved_news = Save::latest()->where('user_id', Auth::id())->paginate(8);
 
         return view('useful-info.all-articles.saved')->with('saved_news', $saved_news);
     }

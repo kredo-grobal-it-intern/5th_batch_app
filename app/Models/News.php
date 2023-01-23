@@ -29,7 +29,7 @@ class News extends Model
     }       
 
     public function isSaved(){
-        return $this->saveNews()->where('user_id', Auth::user()->id)->exists();
+        return $this->saveNews()->where('user_id', Auth::id())->exists();
     }                                        
     
 }
