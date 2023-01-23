@@ -134,8 +134,8 @@ Route::get('map', function () {
 
     Route::name('user_input.')
     ->group(function () {
-    Route::get('/user_input/{id}/confirm', [User_inputController::class, 'confirm'])->name('confirm');
-});
+        Route::get('/user_input/{id}/confirm', [User_inputController::class, 'confirm'])->name('confirm');
+    });
 
 
     Route::name('find_animal.')
