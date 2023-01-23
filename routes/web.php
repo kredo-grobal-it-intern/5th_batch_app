@@ -124,7 +124,6 @@ Route::get('map', function () {
         Route::get('/find_animal/index', [FindController::class, 'index'])->name('index');
         Route::get('/find_animal/{id}/contact', [FindController::class, 'contact'])->name('contact');
         Route::get('/find_animal/{id}/contact_input', [FindController::class, 'contact_input'])->name('contact_input');
-        Route::get('/find_animal/{id}/confirm', [User_inputController::class, 'confirm'])->name('confirm');
         Route::patch('/find_animal/{id}/input_user', [User_inputController::class, 'input_user'])->name('input_user');
         Route::get('/find_animal/confirm', [FindController::class, 'confirm'])->name('confirm');
         Route::get('/find_animal/completed', [FindController::class, 'completed'])->name('completed');
@@ -132,6 +131,12 @@ Route::get('map', function () {
         Route::get('/find_animal/category_search', [FindController::class, 'category_search'])->name('category_search');
         Route::get('/find_animal/search_area', [FindController::class, 'search_area'])->name('search_area');
     });
+
+    Route::name('user_input.')
+    ->group(function () {
+    Route::get('/user_input/{id}/confirm', [User_inputController::class, 'confirm'])->name('confirm');
+});
+
 
     Route::name('find_animal.')
     ->group(function () {

@@ -7,11 +7,11 @@
 @endsection
 
 @section('content')
-        <div class="row mt-5 col-9">
+        <div class="row mt-5 col-9 mx-5">
             <div class="col mx-5">
                 <img src="{{ asset('/assets/images/donation.png') }}">
             </div>
-            <div class="col mt-2">
+            <div class="col-7 mt-2">
                 <form action="{{ route('card.pay_price') }}" method="POST"id="payment-form">
                     @csrf
                       {{-- input payment amount --}}
@@ -27,7 +27,7 @@
                         </div>
 
 
-                        
+
                         <!--
                           Or create a <label> with a 'for' attribute,
                           referencing the ID of your container.

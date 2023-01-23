@@ -43,7 +43,7 @@
 
                 {{-- input User information --}}
         <div class="u_form">
-            <form action="{{ route('find_animal.input_user', $publication->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('find_animal.input_user', $publication->user_id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                     <div class="row my-1">

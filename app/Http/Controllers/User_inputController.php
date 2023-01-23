@@ -12,15 +12,16 @@ class User_inputController extends Controller
 {
     public function __construct(User_input $user_input)
     {
-        $this->users = $user_input;
+        $this->user = $user_input;
     }
 
     public function input_user(Request $request, $id)
     {
         $request->validate([
-            'username'  => 'required|min:1|max:1000',
+                'username'  => 'required|min:1|max:1000',
         ]);
-        $user       = $this->users->findOrFail($id);
+
+        $user       = $this->user->findOrFail($id);
         $user->name = $request->name;
         // $user->email = $request->email;
         // $user->password = $request->password;
@@ -36,13 +37,12 @@ class User_inputController extends Controller
 
         // $this->users->save();
         $user->save();
-
-        return view('find_animals.confirm');
+        return redirect()->route('user_input.confirm', $id);
     }
 
     public function confirm($id)
     {
-        $user = $this->users->findOrFail($id);
+        $user = $this->user->findOrFail($id);
         // $publication = $this->pet->findOrFail($id);
 
         return view('find_animals.confirm')
