@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\News;
-use App\Models\User;
 use App\Models\Save;
-use Illuminate\Support\Facades\Auth; 
-
+use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
@@ -59,7 +57,7 @@ class NewsController extends Controller
     public function show($id)
     {
         
-        $news =News::findOrFail($id);
+        $news = News::findOrFail($id);
 
         $bookmark = Save::latest()->where('user_id', Auth::user()->id)->first();
         return view('useful-info.articles.show')->with('news', $news)
@@ -94,13 +92,15 @@ class NewsController extends Controller
         return view('useful-info.all-articles.hospital')->with('hospital_news', $hospital_news);
     }
 
-    public function showSaved(){
+    public function showSaved()
+    {
         $saved_news = Save::latest()->where('user_id', Auth::user()->id)->paginate(8);
 
         return view('useful-info.all-articles.saved')->with('saved_news', $saved_news);
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         
         $search = $request->search;
 

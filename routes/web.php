@@ -45,7 +45,7 @@ Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
         Route::get('/cafe', [NewsController::class, 'showCafe']);
         Route::get('/dogrun', [NewsController::class, 'showDogrun']);
         Route::get('/hospital', [NewsController::class, 'showHospital']);
-        Route::get('/result', [NewsController::class, 'search']);  
+        Route::get('/result', [NewsController::class, 'search']);
         Route::get('/all_saved', [NewsController::class, 'showSaved'])->name('saved');
     });
 
@@ -55,7 +55,6 @@ Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
     Route::resource('/Q-A', QuestionController::class);
 
     Route::resource('/save', SaveController::class)->except('index');
-
 });
 
 Route::group(["middleware" => "auth"], function () {
