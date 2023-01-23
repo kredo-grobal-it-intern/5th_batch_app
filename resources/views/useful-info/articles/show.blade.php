@@ -7,36 +7,34 @@
 
 <div class="container text-center">
     <div class="row">
-        <div class="">
-            <h1 class="fw-bolder d-inline" style="font-size: 4rem;">{{ $news->title }}</h1>
+            <h1 class="col-11 fw-bolder" style="font-size: 3.5rem;">{{ $news->title }}</h1>
 
             {{-- <button type="submit" class="btn btn-sm shadow-none p-0 ms-4 pb-3">
                 <i class="fa-regular fa-bookmark fs-1 float-end mt-3 text-warning"></i>
             </button> --}}
             
             @if($news->isSaved())
-                <form action="{{ route('pet-news.save.destroy', $news->id) }}" method="post">
+                <form action="{{ route('pet-news.save.destroy', $news->id) }}" method="post" class="col-1 my-auto">
                     @csrf
                     @method('DELETE')
                     {{-- To get post_id --}}
                     <input type="hidden" name="news_id" value="{{ $news->id }}">
 
-                    <button type="submit" class="btn btn-sm shadow-none p-0">
-                        <i class="fa-regular fa-bookmark fs-1 float-end mt-3 text-warning"></i>
+                    <button type="submit" class="btn btn-sm shadow-none p-0 ">
+                        <i class="fa-regular fa-bookmark float-end text-warning" style="font-size: 3rem;"></i>
                     </button>
                 </form>
             @else
-                <form action="{{ route('pet-news.save.store', $news->id) }}" method="post">
+                <form action="{{ route('pet-news.save.store', $news->id) }}" method="post" class="col-1 my-auto">
                     @csrf                    
                     {{-- To get post_id --}}
                     <input type="hidden" name="news_id" value="{{ $news->id }}">
 
                     <button type="submit" class="btn btn-sm shadow-none p-0">
-                        <i class="fa-regular fa-bookmark fs-1 float-end mt-3"></i>
+                        <i class="fa-regular fa-bookmark float-end" style="font-size: 3rem;"></i>
                     </button>
                 </form>
             @endif
-        </div>
     </div>
 
     <div class="row  mt-5 ">
@@ -53,28 +51,34 @@
                 @endif
             </p>
             
-
-{{-- if 記載予定（article 書いた本人なら以下のボタンが出る） --}}
-            <div class="">
-                <a href="" type="button" class="btn btn-warning float-start col-5">Edit</a>
-                
-                <button type="button" class="btn btn-danger float-end col-5" data-mdb-toggle="modal" data-mdb-target="#delete-article-{{$news->id }}">Delete</button>
-            </div>
+            {{-- if user is author, they can edit or delete the article --}}
+            @if($news->author == Auth::user()->name)
+                <div class="">
+                    <a href="" type="button" class="btn btn-warning float-start col-5">Edit</a>
+                    <button type="button" class="btn btn-danger float-end col-5" data-mdb-toggle="modal" data-mdb-target="#delete-article-{{$news->id }}">Delete</button>
+                </div>
+            @endif
             @include('useful-info.modal.delete')
-            <!-- Button trigger modal -->
         </div>
         <div class="col-1"></div>
-        <div class="col-6">
+        <div class="col-6 p-0">
             <div class=" bg-warning">
                 <p class="fs-4">{{ $news->description }}</p>
             </div>
             <div class="">
-                <a href="{{ $news->url }}" class="fs-5">Go Reference</p>
+                <a href="{{ $news->url }}" class="fs-5 float-end">Go Reference</p>
             </div>
 
         </div>
-        <a href="/pet-news" class="fs-4 w-50 text-decoration-none mt-5 mx-auto">Back</a>
-        {{-- <a href="{{ url()->previous() }}" class="fs-4 w-50 text-decoration-none mt-5 mx-auto">Back</a> --}}
+    </div>
+    <div class="row mt-5">
+        @if($bookmark)
+            <a href="{{ route('pet-news.show.saved') }}" class="d-block col-4 btn btn-warning fs-6">Saved</a>
+            <div class="col"></div>
+            <a href="/pet-news" class="col-4 d-block btn btn-primary fs-6">Useful Information</a>
+        @else
+            <a href="/pet-news" class="col-4 d-block mx-auto btn btn-primary fs-6">Useful Information</a>
+        @endif        
     </div>
 </div>
 @endsection

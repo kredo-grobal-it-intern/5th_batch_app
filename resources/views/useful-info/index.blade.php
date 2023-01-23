@@ -20,36 +20,37 @@
 <div class="container text-center">
     <div class="row">
         @include('useful-info.articles.cards')
-        
 
         <div class="col"></div>
 {{-- Saved articles --}}
+    
+
+
+
         <div class="col-2 p-0 mt-5" style="height: 500px;">
             <h3 class="text-start m-0">Saved</h2>
             <hr class="w-100 m-0 border border-2 border-dark">
-<!-- card -->
-            <div class="row mt-3 w-100 mx-auto">
-                <div class="col-6 border">
-                    <a href=""><img src="/strage/images/images.jpeg" alt="img"></a>
-                </div>
-                <div class="col-6 border p-0">
-                    <a href="" class="text-decoration-none text-dark">
-                        <span>New Open!</span><br>
-                        <span> Animal Cafe</span>
-                    </a>
-                </div>
-            </div>
 
-            <div class="row mt-3 w-100 mx-auto">
-                <div class="col-6 border">
-                    <a href=""><img src="/strage/images/images.jpeg" alt="img"></a>
-                </div>
-                <div class="col-6 border p-0">
-                    <a href="" class="text-decoration-none text-dark">
-                        <span>New Open!</span><br>
-                        <span> Animal Cafe</span>
-                    </a>
-                </div>
+{{-- {{$savedNews}} --}}
+            <div class="">
+                @foreach($saved->take(4) as $savedNews)
+                    <div class=" mx-auto my-3 card p-0" type="button" onclick="location.href='{{ route('pet-news.show', $savedNews->news->id) }}'" >
+                        <div href="{{ route('pet-news.show', $savedNews->news->id) }}" class="p-0" > 
+                            @if($savedNews->news->image)
+                                <img src="{{ $savedNews->news->image }}" class="w-100 p-0 rounded" alt="" style="max-height:80px;">
+                            @else
+                                <p style="height: 80px">No Image</p>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+
+                {{-- $saved contains data whose user_id =- Auth::user()->id --}}
+                @if($saved->count() > 4)
+                    <div class="card" type="button" onclick="location.href='{{ route('pet-news.show.saved') }}'" style="height: 80px; background-color: rgba(255, 187, 0, 0.5);">
+                        <p class="my-auto">View All</p>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

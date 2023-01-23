@@ -8,8 +8,8 @@
 
 @section('content')
 
-<div class="row mt-5">
-    <div class="col-5">
+<div class="row mt-5 mx-5">
+    <div class="col-5 mx-5">
         <img src="{{ asset('/assets/images/donation.png') }}">
     </div>
     <div class="col-7">

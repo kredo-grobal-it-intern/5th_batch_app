@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <div class="p_form">
+    <div class="p_form"> 
       <form action="{{ route('find_animal.find_animal.update', $publication->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
@@ -96,17 +96,18 @@
         </div>
 
         <div class="row my-1">
-            {{-- 後でやる --}}
             <div class="col">Delivery Areas</div>
             <div class="col">URL</div>
         </div>
         <div class="row my-1">
+            {{--  live area --}}
             <div class="col"><select type="checkbox" class="form-control" name="area">
                 @foreach(config('pref') as $key => $score)
                     <option value="{{ $score }}">{{ $score }}</option>
                 @endforeach
             </select>
             </div>
+            {{-- URL --}}
             <div class="col"><input type="text" class="form-control" id="url" name="url"  value="{{ old('url',$publication->url) }}" autofocus></div>
         </div>
 

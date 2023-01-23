@@ -1,0 +1,163 @@
+.title{
+    position: absolute;
+    width: 330px;
+    height: 33px;
+    left: 900px;
+    top: 100px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 33px;
+    /* ボックスの高さと同一 */
+
+    text-align: center;
+
+    /* black */
+
+    color: #181818;
+
+}
+
+.number_border{
+    position: absolute;
+    width: 480px;
+    height: 0px;
+    left: 800px;
+    top: 170px;
+
+    opacity: 0.1;
+    /* black */
+
+    border: 1px solid #181818
+}
+
+.circle_1{
+    position: absolute;
+    left: 800px;
+    top:150px;
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #FACA7B;
+    text-align: center;
+    line-height: 40px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    color: #181818;
+
+}
+
+.circle_title_1{
+    position: absolute;
+    left: 800px;
+    top:190px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 8px;
+
+
+
+    color: #181818;
+}
+
+.circle_2{
+    position: absolute;
+    left: 1040px;
+    top:150px;
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #DFDFDF;;
+    text-align: center;
+    line-height: 40px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    color: #181818;
+
+}
+
+.circle_title_2{
+    position: absolute;
+    left:1040px;
+    top:190px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 8px;
+
+
+
+    color: #181818;
+}
+
+.circle_3{
+    position: absolute;
+    left: 1280px;
+    top:150px;
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #DFDFDF;;
+    text-align: center;
+    line-height: 40px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    color: #181818;
+
+}
+
+
+.circle_title_3{
+    position: absolute;
+    left: 1280px;
+    top:190px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 8px;
+
+
+
+    color: #181818;
+}
+
+.u_form{
+    width: 500px;
+    position: absolute;
+    left: 800px;
+    top: 220px;
+}
+
+
+.font_con{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+
+    /* または32px */
+
+    text-align: left;
+
+    /* black */
+
+    color: #181818;
+    }
