@@ -5,12 +5,12 @@
 @section('content')
 <div class="container-fluid p-0 m-0"> 
     <div class="row">
-        <div class="col-3 mx-auto mt-3">
+        <div class="col-4 mx-auto mt-3">
             <a href="/pet-news" class="text-decoration-none ms-5">Useful Information</a>
         </div>
-        <h1 class="col-6 text-center ">Amusement Park</h1>
+        <h1 class="col-4 text-center ">Dogrun</h1>
 
-        <div class="col-3"></div>
+        <div class="col-4"></div>
     </div>
     <div class="row text-center" style="height: 75px;">
         @include('menu-bar.menu')
@@ -28,18 +28,18 @@
             </div>
         </form>
         <div class="row row-cols-4">
-            @foreach($amusement_news as $amusement)
+            @foreach($dogrun_news as $dogrun)
                 <div class="col mt-5 card p-0" style="max-height:300px;">
-                    <a href="{{ route('pet-news.show', $amusement->id) }}" class="card-body">
-                        @if($amusement->image)
-                            <img src="{{ $amusement->image }}" class="w-100 rounded-top" alt="" style="max-height: 150px;">
+                    <a href="{{ route('pet-news.show', $dogrun->id) }}" class="card-body">
+                        @if($dogrun->image)
+                            <img src="{{ $dogrun->image }}" class="w-100 rounded-top" alt="" style="max-height: 150px;">
                         @else
                             <i class="fa-regular fa-image-slash bg-info"></i>
                             <p class="">No Image</p>
                         @endif
                     </a>
-                    <a href="{{ route('pet-news.show', $amusement->id) }}" class="card-footer overflow-scroll" style="max-height: 50px;">
-                        {{ $amusement->title }}
+                    <a href="{{ route('pet-news.show', $dogrun->id) }}" class="card-footer overflow-scroll" style="max-height: 50px;">
+                        {{ $dogrun->title }}
                     </a>
                 </div>
             @endforeach
@@ -47,7 +47,7 @@
 
         <div class="row mt-5">
             <div class="col"></div>
-            <div class="col">{{ $amusement_news->links() }}</div>
+            <div class="col">{{ $dogrun_news->links() }}</div>
             <div class="col"></div>
         </div>
         

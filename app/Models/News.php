@@ -24,12 +24,12 @@ class News extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function save( $options = Array()){
+    public function saveNews( $options = Array()){
         return $this->hasMany(Save::class);
     }       
 
     public function isSaved(){
-        return $this->save()->where('user_id', Auth::user()->id)->exists();
+        return $this->saveNews()->where('user_id', Auth::user()->id)->exists();
     }                                        
     
 }
