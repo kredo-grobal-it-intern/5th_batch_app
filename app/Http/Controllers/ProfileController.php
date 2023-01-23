@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -13,10 +14,12 @@ class ProfileController extends Controller
     const LOCAL_STORAGE_FOLDER = 'public/avatars/';
 
     private $user;
+    private $event;
 
-    public function __construct(User $user)
+    public function __construct(User $user, Event $event)
     {
         $this->user = $user;
+        $this->event = $event;
     }
     /**
      * Display a listing of the resource.
@@ -57,10 +60,10 @@ class ProfileController extends Controller
      */
     public function show()
     {
-        //
         $user = $this->user->findOrFail(Auth::user()->id);
+        $all_events = $this->event->latest()->get();
 
-        return view('users.profile.show', ['user' => $user]);
+        return view('users.profile.show', ['user' => $user, 'all_events' => $all_events]);
     }
 
     /**
@@ -72,9 +75,9 @@ class ProfileController extends Controller
     public function edit($id)
     {
         //
-        // $user = $this->user->findOrFail($id);
+        $user = $this->user->findOrFail($id);
 
-        // return view('users.profile.edit')->with('user',$user);
+        return view('users.profile.edit')->with('user',$user);
     }
 
     /**
