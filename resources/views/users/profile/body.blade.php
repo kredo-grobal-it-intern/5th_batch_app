@@ -51,7 +51,7 @@
         aria-labelledby="ex3-tab-1"
     >
         <div style="margin-top: 100px">
-            @if ($user->posts->isNotEmpty())
+            {{-- @if ($user->posts->isNotEmpty())
                 <div class="row">
                     @foreach ($user->posts as $post)
                         <a href="">
@@ -59,9 +59,9 @@
                         </a>
                     @endforeach
                 </div>
-            @else
+            @else --}}
                 <h3 class="text-muted text-center">No posts yet</h3>
-            @endif
+            {{-- @endif --}}
         </div>
     </div>
     <div

@@ -102,8 +102,8 @@
                             </li>
 
                             <li class="nav-item me-2">
-                                <a class="nav-link fs-4" href="{{ route("questions.index")}}"><i class="fa-solid fa-pen-to-square" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
-                                    title="Q&A"></i></a>
+                                <a class="nav-link fs-4" href="{{ route("questions.index")}}"><iconify-icon inline icon="fluent:chat-bubbles-question-24-regular" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                                    title="Q&A"></iconify-icon></a>
                             </li>
 
                             <li class="nav-item dropdown">
@@ -135,10 +135,7 @@
 
         <main class="py-4">
             @yield('content')
-<<<<<<< Updated upstream
             @yield('scripts')
-=======
->>>>>>> Stashed changes
         </main>
     </div>
 
