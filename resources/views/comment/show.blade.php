@@ -8,16 +8,16 @@
             <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" style="position: sticky; top: 150px; z-index: 999;">
                 <div class="position-sticky">
                     <div class="list-group list-group-flush">
-                        <a href="{{ route('post.index') }}" class="list-group-item list-group-item-action py-3 ripple" aria-current="true">
+                        <a href="{{ route('posts.index') }}" class="list-group-item list-group-item-action py-3 ripple" aria-current="true">
                             <i class="fa-solid fa-angles-left me-3 fa-fw"></i><span>Back</span>
                         </a>
-                        <a href="{{ route('post.index') }}" class="list-group-item list-group-item-action py-3 ripple" aria-current="true">
+                        <a href="{{ route('posts.index') }}" class="list-group-item list-group-item-action py-3 ripple" aria-current="true">
                             <i class="fa-solid fa-house-chimney me-3 fa-fw"></i><span>Home</span>
                         </a>
                         <a href="#" class="list-group-item list-group-item-action py-3 ripple">
                             <i class="fa-solid fa-magnifying-glass me-3 fa-fw"></i><span>Search</span>
                         </a>
-                        <a href="{{ route('post.create') }}" class="list-group-item list-group-item-action py-3 ripple">
+                        <a href="{{ route('posts.create') }}" class="list-group-item list-group-item-action py-3 ripple">
                             <i class="fa-solid fa-square-plus me-3 fa-fw"></i><span>Create</span>
                         </a>
                         <a href="#" class="list-group-item list-group-item-action py-3 ripple">
@@ -72,7 +72,7 @@
                                                 <a href="#" class="text-decoration-none text-dark fw-bold">{{ $comment->user->name }} <span class="fs-6 text-muted ms-3 fw-light"> <i class="far fa-clock pe-2"></i>{{ $comment->created_at->diffForHumans() }}</span></a><br>
                                                 <div class="d-flex">
                                                     <p class="d-inline fw-light me-2">{{ $comment->body }}</p>
-                                                    <form action="{{ route('comments.destroy', $comment->id ) }}" method="post">
+                                                    <form action="{{ route('posts.comments.destroy', $comment->id ) }}" method="post">
                                                         @method('DELETE')
                                                         @csrf
 
@@ -90,7 +90,7 @@
                                 {{ $all_comments->links() }}
                             </div>
                         </div><hr>
-                        <form action="{{ route('comments.store') }}" method="post">
+                        <form action="{{ route('posts.comments.store') }}" method="post">
                             @csrf
                             <input type="hidden" name="post_id" value="{{ $post->id }}">
                             <div class="row">

@@ -38,7 +38,7 @@ class PostsController extends Controller
             "user_id" => Auth::id(),
         ]);
 
-        return redirect()->route('post.index');
+        return redirect()->route('posts.index');
     }
 
     public function savePostImage($request)
@@ -69,7 +69,6 @@ class PostsController extends Controller
     public function update(Request $request)
     {
         $post = Post::find($request->post);
-        dd($request->post);
         $post->body = $request->body;
         $post->user_id = Auth::id();
         if ($request->image) :
@@ -80,7 +79,7 @@ class PostsController extends Controller
 
         $post->save();
 
-        return redirect()->route('post.index');
+        return redirect()->route('posts.index');
     }
 
 
@@ -88,6 +87,6 @@ class PostsController extends Controller
     {
         $post->delete();
 
-        return redirect()->route('post.index');
+        return redirect()->route('posts.index');
     }
 }

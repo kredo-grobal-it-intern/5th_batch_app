@@ -242,7 +242,7 @@
                 let post_id = $(this).data('post-id');
                 let self = this;
                 $.ajax({
-                    url: `/post/likes/${post_id}`,
+                    url: `/posts/likes/${post_id}`,
                     method: 'DELETE',
                     success: function(res) {
                         $(self).removeClass('remove-reaction')
@@ -266,7 +266,7 @@
                 let post_id = $(this).data('post-id');
                 let self = this;
                 $.ajax({
-                    url: `/post/likes`,
+                    url: `/posts/likes`,
                     method: 'POST',
                     data: {
                         post_id
