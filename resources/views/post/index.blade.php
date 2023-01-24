@@ -14,7 +14,7 @@
                         <a href="#" class="list-group-item list-group-item-action py-3 ripple">
                             <i class="fa-solid fa-magnifying-glass me-3 fa-fw"></i><span>Search</span>
                         </a>
-                        <a href="{{ route('post.create') }}" class="list-group-item list-group-item-action py-3 ripple">
+                        <a href="{{ route('posts.create') }}" class="list-group-item list-group-item-action py-3 ripple">
                             <i class="fa-solid fa-square-plus me-3 fa-fw"></i><span>Create a post</span>
                         </a>
                         <a href="#" class="list-group-item list-group-item-action py-3 ripple">
@@ -160,7 +160,7 @@
                                             title="I like it"></i>
                                         </button>
                                     @endif
-                                    <a href="{{ route('comments.show', $post->id ) }}">
+                                    <a href="{{ route('posts.comments.show', $post->id ) }}">
                                         <i class="fa-regular fa-comment text-muted p-md-1 me-2" data-mdb-toggle="tooltip"
                                         data-mdb-placement="top" title="Comment"></i>
                                     </a>
@@ -199,7 +199,7 @@
                                         <a href="#" class="text-decoration-none text-dark fw-bold">{{ $comment->user->name }}</a>
                                         &nbsp;
                                         <p class="d-inline fw-light">{{ $comment->body }}</p>
-                                        <form action="{{ route('comments.destroy', $comment->id ) }}" method="post">
+                                        <form action="{{ route('posts.comments.destroy', $comment->id ) }}" method="post">
                                             @method('DELETE')
                                             @csrf
 
@@ -211,7 +211,7 @@
                                     </div>
                                     @if ($post->comments->count() > 3 AND $loop->last)
                                         <li class="list-group-item border-0 p-0 mb-2" style="background-color: #f8f8f8">
-                                            <a href="{{ route('comments.show', $post->id ) }}" class="text-decoration-underline text-muted small">View all {{ $post->comments->count() }} comments</a>
+                                            <a href="{{ route('posts.comments.show', $post->id ) }}" class="text-decoration-underline text-muted small">View all {{ $post->comments->count() }} comments</a>
                                         </li>
                                     @endif
                                 @endforeach
