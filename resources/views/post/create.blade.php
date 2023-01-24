@@ -8,13 +8,13 @@
             <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" style="position: sticky; top: 150px; z-index: 999;">
                 <div class="position-sticky">
                     <div class="list-group list-group-flush">
-                        <a href="{{ route('post.index') }}" class="list-group-item list-group-item-action py-3 ripple" aria-current="true">
+                        <a href="{{ route('posts.index') }}" class="list-group-item list-group-item-action py-3 ripple" aria-current="true">
                             <i class="fa-solid fa-house-chimney me-3 fa-fw"></i><span>Home</span>
                         </a>
                         <a href="#" class="list-group-item list-group-item-action py-3 ripple">
                             <i class="fa-solid fa-magnifying-glass me-3 fa-fw"></i><span>Search</span>
                         </a>
-                        <a href="{{ route('post.create') }}" class="list-group-item list-group-item-action py-3 ripple">
+                        <a href="{{ route('posts.create') }}" class="list-group-item list-group-item-action py-3 ripple">
                             <i class="fa-solid fa-square-plus me-3 fa-fw"></i><span>Create</span>
                         </a>
                         <a href="#" class="list-group-item list-group-item-action py-3 ripple">
@@ -29,7 +29,7 @@
         </div>
         <div class="col-9 p-0">
             <div class="w-75 mx-auto">
-                <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="text-center mb-3 p-4">
                         <h1 class="font-mask">Create Post</h1>
