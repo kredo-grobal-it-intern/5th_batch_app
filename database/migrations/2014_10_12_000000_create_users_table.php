@@ -17,10 +17,14 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('username')->nullable();//変更する
+            $table->string('username')->nullable();
             $table->string('avatar')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
+            $table->string('phone')->nullable();//電話番号
+            $table->string('postcode')->nullable();//郵便番号
+            $table->string('room_num')->nullable();//アパート 部屋番号
+            $table->string('street_address')->nullable();//地区、番地
+            $table->string('address')->nullable();//市町村
+            $table->string('prefecture')->nullable();//都道府県
             $table->enum('gender', ['Male', 'Female'])->nullable();
             $table->date('birthdate')->nullable();
             $table->string('password');

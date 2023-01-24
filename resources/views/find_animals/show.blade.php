@@ -16,17 +16,21 @@
         </div>
 
         <div class="col">
+            @if( ( $publication->user_id ) === ( Auth::user()->id ) )
+                <button  type="submit" class="back_button" ><a href="{{ route('find_animal.index') }}" class="link-dark">Back</a></button>
+                {{-- if the owner of the post is the Auth user, show Edit and Delete button --}}
+                    <button  type="submit" class="edit_button" ><a href="{{ route('find_animal.find_animal.edit',$publication->id) }}" class="link-dark">Edit</a></button>
+
+                    <form action="{{ route('find_animal.find_animal.destroy',$publication->id) }}" method="post" class="d-inline">
+                        @csrf {{-- cross site reference forgeries --}}
+                        @method('DELETE')
+
+                        <button type="submit" class="delete_button">Delete</button>
+                    </form>
+            @else
             <button  type="submit" class="back_button" ><a href="{{ route('find_animal.index') }}" class="link-dark">Back</a></button>
-             {{-- if the owner of the post is the Auth user, show Edit and Delete button --}}
-
-            <button  type="submit" class="edit_button" ><a href="{{ route('find_animal.find_animal.edit',$publication->id) }}" class="link-dark">Edit</a></button>
-
-            <form action="{{ route('find_animal.find_animal.destroy',$publication->id) }}" method="post" class="d-inline">
-                @csrf {{-- cross site reference forgeries --}}
-                @method('DELETE')
-
-                <button type="submit" class="delete_button">Delete</button>
-            </form>
+            <button  type="submit" class="contact_button" ><a href="{{ route('find_animal.contact',$publication->id) }}" class="link-dark">Contact</a></button>
+            @endif
 
 
 
@@ -84,12 +88,7 @@
                 </div>
                 <div class="row my-1">
                     {{-- Delivery Area --}}
-                    <div class="col"><select type="checkbox" class="form-control" name="area">
-                        @foreach(config('pref') as $key => $score)
-                            <option value="{{ $score }}">{{ $score }}</option>
-                        @endforeach
-                    </select>
-                    </div>
+                    <div class="col h5">{{ $publication->area }}</div>
                     {{-- URL --}}
                     <div class="col h5">{{ $publication->url }}</div>
                 </div>
