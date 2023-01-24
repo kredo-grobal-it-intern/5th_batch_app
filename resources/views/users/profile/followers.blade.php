@@ -7,6 +7,7 @@
 
     @include('users.profile.header')
 
+<div class="container">
     <div style="margin-top: 100px">
         <div class="row justify-content-center">
             <div class="col-4">
@@ -17,12 +18,12 @@
                         @foreach ($user->followers as $follower)
                             <div class="col-auto">
                                 <a href="">
-                                    @if ($follower->follower->avatar)
+                                    {{-- @if ($follower->follower->avatar)
                                         <img src="{{ asset('/storage/avatars/' . $follower->follower->avatar) }}"
                                             class="rounded-circle avatar-sm" alt="">
-                                    @else
-                                        <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
-                                    @endif
+                                    @else --}}
+                                        <img src="{{ asset('/storage/images/resources/initial_icon.png') }}" class="fa-solid d-block float-end icon-lg" alt="icon">
+                                    {{-- @endif --}}
                                 </a>
                             </div>
                             <div class="col ps-0 text-truncate">
@@ -32,15 +33,13 @@
                             </div>
                             <div class="col-auto text-end">
                                 @if ($follower->follower->id != Auth::id() AND $follower->follower->isFollowed())
+                                    <form action="" method="post">
+                                        @csrf
+                                        @method('DELETE')
 
-                                        <form action="" method="post">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button type="submit"
-                                                class="border-0 bg-transparent p-0 text-secondary btn-sm">Following</button>
-                                        </form>
-
+                                        <button type="submit"
+                                            class="border-0 bg-transparent p-0 text-secondary btn-sm">Following</button>
+                                    </form>
                                 @else
                                     <form action="" method="post">
                                         @csrf
@@ -60,4 +59,5 @@
 
         </div>
     </div>
+</div>
 @endsection

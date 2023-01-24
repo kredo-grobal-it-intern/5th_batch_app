@@ -3,6 +3,7 @@
 @section('title', 'Edit Profile')
 
 @section('content')
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-8">
             <form action="{{ route('profile.update',$user->id) }}" class="bg-white shadow rounded-3 p-5 " method="post" enctype="multipart/form-data">
@@ -12,12 +13,12 @@
                 <h2 class="h3 mb-3 fw-light text-muted">Update Profile</h2>
                 <div class="row mb-3">
                     <div class="col-4">
-                        @if ($user->avatar)
-                            <img src="#" class="img-thumbnail rounded-circle d-block mx-auto profile-avatar"
+                        {{-- @if ($user->avatar)
+                            <img src="{{ asset('storage/'. \Auth::user()->avatar) }}" class="img-thumbnail rounded-circle d-block mx-auto profile-avatar"
                                 alt="">
-                        @else
-                            <i class="fa-solid fa-circle-user text-secondary d-block text-center icon-lg"></i>
-                        @endif
+                        @else --}}
+                            <img src="{{ asset('/storage/images/resources/initial_icon.png') }}" class="fa-solid d-block mx-auto icon-lg" alt="icon">
+                        {{-- @endif --}}
                     </div>
                     <div class="col-auto align-self-end">
                         <input type="file" name="avatar" id="" class="form-control form-control-sm mt-1">
@@ -46,4 +47,5 @@
             </form>
         </div>
     </div>
+</div>
 @endsection
