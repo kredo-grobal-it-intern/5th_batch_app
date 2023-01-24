@@ -66,9 +66,10 @@ class PostsController extends Controller
         endif;
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::find($request->post);
+        dd($request->post);
         $post->body = $request->body;
         $post->user_id = Auth::id();
         if ($request->image) :

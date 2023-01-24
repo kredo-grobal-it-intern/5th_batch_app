@@ -61,8 +61,8 @@ Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
 
 Route::group(["middleware" => "auth"], function () {
     #Post
-    Route::group(['prefix' => 'post', 'middleware' => 'verified'], function (){
-        Route::resource('/post', PostsController::class)->except('show', 'edit');
+    Route::group(['prefix' => 'posts', 'middleware' => 'verified'], function (){
+        Route::resource('/', PostsController::class)->except('show', 'edit');
         Route::resource('/comments', CommentsController::class);
         Route::resource('/likes', LikesController::class);
     });

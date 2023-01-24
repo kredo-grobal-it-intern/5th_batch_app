@@ -8,7 +8,7 @@
             <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" style="position: sticky; top: 150px; z-index: 999;">
                 <div class="position-sticky">
                     <div class="list-group list-group-flush">
-                        <a href="{{ route('post.index') }}" class="list-group-item list-group-item-action py-3 ripple" aria-current="true">
+                        <a href="{{ route('posts.index') }}" class="list-group-item list-group-item-action py-3 ripple" aria-current="true">
                             <i class="fa-solid fa-house-chimney me-3 fa-fw"></i><span>Home</span>
                         </a>
                         <a href="#" class="list-group-item list-group-item-action py-3 ripple">
@@ -94,7 +94,7 @@
                                                         @endif
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <form action="{{ route('post.destroy', $post->id) }}" method="post">
+                                                        <form action="{{ route('posts.destroy', $post->id) }}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="button" class="btn btn-outline-danger btn-sm" data-mdb-dismiss="modal">Close</button>
@@ -115,7 +115,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="mx-auto">
-                                                            <form action="{{ route('post.update', $post->id) }}" method="post" enctype="multipart/form-data">
+                                                            <form action="{{ route('posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
                                                                 @csrf
                                                                 @method('PATCH')
                                                                 <label for="body" class="form-label">Body <span class="text-danger">*</span></label>
@@ -160,8 +160,10 @@
                                             title="I like it"></i>
                                         </button>
                                     @endif
-                                    <i class="fa-regular fa-comment text-muted p-md-1 me-2" data-mdb-toggle="tooltip"
+                                    <a href="{{ route('comments.show', $post->id ) }}">
+                                        <i class="fa-regular fa-comment text-muted p-md-1 me-2" data-mdb-toggle="tooltip"
                                         data-mdb-placement="top" title="Comment"></i>
+                                    </a>
                                     <i class="fas fa-share-alt text-muted p-md-1 me-2" data-mdb-toggle="tooltip"
                                         data-mdb-placement="top" title="Share this post"></i>
                                 </div><br>
