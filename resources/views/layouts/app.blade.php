@@ -37,12 +37,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css" rel="stylesheet"/>
 
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet"/>
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet"/> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #faca7b">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #faca7b;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
@@ -97,6 +98,7 @@
                             </li>
 
                             <li class="nav-item me-2">
+<<<<<<< HEAD
                                 <a class="nav-link fs-4" href="#"><iconify-icon inline icon="mdi:typewriter" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
                                     title="Post"></iconify-icon></a>
                             </li>
@@ -104,6 +106,15 @@
                             <li class="nav-item me-2">
                                 <a class="nav-link fs-4" href="{{ route("questions.index")}}"><iconify-icon inline icon="fluent:chat-bubbles-question-24-regular" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
                                     title="Q&A"></iconify-icon></a>
+=======
+                                <a class="nav-link fs-4" href="{{ route('posts.index')}}"><i class="fa-solid fa-comment-dots" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                                    title="Chat"></i></a>
+                            </li>
+
+                            <li class="nav-item me-2">
+                                <a class="nav-link fs-4" href="{{ route("questions.index")}}"><i class="fa-solid fa-pen-to-square" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                                    title="Q&A"></i></a>
+>>>>>>> main
                             </li>
 
                             <li class="nav-item dropdown">
@@ -132,8 +143,14 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
+            {{-- <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-9">
+                        @yield('content')
+                    </div>
+                </div>
+            </div> --}}
             @yield('content')
             @yield('scripts')
         </main>
