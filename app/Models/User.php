@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -54,5 +55,21 @@ class User extends Authenticatable
     public function save_news()
     {
         return $this->hasMany(News::class);
+    }
+
+    // get all of the followers
+    public function followers()
+    {
+        return $this->hasMany(Follow::class, 'following_id'); // select following_id from follows where follower_id = Auth::user()->id
+    }
+
+    public function following()
+    {
+        return $this->hasMany(Follow::class, 'follower_id'); // select * from follows where follower_id = Auth::user()->id
+    }
+
+    public function isFollowed()
+    {
+        return $this->followers()->where('follower_id', Auth::user()->id)->exists();
     }
 }
