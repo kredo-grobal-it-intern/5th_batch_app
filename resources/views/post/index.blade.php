@@ -30,7 +30,6 @@
         <div class="col-9 p-0">
             <div class="text-center p-4 bg-white mb-5" style="position: sticky; top: 0px; z-index: 999;">
                 <h1 class="font-mask">All Post</h1>
-                
             </div>
             @foreach ($all_posts as $post)
                 <section class="mx-auto my-5 w-75">
@@ -212,7 +211,7 @@
                                     </div>
                                     @if ($post->comments->count() > 3 AND $loop->last)
                                         <li class="list-group-item border-0 p-0 mb-2" style="background-color: #f8f8f8">
-                                            <a href="{{ route('posts.comments.show', ['post' => $post->id, 'comment' => $comment->id] ) }}" class="text-decoration-underline text-muted small">View all {{ $post->comments->count() }} comments</a>
+                                            <a href="{{ route('posts.comments.index', ['post' => $post->id] ) }}" class="text-decoration-underline text-muted small">View all {{ $post->comments->count() }} comments</a>
                                         </li>
                                     @endif
                                 @endforeach
