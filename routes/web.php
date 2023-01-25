@@ -61,10 +61,14 @@ Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
 
 Route::group(["middleware" => "auth"], function () {
     #Post
-    Route::group(['prefix' => 'posts', 'middleware' => 'verified', "as" => "posts."], function (){
-        Route::resource('/', PostsController::class)->except('show', 'edit');
-        Route::resource('/comments', CommentsController::class);
-        Route::resource('/likes', LikesController::class);
+    
+    
+    Route::group(['middleware' => 'verified'], function (){
+        Route::resource('/posts', PostsController::class)->except('show', 'edit');
+        Route::resource('posts.comments', CommentsController::class);
+        // Route::resource('posts.likes', LikesController::class);
+        Route::post('posts/{post}/likes', [LikesController::class, 'store'])->name('posts.likes.store');
+        Route::delete('posts/{post}/likes', [LikesController::class, 'destroy'])->name('posts.likes.destroy');
     });
 
     #Q&A

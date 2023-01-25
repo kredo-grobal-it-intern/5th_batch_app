@@ -24,7 +24,7 @@ class LikesController extends Controller
 
     public function store(Request $request)
     {
-        $post = Post::findOrFail($request->post_id);
+        $post = Post::findOrFail($request->post);
         if (!$post->userReaction()) {
             $post->postReactions()->attach(Auth::id());
             return response()->json([

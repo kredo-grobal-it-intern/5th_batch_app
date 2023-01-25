@@ -44,7 +44,7 @@
                         Max file size: 1048kb
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn w-50 mt-2" style="background-color: #faca7b">Post</button>
+                        <input type="submit" class="btn w-50 mt-2" style="background-color: #faca7b">Post</input>
                     </div>
                 </form>
             </div>

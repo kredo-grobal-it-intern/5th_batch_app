@@ -30,6 +30,7 @@
         <div class="col-9 p-0">
             <div class="text-center p-4 bg-white mb-5" style="position: sticky; top: 0px; z-index: 999;">
                 <h1 class="font-mask">All Post</h1>
+                
             </div>
             @foreach ($all_posts as $post)
                 <section class="mx-auto my-5 w-75">
@@ -160,7 +161,7 @@
                                             title="I like it"></i>
                                         </button>
                                     @endif
-                                    <a href="{{ route('posts.comments.show', $post->id ) }}">
+                                    <a href="{{ route('posts.comments.index', ['post' => $post->id] ) }}">
                                         <i class="fa-regular fa-comment text-muted p-md-1 me-2" data-mdb-toggle="tooltip"
                                         data-mdb-placement="top" title="Comment"></i>
                                     </a>
@@ -199,7 +200,7 @@
                                         <a href="#" class="text-decoration-none text-dark fw-bold">{{ $comment->user->name }}</a>
                                         &nbsp;
                                         <p class="d-inline fw-light">{{ $comment->body }}</p>
-                                        <form action="{{ route('posts.comments.destroy', $comment->id ) }}" method="post">
+                                        <form action="{{ route('posts.comments.destroy', ['post' => $post->id, 'comment' => $comment->id] ) }}" method="post">
                                             @method('DELETE')
                                             @csrf
 
@@ -211,12 +212,12 @@
                                     </div>
                                     @if ($post->comments->count() > 3 AND $loop->last)
                                         <li class="list-group-item border-0 p-0 mb-2" style="background-color: #f8f8f8">
-                                            <a href="{{ route('posts.comments.show', $post->id ) }}" class="text-decoration-underline text-muted small">View all {{ $post->comments->count() }} comments</a>
+                                            <a href="{{ route('posts.comments.show', ['post' => $post->id, 'comment' => $comment->id] ) }}" class="text-decoration-underline text-muted small">View all {{ $post->comments->count() }} comments</a>
                                         </li>
                                     @endif
                                 @endforeach
                             </div>
-                            {{-- <form action="{{ route('comments.store') }}" method="post">
+                            {{-- <form action="{{ route('posts.comments.store') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="post_id" value="{{ $post->id }}">
                                 <label for="comment" class="form-label">Comment</label>
@@ -242,7 +243,7 @@
                 let post_id = $(this).data('post-id');
                 let self = this;
                 $.ajax({
-                    url: `/post/likes/${post_id}`,
+                    url: `/posts/${post_id}/likes`,
                     method: 'DELETE',
                     success: function(res) {
                         $(self).removeClass('remove-reaction')
@@ -266,11 +267,8 @@
                 let post_id = $(this).data('post-id');
                 let self = this;
                 $.ajax({
-                    url: `/post/likes`,
+                    url: `/posts/${post_id}/likes`,
                     method: 'POST',
-                    data: {
-                        post_id
-                    },
                     success: function(res) {
                         $(self).addClass('remove-reaction')
                             .removeClass('react')
@@ -287,29 +285,6 @@
                     }
                 });
             });
-            // store comment
-            // $(document).on('click', '.store-comment', function() {
-            //     // let post_id = $(this).data('post-id');
-            //     let self = this;
-            //     $.ajax({
-            //         url: `/post/comments`,
-            //         type: 'post',
-            //         dataType:'json',
-            //         data: {'user_id': {{ Auth::id() }},
-            //                 'post_id': {{ $post->id }},
-            //                 'body': {{ $post->comment }}},
-            //         headers : {
-            //             'X-CSRF-Token' : $('meta[name="csrf-token"]').attr('content'),
-            //         }
-            //         .done((res)=>{
-            //             console.log(res.message)
-            //         })
-            //         //通信が失敗したとき
-            //         .fail((error)=>{
-            //             console.log(error.statusText)
-            //         })
-            //     });
-            // });
         });
     </script>
 @endsection
