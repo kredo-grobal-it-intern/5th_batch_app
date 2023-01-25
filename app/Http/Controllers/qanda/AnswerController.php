@@ -84,7 +84,7 @@ class AnswerController extends Controller
 
     public function selectBestAnswer($id)
     {
-        $answer = $answer->findOrFail($id);
+        $answer = Answer::findOrFail($id);
 
         $answer->best_answer = 1;
         $answer->update();
