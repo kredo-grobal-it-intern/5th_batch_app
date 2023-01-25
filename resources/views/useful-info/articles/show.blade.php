@@ -50,15 +50,6 @@
                     none
                 @endif
             </p>
-            
-            {{-- if user is author, they can edit or delete the article --}}
-            @if($news->author == Auth::user()->name)
-                <div class="">
-                    <a href="" type="button" class="btn btn-warning float-start col-5">Edit</a>
-                    <button type="button" class="btn btn-danger float-end col-5" data-mdb-toggle="modal" data-mdb-target="#delete-article-{{$news->id }}">Delete</button>
-                </div>
-            @endif
-            @include('useful-info.modal.delete')
         </div>
         <div class="col-1"></div>
         <div class="col-6 p-0">

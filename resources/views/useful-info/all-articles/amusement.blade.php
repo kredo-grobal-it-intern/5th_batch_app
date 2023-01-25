@@ -5,8 +5,10 @@
 @section('content')
 <div class="container-fluid p-0 m-0"> 
     <div class="row">
-        <div class="col-3 mx-auto mt-3">
-            <a href="/pet-news" class="text-decoration-none ms-5">Useful Information</a>
+        <div class="col-3 d-flex align-items-end">
+            <a href="/pet-news" class="ms-4 fs-5 text-black">
+                Useful Information<iconify-icon inline icon="material-symbols:newspaper" title="News" class="fs-4 ms-2"></iconify-icon>
+            </a>
         </div>
         <h1 class="col-6 text-center ">Amusement Park</h1>
 
