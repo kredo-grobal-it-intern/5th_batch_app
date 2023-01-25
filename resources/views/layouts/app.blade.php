@@ -98,23 +98,13 @@
                             </li>
 
                             <li class="nav-item me-2">
-<<<<<<< HEAD
-                                <a class="nav-link fs-4" href="#"><iconify-icon inline icon="mdi:typewriter" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                                <a class="nav-link fs-4" href="{{ route('posts.index')}}"><iconify-icon inline icon="mdi:typewriter" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
                                     title="Post"></iconify-icon></a>
                             </li>
 
                             <li class="nav-item me-2">
                                 <a class="nav-link fs-4" href="{{ route("questions.index")}}"><iconify-icon inline icon="fluent:chat-bubbles-question-24-regular" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
                                     title="Q&A"></iconify-icon></a>
-=======
-                                <a class="nav-link fs-4" href="{{ route('posts.index')}}"><i class="fa-solid fa-comment-dots" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
-                                    title="Chat"></i></a>
-                            </li>
-
-                            <li class="nav-item me-2">
-                                <a class="nav-link fs-4" href="{{ route("questions.index")}}"><i class="fa-solid fa-pen-to-square" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
-                                    title="Q&A"></i></a>
->>>>>>> main
                             </li>
 
                             <li class="nav-item dropdown">
