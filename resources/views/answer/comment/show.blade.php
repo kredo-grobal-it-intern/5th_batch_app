@@ -42,8 +42,8 @@
                                 @if ($answer->user->image)
                                     <i class="fa-solid fa-user"></i>
                                 @else
-                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle me-3" height="50px"
-                                    width="50px" alt="avatar" />
+                                    <img src="{{ asset('/storage/images/resources/animal_lover.png') }}" class="" height="50px"
+                                    width="50px" alt="animal_lover">
                                 @endif
                             </div>
                             <div class="col-10">
@@ -63,8 +63,8 @@
                                             @if ($comment->user->image)
                                                 <i class="fa-solid fa-user"></i>
                                             @else
-                                                <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle me-3" height="50px"
-                                                width="50px" alt="avatar" />
+                                                <img src="{{ asset('/storage/images/resources/animal_lover.png') }}" class="" height="50px"
+                                                width="50px" alt="animal_lover">
                                             @endif
                                         </div>
                                         <div class="col-10">
@@ -98,8 +98,8 @@
                                     @if (Auth::user()->image)
                                         <i class="fa-solid fa-user"></i>
                                     @else
-                                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle me-3" height="40px"
-                                        width="40px" alt="avatar" />
+                                        <img src="{{ asset('/storage/images/resources/animal_lover.png') }}" class="" height="40px"
+                                        width="40px" alt="animal_lover">
                                     @endif
                                 </div>
                                 <div class="col-8">

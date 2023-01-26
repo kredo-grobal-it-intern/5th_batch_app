@@ -13,12 +13,13 @@
                 <h2 class="h3 mb-3 fw-light text-muted">Update Profile</h2>
                 <div class="row mb-3">
                     <div class="col-4">
-                        {{-- @if ($user->avatar)
-                            <img src="{{ asset('storage/'. \Auth::user()->avatar) }}" class="img-thumbnail rounded-circle d-block mx-auto profile-avatar"
-                                alt="">
-                        @else --}}
-                            <img src="{{ asset('/storage/images/resources/initial_icon.png') }}" class="fa-solid d-block mx-auto icon-lg" alt="icon">
-                        {{-- @endif --}}
+                        @if ($user->avatar)
+                            <img src="{{ asset('storage/avatars/' . $user->avatar) }}"
+                            class="rounded-circle avatar-sm d-block float-end" alt="" width="70px" height="70px">
+                        @else
+                            {{-- <img src="{{ asset('/storage/images/resources/initial_icon.png') }}" class="fa-solid d-block mx-auto icon-lg" alt="icon"> --}}
+                            <img src="{{ asset('/storage/images/resources/animal_lover.png') }}" class="fa-solid d-block float-end icon-lg" alt="icon">
+                        @endif
                     </div>
                     <div class="col-auto align-self-end">
                         <input type="file" name="avatar" id="" class="form-control form-control-sm mt-1">

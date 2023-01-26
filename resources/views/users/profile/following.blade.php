@@ -18,12 +18,13 @@
                         @foreach ($user->following as $following)
                             <div class="col-auto">
                                 <a href="">
-                                    {{-- @if ($following->following->avatar)
-                                        <img src="{{ asset('/storage/avatars/' . $following->following->avatar) }}"
+                                    @if ($following->following->avatar)
+                                        <img src="{{ asset('storage/avatars/' . $following->following->avatar) }}"
                                             class="rounded-circle avatar-sm" alt="">
-                                    @else --}}
-                                        <img src="{{ asset('/storage/images/resources/initial_icon.png') }}" class="fa-solid d-block float-end icon-lg" alt="icon">
-                                    {{-- @endif --}}
+                                    @else
+                                        {{-- <img src="{{ asset('/storage/images/resources/initial_icon.png') }}" class="fa-solid d-block float-end icon-lg" alt="icon"> --}}
+                                        <img src="{{ asset('/storage/images/resources/animal_lover.png') }}" class="fa-solid d-block float-end icon-lg" alt="icon">
+                                    @endif
                                 </a>
                             </div>
                             <div class="col ps-0 text-truncate">

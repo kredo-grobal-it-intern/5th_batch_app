@@ -40,101 +40,139 @@
                                     @if ($post->user->image)
                                         <i class="fa-solid fa-user"></i>
                                     @else
-                                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle me-3" height="50px"
-                                        width="50px" alt="avatar" />
+                                        <img src="{{ asset('/storage/images/resources/animal_lover.png') }}" class="" height="50px"
+                                        width="50px" alt="animal_lover">
                                     @endif
                                 </div>
-                                <div class="col-9">
+                                <div class="col-7">
                                     <h5 class="card-title font-weight-bold mb-2">{{ $post->user->name }}</h5>
                                     <p class="card-text"><i class="far fa-clock pe-2"></i>{{ $post->created_at->diffForHumans() }}</p>
                                 </div>
-                                <div class="col-1">
-                                    @if($post->user->id === Auth::id())
-                                        <div class="dropdown">
-                                            <i class="fa-solid fa-ellipsis" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false"></i>
-                                            {{-- <button class="btn" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
-                                                <i class="fa-solid fa-ellipsis"></i>
-                                            </button> --}}
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <li><button type="button" class="dropdown-item text-danger" data-mdb-toggle="modal" data-mdb-target="#deletePost-{{ $post->id }}"><i class="fa-solid fa-trash"></i> Delete</button></li>
-                                                <li><button type="button" class="dropdown-item text-warning" data-mdb-toggle="modal" data-mdb-target="#editPost-{{ $post->id }}"><i class="fa-solid fa-pen-nib"></i> Edit</button></li>
-                                            </ul>
-                                        </div>
-                                        {{-- <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#deletePost-{{ $post->id }}">Delete</button>
-                                        <button type="button" class="btn btn-white" data-mdb-toggle="modal" data-mdb-target="#editPost-{{ $post->id }}">Edit</button> --}}
+                                <div class="col-3">
+                                    <div class="d-flex d-inline float-end">
+                                        @if($post->user->id !== Auth::id())
+                                            @if ($post->user->isFollowed())
+                                                <form action="{{ route('follow.destroy',$post->user->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
 
-                                        <!-- Modal for Delete-->
-                                        <div class="modal fade" id="deletePost-{{ $post->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="static" data-mdb-keyboard="false">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header text-danger">
-                                                        <h5 class="modal-title" id="exampleModalLabel">
-                                                            <i class="fa-solid fa-circle-exclamation"></i> Delete post
-                                                        </h5>
-                                                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Are you sure to delete this post?</p>
-                                                        <h5>Body: {{ $post->body }}</h5>
-                                                        @if ($post->image)
-                                                            <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
-                                                                <img src="{{ asset('/storage/images/posts/' . $post->image) }}" class="img-fluid" alt="{{ $post->image }}">
-                                                                <a href="#!">
-                                                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                                                                </a>
-                                                            </div>
-                                                        @else
-                                                            <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
-                                                                <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/full page/2.jpg"
-                                                                alt="Card image cap" />
-                                                                <a href="#!">
-                                                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                                                                </a>
-                                                            </div>
-                                                        @endif
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <form action="{{ route('posts.destroy', $post->id) }}" method="post">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="button" class="btn btn-outline-danger btn-sm" data-mdb-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
+                                                    <h5 class="me-5"><button type="submit" class="btn btn-danger">Unfollow</button></h5>
+                                                </form>
+                                            @else
+                                                <form action="{{ route('follow.store') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $post->user->id }}">
+                                                    <h5 class="me-5"><button type="submit" class="btn btn-primary">Follow</button></h5>
+                                                </form>
+                                            @endif
+                                        @endif
+                                        @if($post->user->id === Auth::id())
+                                            <div class="dropdown">
+                                                <i class="fa-solid fa-ellipsis" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false"></i>
+                                                {{-- <button class="btn" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa-solid fa-ellipsis"></i>
+                                                </button> --}}
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <li><button type="button" class="dropdown-item text-danger" data-mdb-toggle="modal" data-mdb-target="#deletePost-{{ $post->id }}"><i class="fa-solid fa-trash"></i> Delete</button></li>
+                                                    <li><button type="button" class="dropdown-item text-warning" data-mdb-toggle="modal" data-mdb-target="#editPost-{{ $post->id }}"><i class="fa-solid fa-pen-nib"></i> Edit</button></li>
+                                                </ul>
                                             </div>
-                                        </div>
+                                            {{-- <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#deletePost-{{ $post->id }}">Delete</button>
+                                            <button type="button" class="btn btn-white" data-mdb-toggle="modal" data-mdb-target="#editPost-{{ $post->id }}">Edit</button> --}}
 
-                                        <!-- Modal for Edit-->
-                                        <div class="modal fade" id="editPost-{{ $post->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="static" data-mdb-keyboard="false">
-                                            <div class="modal-dialog modal-lg modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header" style="background-color: #faca7b">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Edit your post</h5>
-                                                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="mx-auto">
-                                                            <form action="{{ route('posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
+                                            <!-- Modal for Delete-->
+                                            <div class="modal fade" id="deletePost-{{ $post->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="static" data-mdb-keyboard="false">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header text-danger">
+                                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                                <i class="fa-solid fa-circle-exclamation"></i> Delete post
+                                                            </h5>
+                                                            <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Are you sure to delete this post?</p>
+                                                            <h5>Body: {{ $post->body }}</h5>
+                                                            @if ($post->image)
+                                                                <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
+                                                                    <img src="{{ asset('/storage/images/posts/' . $post->image) }}" class="img-fluid" alt="{{ $post->image }}">
+                                                                    <a href="#!">
+                                                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                                                    </a>
+                                                                </div>
+                                                            @else
+                                                                <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
+                                                                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/full page/2.jpg"
+                                                                    alt="Card image cap" />
+                                                                    <a href="#!">
+                                                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                                                    </a>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <form action="{{ route('posts.destroy', $post->id) }}" method="post">
                                                                 @csrf
-                                                                @method('PATCH')
-                                                                <label for="body" class="form-label">Body <span class="text-danger">*</span></label>
-                                                                <textarea name="body" id="body" cols="30" rows="3" class="form-control mb-3">{{ $post->body }}</textarea>
-                                                                <label for="image" class="form-label">Image</label>
-                                                                <input type="file" id="image" name="image[]" class="form-control" multiple="multiple">
-                                                                <div class="form-text mb-3">
-                                                                    The acceptable formats are jpeg,jpm,png, and gif only. Max file size: 1048kb
-                                                                </div>
-                                                                <div class="text-center">
-                                                                    <button type="submit" class="btn w-50 mt-2" style="background-color: #faca7b">Update changes</button>
-                                                                </div>
+                                                                @method('DELETE')
+                                                                <button type="button" class="btn btn-outline-danger btn-sm" data-mdb-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endif
+
+                                            <!-- Modal for Edit-->
+                                            <div class="modal fade" id="editPost-{{ $post->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="static" data-mdb-keyboard="false">
+                                                <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header" style="background-color: #faca7b">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Edit your post</h5>
+                                                            <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="mx-auto">
+                                                                <form action="{{ route('posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    @method('PATCH')
+                                                                    <label for="body" class="form-label">Body <span class="text-danger">*</span></label>
+                                                                    <textarea name="body" id="body" cols="30" rows="3" class="form-control mb-3">{{ $post->body }}</textarea>
+                                                                    <label for="image" class="form-label">Image</label>
+                                                                    <input type="file" id="image" name="image[]" class="form-control" multiple="multiple">
+                                                                    <div class="form-text mb-3">
+                                                                        The acceptable formats are jpeg,jpm,png, and gif only. Max file size: 1048kb
+                                                                    </div>
+                                                                    <div class="text-center">
+                                                                        <button type="submit" class="btn w-50 mt-2" style="background-color: #faca7b">Update changes</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="dropdown">
+                                                <i class="fa-solid fa-ellipsis" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false"></i>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    @if ($post->user->isFollowed())
+                                                        <form action="{{ route('follow.destroy',$post->user->id) }}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+
+                                                            <button type="submit" class="dropdown-item text-danger">Unfollow</button>
+                                                        </form>
+                                                    @else
+                                                        <form action="{{ route('follow.store') }}" method="post">
+                                                            @csrf
+                                                            <input type="hidden" name="id" value="{{ $post->user->id }}">
+                                                            <button type="submit" class="dropdown-item text-primary">Follow</button>
+                                                        </form>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
