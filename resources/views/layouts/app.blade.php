@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ config('app.name') }} | @yield('title') </title>
+    <title>{{ config('app.name') }} @yield('title') </title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -37,16 +37,17 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css" rel="stylesheet"/>
 
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet"/>
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet"/> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #faca7b">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #faca7b;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
-                    <img src="{{ asset('/storage/images/resources/Logo_pet.png') }}" class="img-fluid" alt="logo">
+                    <img src="{{ asset('/storage/images/resources/Logo_pet.png') }}" class="img-fluid" alt="logo" style="width:50px; height: 50px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -83,16 +84,11 @@
                             </li>
 
                             <li class="nav-item me-2">
-                                <a class="nav-link" href="#">Contact Us</a>
+                                <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
                             </li>
                         @else
                             <li class="nav-item me-2">
-                                <a class="nav-link fs-4" href="#"><i class="fa-solid fa-calendar" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
-                                    title="Calendar"></i></a>
-                            </li>
-
-                            <li class="nav-item me-2">
-                                <a class="nav-link fs-4" href="{{ route('animal_care.index') }}"><i class="fa-solid fa-hand-holding-heart" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                                <a class="nav-link fs-4" href="#"><i class="fa-solid fa-hand-holding-heart" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
                                     title="Donation"></i></a>
                             </li>
 
@@ -102,14 +98,13 @@
                             </li>
 
                             <li class="nav-item me-2">
-                                <a class="nav-link fs-4" href="#"><i class="fa-solid fa-comment-dots" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
-                                    title="Chat"></i></a>
+                                <a class="nav-link fs-4" href="{{ route('posts.index')}}"><iconify-icon inline icon="mdi:typewriter" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                                    title="Post"></iconify-icon></a>
                             </li>
 
                             <li class="nav-item me-2">
-
-                                <a class="nav-link fs-4" href="{{ route("questions.index")}}"><i class="fa-solid fa-pen-to-square" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
-                                    title="Q&A"></i></a>
+                                <a class="nav-link fs-4" href="{{ route("questions.index")}}"><iconify-icon inline icon="fluent:chat-bubbles-question-24-regular" data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                                    title="Q&A"></iconify-icon></a>
                             </li>
 
                             <li class="nav-item dropdown">
@@ -118,10 +113,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item fw-bold" href="#">{{ Auth::user()->name }}</a>
+                                    <a class="dropdown-item fw-bold" href="{{ route('profile.show' , \Auth::user()->id) }}">{{ \Auth::user()->name }}</a>
                                     <a class="dropdown-item" href="#">About Us</a>
                                     <a class="dropdown-item" href="#">FAQs</a>
-                                    <a class="dropdown-item" href="#">Contact Us</a>
+                                    <a class="dropdown-item" href="{{ route('contact') }}">Contact Us</a>
                                     <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
@@ -138,9 +133,16 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
+            {{-- <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-9">
+                        @yield('content')
+                    </div>
+                </div>
+            </div> --}}
             @yield('content')
+            @yield('scripts')
         </main>
     </div>
 

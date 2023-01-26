@@ -13,7 +13,16 @@ class NewsController extends Controller
 
     public function index()
     {
-        
+        $saved = Save::where('user_id', Auth::id())->get();
+        $keepNews = [];
+        foreach($saved as $savedNews){
+            $keepNews[] = $savedNews->news->id;
+        }
+
+        $old_news = News::whereDate('created_at', '<=', now()->subDays(3))->whereNotIn('id', $keepNews)->delete();
+
+
+
         $news_types = ['pet amusement','pet cafe', 'dog park', 'pet hospital'];
         foreach ($news_types as $news_type) {
             $response = Http::get(env('NEWS_API_ENDPOINT'), [
@@ -21,16 +30,18 @@ class NewsController extends Controller
                 'q' => $news_type
             ]);
 
-            foreach ($response->object()->articles as $article) {
-                News::create([
-                    'title' => $article->title,
-                    'description' => $article->description,
-                    'author' => $article->author,
-                    'image' => $article->urlToImage,
-                    'url' => $article->url,
-                    'news_type' => $news_type,
-                    'created_at' => $article->publishedAt
-                ]);
+            if (isset($response->object()->articles) && !empty($response->object()->articles)) {
+                foreach ($response->object()->articles as $article) {
+                    News::create([
+                        'title' => $article->title,
+                        'description' => $article->description,
+                        'author' => $article->author,
+                        'image' => $article->urlToImage,
+                        'url' => $article->url,
+                        'news_type' => $news_type,
+                        'created_at' => $article->publishedAt
+                    ]);
+                }
             }
         }
         
@@ -80,7 +91,7 @@ class NewsController extends Controller
 
     public function showDogrun()
     {
-        $dogrun_news = News::latest()->where('news_type', 'dogrun')->paginate(8);
+        $dogrun_news = News::latest()->where('news_type', 'dog park')->paginate(8);
 
         return view('useful-info.all-articles.dogrun')->with('dogrun_news', $dogrun_news);
     }

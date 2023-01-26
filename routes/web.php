@@ -7,19 +7,23 @@ use App\Http\Controllers\User_inputController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SaveController;
-
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\qanda\AnswerController;
 use App\Http\Controllers\qanda\CategoryController;
 use App\Http\Controllers\qanda\QuestionController;
+use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\qanda\AnswerCommentController;
 use App\Http\Controllers\qanda\AnswerReactionController;
 use App\Http\Controllers\qanda\QuestionReactionController;
+use App\Http\Controllers\post\PostsController;
+use App\Http\Controllers\post\CommentsController;
+use App\Http\Controllers\post\LikesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +42,9 @@ Route::get('/', function () {
     return view('top');
 });
 
+#creating categories (When you want to add a new category, you can use this route)
+Route::get('/categories', [CategoryController::class, 'generateQuestionCategories']);
+
 Route::resource('/pet-news', NewsController::class);
 
 Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
@@ -50,16 +57,22 @@ Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
         Route::get('/all_saved', [NewsController::class, 'showSaved'])->name('saved');
     });
 
-        #creating categories (When you want to add a new category, you can use this route)
-    Route::get('/categories', [CategoryController::class, 'generateQuestionCategories']);
-        #question
-    Route::resource('/Q-A', QuestionController::class);
-
     Route::resource('/save', SaveController::class)->except('index');
 });
 
 Route::group(["middleware" => "auth"], function () {
-    #question
+    #Post
+    
+    
+    Route::group(['middleware' => 'verified'], function (){
+        Route::resource('/posts', PostsController::class)->except('show', 'edit');
+        Route::resource('posts.comments', CommentsController::class);
+        // Route::resource('posts.likes', LikesController::class);
+        Route::post('posts/{post}/likes', [LikesController::class, 'store'])->name('posts.likes.store');
+        Route::delete('posts/{post}/likes', [LikesController::class, 'destroy'])->name('posts.likes.destroy');
+    });
+
+    #Q&A
     Route::group(['prefix' => 'q-a', 'middleware' => 'verified'], function () {
         Route::resource('/questions', QuestionController::class);
         Route::resource('/answers', AnswerController::class);
@@ -70,6 +83,13 @@ Route::group(["middleware" => "auth"], function () {
 
     #Best answer
     Route::patch('/best_answer/{id}', [AnswerController::class, 'selectBestAnswer'])->name('SelectBestAnswer');
+
+    // profile
+    Route::resource('/profile', ProfileController::class)->except('index');
+    Route::resource('/follow', FollowController::class)->except('index');
+    // followers
+    Route::get('/profile/{id}/followers', [ProfileController::class, 'followers'])->name('profile.followers');
+    Route::get('/profile/{id}/following', [ProfileController::class, 'following'])->name('profile.following');
 });
 
 
@@ -157,4 +177,19 @@ Route::get('map', function () {
         Route::get('/publication/{id}/show', [PublicationController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [PublicationController::class, 'edit'])->name('edit');
         Route::patch('/{id}/update', [PublicationController::class, 'update'])->name('update');
+    });
+
+
+
+
+    Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
+        Route::resource('/', NewsController::class);
+
+        Route::group(["prefix" => "show", "as" => "show."], function () {
+            Route::get('/amusement', [NewsController::class, 'showAmusement']);
+            Route::get('/cafe', [NewsController::class, 'showCafe']);
+            Route::get('/dogrun', [NewsController::class, 'showDogrun']);
+            Route::get('/hospital', [NewsController::class, 'showHospital']);
+            Route::get('/result', [NewsController::class, 'search']);
+        });
     });
