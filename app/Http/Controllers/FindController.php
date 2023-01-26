@@ -35,7 +35,7 @@ class FindController extends Controller
 
     public function show($id)
     {
-        $publication =  Find::findOrFail($id);
+        $publication = Find::findOrFail($id);
 
         return view('find_animals.show')
                 ->with('publication', $publication);
@@ -43,7 +43,7 @@ class FindController extends Controller
 
     public function edit($id)
     {
-        $publication =   Find::findOrFail($id);
+        $publication = Find::findOrFail($id);
 
         if ($publication->user->id != Auth::user()->id) {
             return redirect()->back();
@@ -80,7 +80,7 @@ class FindController extends Controller
             'area'  => 'required',
         ]);
 
-        $publication =   Find::findOrFail($id);
+        $publication = Find::findOrFail($id);
         $publication->name = $request->name;
         $publication->date_of_brith = $request->date_of_brith;
         $publication->breed = $request->breed;
@@ -118,11 +118,11 @@ class FindController extends Controller
 
     public function destroy($id)
     {
-        $publication =  Find::findOrFail($id);
+        $publication = Find::findOrFail($id);
         $this->deleteImage($publication->image);
         //$this->deleteImage(filename.jpg);
 
-        $publication ->destroy($id);
+        $publication->destroy($id);
 
         return redirect()->route('find_animal.index');
     }
@@ -181,19 +181,17 @@ class FindController extends Controller
 
     public function contact($id)
     {
-        $publication =   Find::findOrFail($id);
+        $publication = Find::findOrFail($id);
 
         return view('find_animals.contact')->with('publication', $publication);
     }
 
     public function contact_input($id)
     {
-        $publication =  Find::findOrFail($id);
+        $publication = Find::findOrFail($id);
 
         return view('find_animals.contact_input')->with('publication', $publication);
     }
-
-
 
     public function completed()
     {

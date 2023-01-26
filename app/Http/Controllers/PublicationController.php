@@ -80,7 +80,7 @@ class PublicationController extends Controller
 
     public function show($id)
     {
-        $publication =  Publication::findOrFail($id);
+        $publication = Publication::findOrFail($id);
 
         return view('publications.show')
               ->with('publication', $publication);
@@ -88,7 +88,7 @@ class PublicationController extends Controller
 
     public function edit($id)
     {
-        $publication =  Publication::findOrFail($id);
+        $publication = Publication::findOrFail($id);
 
         if ($publication->user->id != Auth::user()->id) {
             return redirect()->back();
@@ -113,7 +113,7 @@ class PublicationController extends Controller
             'area'  => 'required',
         ]);
 
-        $publication =  Publication::findOrFail($id);
+        $publication = Publication::findOrFail($id);
         $publication->name = $request->name;
         $publication->date_of_brith = $request->date_of_brith;
         $publication->breed = $request->breed;
@@ -151,7 +151,7 @@ class PublicationController extends Controller
     public function confirm()
     {
 
-        $all_publications =  Publication::latest()->get();
+        $all_publications = Publication::latest()->get();
         // $all_publications = $this->pet->findOrFail($id);
         // $all_publications  = Publication::all()->first();
 
@@ -161,13 +161,13 @@ class PublicationController extends Controller
 
     public function destroy($id)
     {
-        $publication =  Publication::findOrFail($id);
+        $publication = Publication::findOrFail($id);
         $this->deleteImage($publication->image);
         //$this->deleteImage(filename.jpg);
 
         $publication->destroy($id);
 
-        $all_publications =  Publication::latest()->get();
+        $all_publications = Publication::latest()->get();
 
         return view('publications.confirm')
            ->with('all_publications', $all_publications);
