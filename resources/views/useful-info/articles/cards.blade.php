@@ -6,12 +6,11 @@
                         <div class="row gx-2">
                             @foreach($amusement_news as $amusement)
                                 <div class="col-5 mx-auto mt-4 card p-0" style="max-height: 120px">
-                                    <a href="{{ route('pet-news.show', $amusement->id) }}" class="card-body  p-0"> 
+                                    <a href="{{ route('pet-news.show', $amusement->id) }}" class="card-body p-0"> 
                                         @if($amusement->image)
-                                            <img src="{{ $amusement->image }}" class="w-100 p-0 rounded-top" alt="" style="max-height:90px;">
+                                            <img src="{{ $amusement->image }}" class="w-100 rounded-top" alt="" style="max-height:90px;">
                                         @else
-                                            {{-- <a href="{{ route('pet-news.show', $amusement->id) }}" style="max-height: 120px">No image</a> --}}
-                                            <p style="max-height: 120px">No Image</p>
+                                            <p class="m-0 d-flex align-items-center justify-content-center" style="max-height:120px">No Image</p>
                                         @endif
                                     </a>
                                     <a href="{{ route('pet-news.show', $amusement->id) }}" class="card-footer overflow-scroll p-1">
@@ -26,12 +25,11 @@
                         <div class="row gx-2">
                             @foreach($cafe_news as $cafe)
                                 <div class="col-5 mx-auto mt-4 card p-0" style="max-height: 120px">
-                                    <a href="{{ route('pet-news.show', $cafe->id) }}" class="card-body  p-0"> 
+                                    <a href="{{ route('pet-news.show', $cafe->id) }}" class="card-body p-0"> 
                                         @if($cafe->image)
-                                            <img src="{{ $cafe->image }}" class="w-100 p-0 rounded-top" alt="" style="max-height:90px;">
+                                            <img src="{{ $cafe->image }}" class="w-100 rounded-top" alt="" style="max-height:90px;">
                                         @else
-                                            {{-- <a href="{{ route('pet-news.show', $amusement->id) }}" style="max-height: 120px">No image</a> --}}
-                                            <p style="max-height: 120px">No Image</p>
+                                            <p class="m-0 d-flex align-items-center justify-content-center" style="max-height: 120px">No Image</p>
                                         @endif
                                     </a>
                                     <a href="{{ route('pet-news.show', $cafe->id) }}" class="card-footer overflow-scroll p-1">
@@ -51,10 +49,9 @@
                                 <div class="col-5 mx-auto mt-4 card p-0" style="max-height: 120px">
                                     <a href="{{ route('pet-news.show', $dogrun->id) }}" class="card-body  p-0"> 
                                         @if($dogrun->image)
-                                            <img src="{{ $dogrun->image }}" class="w-100 p-0 rounded-top" alt="" style="max-height:90px;">
+                                            <img src="{{ $dogrun->image }}" class="w-100 rounded-top" alt="" style="max-height:90px;">
                                         @else
-                                            {{-- <a href="{{ route('pet-news.show', $amusement->id) }}" style="max-height: 120px">No image</a> --}}
-                                            <p style="max-height: 120px">No Image</p>
+                                            <p class="m-0 d-flex align-items-center justify-content-center" style="max-height: 120px">No Image</p>
                                         @endif
                                     </a>
                                     <a href="{{ route('pet-news.show', $dogrun->id) }}" class="card-footer overflow-scroll p-1">
@@ -72,9 +69,9 @@
                                 <div class="col-5 mx-auto mt-4 card p-0" style="max-height: 120px">
                                     <a href="{{ route('pet-news.show', $hospital->id) }}" class="card-body  p-0"> 
                                         @if($hospital->image)
-                                            <img src="{{ $hospital->image }}" class="w-100 p-0 rounded-top" alt="" style="max-height:90px;">
+                                            <img src="{{ $hospital->image }}" class="w-100 rounded-top" alt="" style="max-height:90px;">
                                         @else
-                                            <p style="max-height: 120px">No Image</p>
+                                            <p class="m-0 d-flex align-items-center justify-content-center" style="max-height: 120px">No Image</p>
                                         @endif
                                     </a>
                                     <a href="{{ route('pet-news.show', $hospital->id) }}" class="card-footer overflow-scroll p-1">

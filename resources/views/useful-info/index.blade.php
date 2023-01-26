@@ -34,9 +34,9 @@
                         <div class=" mx-auto my-3 card p-0" type="button" onclick="location.href='{{ route('pet-news.show', $savedNews->news->id) }}'" >
                             <div href="{{ route('pet-news.show', $savedNews->news->id) }}" class="p-0" > 
                                 @if($savedNews->news->image)
-                                    <img src="{{ $savedNews->news->image }}" class="w-100 p-0 rounded" alt="" style="max-height:80px;">
+                                    <img src="{{ $savedNews->news->image }}" class="w-100 p-0 rounded" alt="" style="max-height:100px;">
                                 @else
-                                    <p style="height: 80px">No Image</p>
+                                    <p class="m-0 my-auto d-flex align-items-center justify-content-center" style="height: 100px">No Image</p>
                                 @endif
                             </div>
                         </div>
@@ -44,7 +44,7 @@
 
                     {{-- $saved contains data whose user_id =- Auth::user()->id --}}
                     @if($saved->count() > 4)
-                        <div class="card" type="button" onclick="location.href='{{ route('pet-news.show.saved') }}'" style="height: 80px; background-color: rgba(255, 187, 0, 0.5);">
+                        <div class="card" type="button" onclick="location.href='{{ route('pet-news.show.saved') }}'" style="height: 100px; background-color: rgba(255, 187, 0, 0.5);">
                             <p class="my-auto">View All</p>
                         </div>
                     @endif

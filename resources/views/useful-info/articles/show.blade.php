@@ -40,7 +40,11 @@
     <div class="row  mt-5 ">
         <div class="col-5  p-0">
             <div class="bg-secondary w-100">
-                <img src="{{ $news->image }}" class="w-100 p-0 rounded-top" alt="" >
+                @if($news->image)
+                    <img src="{{ $news->image }}" class="w-100 p-0 rounded-top" alt="" >
+                @else
+                    <p class="m-0  d-flex align-items-center justify-content-center fs-1" style="height: 300px;">No Image</p>
+                @endif
             </div>
             <p class="text-end">
                 created at: {{ $news->created_at }} <br>
