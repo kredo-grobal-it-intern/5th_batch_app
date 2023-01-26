@@ -40,8 +40,8 @@
                                     @if ($question->user->image)
                                         <i class="fa-solid fa-user"></i>
                                     @else
-                                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle me-3" height="50px"
-                                        width="50px" alt="avatar" />
+                                        <img src="{{ asset('/storage/images/resources/animal_lover.png') }}" class="" height="50px"
+                                        width="50px" alt="animal_lover">
                                     @endif
                                 </div>
                                 <div class="col-9">

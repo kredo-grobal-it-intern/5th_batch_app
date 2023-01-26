@@ -111,9 +111,15 @@
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle fs-4" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <i class="fa-regular fa-circle-user"></i>
-                                </a>
+                                @if (Auth::user()->avatar)
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle fs-4" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        <img class="rounded-circle avatar-sm" src="{{ asset('storage/avatars/'. Auth::user()->avatar) }}" alt="" width="30px" height="30px">
+                                    </a>
+                                @else
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle fs-4" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        <i class="fa-regular fa-circle-user"></i>
+                                    </a>
+                                @endif
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item fw-bold" href="{{ route('profile.show' , \Auth::user()->id) }}">{{ \Auth::user()->name }}</a>
