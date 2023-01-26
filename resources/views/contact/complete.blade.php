@@ -2,9 +2,9 @@
 @section('title', 'Inquiry Completed')
 
 @section('content')
-        <section class="bg-gray-100 pt-2">
+@include('layouts.app')
+        <section>
           <div class="container mx-auto">
-            <p class="text-left px-4 pt-2"><a href="#" class="text-blue-600 hover:underline">Home</a>&gt;Contact Us</p>
             <h1 class="mt-2 text-4xl font-bold font-heading h-40 text-center p-12">Your inquiry has been completed.</h1>
           </div>
         </section>

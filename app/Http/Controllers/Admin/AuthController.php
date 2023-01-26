@@ -32,7 +32,7 @@ class AuthController extends Controller
             if (Auth::user()->isAdmin()) {
                 return redirect()->route('admin.events.index');
             } else {
-                return redirect()->home();
+                return redirect('/');
             }
         }
 

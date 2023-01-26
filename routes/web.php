@@ -62,8 +62,8 @@ Route::group(["prefix" => "pet-news", "as" => "pet-news."], function () {
 
 Route::group(["middleware" => "auth"], function () {
     #Post
-    
-    
+
+
     Route::group(['middleware' => 'verified'], function (){
         Route::resource('/posts', PostsController::class)->except('show', 'edit');
         Route::resource('posts.comments', CommentsController::class);

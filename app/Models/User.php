@@ -13,7 +13,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    
+
 
     /**
      * The attributes that are mass assignable.
@@ -71,5 +71,10 @@ class User extends Authenticatable
     public function isFollowed()
     {
         return $this->followers()->where('follower_id', Auth::user()->id)->exists();
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }
