@@ -26,7 +26,6 @@
                 <div class="category_fileter">
                  <form  action="{{ route('find_animal.category_search') }}">
                         <select class="col-form-select form-select-sm" aria-label=".form-select-sm example" id="category" name="category">
-                            <option selected>Category</option>
                             @foreach(config('category') as $key => $score)
                             <option value="{{ $score }}">{{ $score }}</option>
                             @endforeach
@@ -39,7 +38,6 @@
                <div class="animal_search">
                     <form  action="{{ route('find_animal.search_area') }}">
                         <select class="col-form-select form-select-sm" aria-label=".form-select-sm example" id="area" name="area">
-                            <option selected>Area</option>
                             @foreach(config('pref') as $key => $score)
                             <option value="{{ $score }}">{{ $score }}</option>
                             @endforeach

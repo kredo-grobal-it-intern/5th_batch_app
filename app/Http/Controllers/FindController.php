@@ -11,12 +11,6 @@ use Illuminate\Support\Facades\Storage;
 class FindController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/images/';
-    private $find;
-
-    public function __construct(Find $find)
-    {
-        $this->pet = $find;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +35,7 @@ class FindController extends Controller
 
     public function show($id)
     {
-        $publication = $this->pet->findOrFail($id);
+        $publication = Find::findOrFail($id);
 
         return view('find_animals.show')
                 ->with('publication', $publication);
@@ -49,7 +43,7 @@ class FindController extends Controller
 
     public function edit($id)
     {
-        $publication = $this->pet->findOrFail($id);
+        $publication = Find::findOrFail($id);
 
         if ($publication->user->id != Auth::user()->id) {
             return redirect()->back();
@@ -86,7 +80,7 @@ class FindController extends Controller
             'area'  => 'required',
         ]);
 
-        $publication       = $this->pet->findOrFail($id);
+        $publication = Find::findOrFail($id);
         $publication->name = $request->name;
         $publication->date_of_brith = $request->date_of_brith;
         $publication->breed = $request->breed;
@@ -124,11 +118,11 @@ class FindController extends Controller
 
     public function destroy($id)
     {
-        $publications = $this->pet->findOrFail($id);
-        $this->deleteImage($publications->image);
+        $publication = Find::findOrFail($id);
+        $this->deleteImage($publication->image);
         //$this->deleteImage(filename.jpg);
 
-        $this->pet->destroy($id);
+        $publication->destroy($id);
 
         return redirect()->route('find_animal.index');
     }
@@ -187,20 +181,17 @@ class FindController extends Controller
 
     public function contact($id)
     {
-        $publication = $this->pet->findOrFail($id);
+        $publication = Find::findOrFail($id);
 
         return view('find_animals.contact')->with('publication', $publication);
     }
 
     public function contact_input($id)
     {
-        $publication = $this->pet->findOrFail($id);
-
+        $publication = Find::findOrFail($id);
 
         return view('find_animals.contact_input')->with('publication', $publication);
     }
-
-
 
     public function completed()
     {
