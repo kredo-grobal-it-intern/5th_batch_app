@@ -22,6 +22,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/q_and_a.css') }}" rel="stylesheet">
 
+    <!-- Site icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+
     @yield('style')
 
     <script src="https://kit.fontawesome.com/eea364082e.js" crossorigin="anonymous"></script>

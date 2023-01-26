@@ -2,9 +2,9 @@
 @section('title', 'ContactUs')
 
 @section('content')
-<section class="bg-gray-100 pt-2">
+@include('layouts.app')
+<section>
   <div class="container mx-auto">
-    <p class="text-left px-4 pt-2 text-gray-400"><a href="#" class="text-blue-600 hover:underline">Home</a><span class="px-2">&gt</span>Contact Us</p>
     <h1 class="mt-2 text-4xl font-bold font-heading h-40 text-center p-12">Contact Us</h1>
   </div>
 </section>
