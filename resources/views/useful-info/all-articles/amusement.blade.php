@@ -31,18 +31,19 @@
         </form>
         <div class="row row-cols-4">
             @foreach($amusement_news as $amusement)
-                <div class="col mt-5 card p-0" style="max-height:300px;">
-                    <a href="{{ route('pet-news.show', $amusement->id) }}" class="card-body">
-                        @if($amusement->image)
-                            <img src="{{ $amusement->image }}" class="w-100 rounded-top" alt="" style="max-height: 150px;">
-                        @else
-                            <i class="fa-regular fa-image-slash bg-info"></i>
-                            <p class="">No Image</p>
-                        @endif
-                    </a>
-                    <a href="{{ route('pet-news.show', $amusement->id) }}" class="card-footer overflow-scroll" style="max-height: 50px;">
-                        {{ $amusement->title }}
-                    </a>
+                <div class="col">
+                    <div class="col-11 mx-auto mt-5 card p-0" style="max-height:300px;">
+                        <a href="{{ route('pet-news.show', $amusement->id) }}" class="card-body p-0">
+                            @if($amusement->image)
+                                <img src="{{ $amusement->image }}" class="w-100 rounded-top" alt="" style="max-height: 150px;">
+                            @else
+                                <p class="m-0 d-flex align-items-center justify-content-center" style="height: 150px;">No Image</p>
+                            @endif
+                        </a>
+                        <a href="{{ route('pet-news.show', $amusement->id) }}" class="card-footer overflow-scroll" style="max-height: 50px;">
+                            {{ $amusement->title }}
+                        </a>
+                    </div>
                 </div>
             @endforeach
         </div>
