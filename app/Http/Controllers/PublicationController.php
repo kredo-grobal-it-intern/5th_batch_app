@@ -45,25 +45,8 @@ class PublicationController extends Controller
             "area" => $request->area,
             "image" => self::saveImage($request),
 
-        //  $this->pet->name = $request->name;
-        //  $this->pet->date_of_brith = $request->date_of_brith;
-        //  $this->pet->breed = $request->breed;
-        //  $this->pet->weight = $request->weight;
-        //  $this->pet->gender = $request->gender;
-        //  $this->pet->url = $request->url;
-        //  $this->pet->pet_type = $request->pet_type;
-        //  $this->pet->netured_status = $request->netured_status;
-        //  $this->pet->vaccination_status = $request->vaccination_status;
-        //  $this->pet->charateristic = $request->charateristic;
-        //  $this->pet->area = $request->area;
-        //  $this->pet->image = $this->saveImage($request);
-
         ]);
-        //  $this->pet->save();
-
          return redirect()->route('publication.confirm');
-        // return redirect()->back();
-        // return view('publications.show');
     }
 
     public function saveImage($request)
@@ -152,8 +135,6 @@ class PublicationController extends Controller
     {
 
         $all_publications = Publication::latest()->get();
-        // $all_publications = $this->pet->findOrFail($id);
-        // $all_publications  = Publication::all()->first();
 
         return view('publications.confirm')
                 ->with('all_publications', $all_publications);
@@ -163,7 +144,6 @@ class PublicationController extends Controller
     {
         $publication = Publication::findOrFail($id);
         $this->deleteImage($publication->image);
-        //$this->deleteImage(filename.jpg);
 
         $publication->destroy($id);
 
