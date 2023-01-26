@@ -1,7 +1,8 @@
 <?php
 return array(
-  '0' => 'Dog',
-  '1' => 'Cat',
-  '2' => 'Male',
-  '3' => 'Female',
+  '0' => 'Category',
+  '1' => 'Dog',
+  '2' => 'Cat',
+  '3' => 'Male',
+  '4' => 'Female',
 );

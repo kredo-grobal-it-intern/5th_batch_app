@@ -11,12 +11,6 @@ class PublicationController extends Controller
 {
 
     const LOCAL_STORAGE_FOLDER = 'public/images/';
-    private $publication;
-
-    public function __construct(Publication $publication)
-    {
-        $this->pet = $publication;
-    }
 
     public function index()
     {
@@ -36,21 +30,36 @@ class PublicationController extends Controller
             'image' => 'required|mimes:jpg,jpeg,png,gif|max:1048'
         ]);
         // saving the pet in the post table
-         $this->pet->user_id = Auth::user()->id;
-         $this->pet->name = $request->name;
-         $this->pet->date_of_brith = $request->date_of_brith;
-         $this->pet->breed = $request->breed;
-         $this->pet->weight = $request->weight;
-         $this->pet->gender = $request->gender;
-         $this->pet->url = $request->url;
-         $this->pet->pet_type = $request->pet_type;
-         $this->pet->netured_status = $request->netured_status;
-         $this->pet->vaccination_status = $request->vaccination_status;
-         $this->pet->charateristic = $request->charateristic;
-         $this->pet->area = $request->area;
-         $this->pet->image = $this->saveImage($request);
+        Publication::create([
+            "user_id" => Auth::id(),
+            "name"  => $request->name,
+            "date_of_brith" => $request->date_of_brith,
+            "breed" => $request->breed,
+            "weight" => $request->weight,
+            "gender" => $request->gender,
+            "url" => $request->url,
+            "pet_type" => $request->pet_type,
+            "netured_status" => $request->netured_status,
+            "vaccination_status" => $request->vaccination_status,
+            "charateristic" => $request->charateristic,
+            "area" => $request->area,
+            "image" => self::saveImage($request),
 
-         $this->pet->save();
+        //  $this->pet->name = $request->name;
+        //  $this->pet->date_of_brith = $request->date_of_brith;
+        //  $this->pet->breed = $request->breed;
+        //  $this->pet->weight = $request->weight;
+        //  $this->pet->gender = $request->gender;
+        //  $this->pet->url = $request->url;
+        //  $this->pet->pet_type = $request->pet_type;
+        //  $this->pet->netured_status = $request->netured_status;
+        //  $this->pet->vaccination_status = $request->vaccination_status;
+        //  $this->pet->charateristic = $request->charateristic;
+        //  $this->pet->area = $request->area;
+        //  $this->pet->image = $this->saveImage($request);
+
+        ]);
+        //  $this->pet->save();
 
          return redirect()->route('publication.confirm');
         // return redirect()->back();
@@ -71,7 +80,7 @@ class PublicationController extends Controller
 
     public function show($id)
     {
-        $publication = $this->pet->findOrFail($id);
+        $publication =  Publication::findOrFail($id);
 
         return view('publications.show')
               ->with('publication', $publication);
@@ -79,7 +88,7 @@ class PublicationController extends Controller
 
     public function edit($id)
     {
-        $publication = $this->pet->findOrFail($id);
+        $publication =  Publication::findOrFail($id);
 
         if ($publication->user->id != Auth::user()->id) {
             return redirect()->back();
@@ -104,7 +113,7 @@ class PublicationController extends Controller
             'area'  => 'required',
         ]);
 
-        $publication       = $this->pet->findOrFail($id);
+        $publication =  Publication::findOrFail($id);
         $publication->name = $request->name;
         $publication->date_of_brith = $request->date_of_brith;
         $publication->breed = $request->breed;
@@ -141,7 +150,8 @@ class PublicationController extends Controller
 
     public function confirm()
     {
-        $all_publications = $this->pet->latest()->get();
+
+        $all_publications =  Publication::latest()->get();
         // $all_publications = $this->pet->findOrFail($id);
         // $all_publications  = Publication::all()->first();
 
@@ -151,13 +161,13 @@ class PublicationController extends Controller
 
     public function destroy($id)
     {
-        $publication = $this->pet->findOrFail($id);
+        $publication =  Publication::findOrFail($id);
         $this->deleteImage($publication->image);
         //$this->deleteImage(filename.jpg);
 
-        $this->pet->destroy($id);
+        $publication->destroy($id);
 
-        $all_publications = $this->pet->latest()->get();
+        $all_publications =  Publication::latest()->get();
 
         return view('publications.confirm')
            ->with('all_publications', $all_publications);
