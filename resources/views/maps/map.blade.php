@@ -24,8 +24,8 @@
 
     @section('scripts')
         @parent
-        <script src="{{ mix('js/map.js') }}"></script>        
-        <script src="{{ mix('js/categories.js') }}"></script>      
+        <script src="{{ asset('js/map.js') }}"></script>        
+        <script src="{{ asset('js/categories.js') }}"></script>      
         
         <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.mapApiKey.key') }}&callback=initMap&libraries=places&v=weekly" defer></script>
     @stop
