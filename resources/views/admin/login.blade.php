@@ -25,7 +25,7 @@
             </div>
           @endif
 
-          <form action="{{ route('login') }}" method="POST">
+          <form action="/login" method="POST">
             @csrf
             <div class="flex mb-4 px-4 bg-blueGray-50 rounded">
               <input class="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none" type="email" placeholder="Email" name="email" value="{{ old('email') }}">
