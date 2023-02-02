@@ -5,7 +5,7 @@
             <img src="{{ asset('/storage/avatars/'.$user->avatar) }}" alt="" class="rounded-circle d-block float-end avatar-lg" width="90px" height="90px">
         @else
             {{-- <img src="{{ asset('/storage/images/resources/initial_icon.png') }}" class="fa-solid d-block float-end icon-lg" alt="icon"> --}}
-            <img src="{{ asset('/storage/images/resources/animal_lover.png') }}" class="fa-solid d-block float-end icon-lg" alt="icon">
+            <img src="{{ asset('/assets/images/animal_lover.png') }}" class="fa-solid d-block float-end icon-lg" alt="icon">
         @endif
     </div>
 

@@ -47,7 +47,7 @@
                                     @if ($best_answer->user->image)
                                         <i class="fa-solid fa-user"></i>
                                     @else
-                                        <img src="{{ asset('/storage/images/resources/animal_lover.png') }}" class="" height="50px"
+                                        <img src="{{ asset('/assets/images/animal_lover.png') }}" class="" height="50px"
                                         width="50px" alt="animal_lover">
                                     @endif
                                 </div>
@@ -170,7 +170,7 @@
                                         @if (Auth::user()->image)
                                             <i class="fa-solid fa-user"></i>
                                         @else
-                                            <img src="{{ asset('/storage/images/resources/animal_lover.png') }}" class="" height="40px"
+                                            <img src="{{ asset('/assets/images/animal_lover.png') }}" class="" height="40px"
                                             width="40px" alt="animal_lover">
                                         @endif
                                     </div>
@@ -184,7 +184,7 @@
                             </form>
                         </div>
                         <div class="mx-auto">
-                            <img src="{{ asset('/storage/images/resources/best_answer.png') }}" class="" style="" alt="">
+                            <img src="{{ asset('/assets/images/best_answer.png') }}" class="" style="" alt="">
                         </div>
                     </div>
                 </section>
@@ -359,7 +359,7 @@
                                         @if (Auth::user()->image)
                                             <i class="fa-solid fa-user"></i>
                                         @else
-                                            <img src="{{ asset('/storage/images/resources/animal_lover.png') }}" class="" height="40px"
+                                            <img src="{{ asset('/assets/images/animal_lover.png') }}" class="" height="40px"
                                             width="40px" alt="animal_lover">
                                         @endif
                                     </div>

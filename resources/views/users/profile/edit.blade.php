@@ -18,7 +18,7 @@
                             class="rounded-circle avatar-sm d-block float-end" alt="" width="70px" height="70px">
                         @else
                             {{-- <img src="{{ asset('/storage/images/resources/initial_icon.png') }}" class="fa-solid d-block mx-auto icon-lg" alt="icon"> --}}
-                            <img src="{{ asset('/storage/images/resources/animal_lover.png') }}" class="fa-solid d-block float-end icon-lg" alt="icon">
+                            <img src="{{ asset('/assets/images/animal_lover.png') }}" class="fa-solid d-block float-end icon-lg" alt="icon">
                         @endif
                     </div>
                     <div class="col-auto align-self-end">

@@ -23,7 +23,7 @@
                                             class="rounded-circle avatar-sm" alt="">
                                     @else
                                         {{-- <img src="{{ asset('/storage/images/resources/initial_icon.png') }}" class="fa-solid d-block float-end icon-lg" alt="icon"> --}}
-                                        <img src="{{ asset('/storage/images/resources/animal_lover.png') }}" class="fa-solid d-block float-end icon-lg" alt="icon">
+                                        <img src="{{ asset('/assets/images/animal_lover.png') }}" class="fa-solid d-block float-end icon-lg" alt="icon">
                                     @endif
                                 </a>
                             </div>

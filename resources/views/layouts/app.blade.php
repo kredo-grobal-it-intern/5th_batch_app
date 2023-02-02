@@ -50,7 +50,7 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
-                    <img src="{{ asset('/storage/images/resources/Logo_pet.png') }}" class="img-fluid" alt="logo" style="width:50px; height: 50px;">
+                    <img src="{{ asset('/assets/images/Logo_pet.png') }}" class="img-fluid" alt="logo" style="width:50px; height: 50px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
