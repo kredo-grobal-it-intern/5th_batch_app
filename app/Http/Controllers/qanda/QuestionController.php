@@ -20,15 +20,36 @@ class QuestionController extends Controller
     // }
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $all_questions = Question::latest()->get();
+        $all_questions = Question::latest()->paginate(20);
 
         $all_question_categories = QuestionCategory::all();
 
+        $keyword = $request->input('keyword');
+        $query = Question::query();
+
+        if(!empty($keyword)) {
+            $query->where('title', 'LIKE', "%{$keyword}%");
+
+            $all_questions = $query->paginate(20);
+        }
+
+        // $category = $request->input('category[]');
+        // foreach ($query->selectedCategories as $selected_category)
+
+        // endforeach
+
+        // if(!empty($category)) {
+        //     $query->selectedCategories->where('category_id', $category);
+
+        //     $all_questions = $query->paginate(20);
+        // }
+
         return view('question/index')
                     ->with('all_questions', $all_questions)
-                    ->with('all_question_categories', $all_question_categories);
+                    ->with('all_question_categories', $all_question_categories)
+                    ->with('keyword', $keyword);
     }
 
     public function show()

@@ -11,9 +11,6 @@
                         <a href="{{ route('questions.index') }}" class="list-group-item list-group-item-action py-3 ripple" aria-current="true">
                             <i class="fa-solid fa-house-chimney me-3 fa-fw"></i><span>Home</span>
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action py-3 ripple">
-                            <i class="fa-solid fa-magnifying-glass me-3 fa-fw"></i><span>Search</span>
-                        </a>
                         <a href="{{ route('questions.create') }}" class="list-group-item list-group-item-action py-3 ripple">
                             <i class="fa-solid fa-square-plus me-3 fa-fw"></i><span>Create a question</span>
                         </a>

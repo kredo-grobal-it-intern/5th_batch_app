@@ -65,11 +65,16 @@ Route::group(["middleware" => "auth"], function () {
 
 
     Route::group(['middleware' => 'verified'], function (){
-        Route::resource('/posts', PostsController::class)->except('show', 'edit');
+
+        #search
+        Route::get('posts/search', [PostsController::class, 'search'])->name('posts.search');
+        
+        Route::resource('/posts', PostsController::class)->except('edit');
         Route::resource('posts.comments', CommentsController::class);
         // Route::resource('posts.likes', LikesController::class);
         Route::post('posts/{post}/likes', [LikesController::class, 'store'])->name('posts.likes.store');
         Route::delete('posts/{post}/likes', [LikesController::class, 'destroy'])->name('posts.likes.destroy');
+
     });
 
     #Q&A
