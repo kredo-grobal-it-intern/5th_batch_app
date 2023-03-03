@@ -28,7 +28,7 @@ class PostsController extends Controller
         $query = Post::query();
 
         if(!empty($tag)) {
-            $query->where('body', 'LIKE', "{$tag}");
+            $query->where('body', 'LIKE', "%#{$tag}%");
 
             $all_posts = $query->paginate(100);
         }
