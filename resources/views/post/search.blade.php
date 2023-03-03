@@ -62,11 +62,10 @@
                         </section>
                     </div>
                 @endforeach
-                {{-- @if (!empty($tag))
-                    <div class="mx-auto mt-3">
-                        {{ $all_posts->links() }}
-                    </div>
-                @endif --}}
+                <div class="d-flex justify-content-center">
+                    {{-- 下記のようにページネーターを記述するとページネートで次ページに遷移しても、検索結果を保持する --}}
+                    {{ $all_posts->appends(request()->input())->links() }}
+                </div>
             </div>
         </div>
     </div>

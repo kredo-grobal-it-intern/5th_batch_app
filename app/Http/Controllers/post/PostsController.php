@@ -22,7 +22,7 @@ class PostsController extends Controller
 
     public function search(Request $request)
     {
-        $all_posts = Post::latest()->get();
+        $all_posts = Post::latest()->paginate(100);
 
         $tag = $request->input('tag');
         $query = Post::query();
@@ -30,7 +30,7 @@ class PostsController extends Controller
         if(!empty($tag)) {
             $query->where('body', 'LIKE', "{$tag}");
 
-            $all_posts = $query->paginate(20);
+            $all_posts = $query->paginate(100);
         }
 
         return view('post/search')

@@ -251,11 +251,10 @@
                     </div>
                 </section>
             @endforeach
-            {{-- @if (!empty($keyword))
-                <div class="mx-auto text-center mt-3">
-                    {{ $all_questions->links() }}
-                </div>
-            @endif --}}
+            <div class="d-flex justify-content-center">
+                {{-- 下記のようにページネーターを記述するとページネートで次ページに遷移しても、検索結果を保持する --}}
+                {{ $all_questions->appends(request()->input())->links() }}
+            </div>
         </div>
     </div>
 @endsection
