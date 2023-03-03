@@ -11,7 +11,7 @@
                         <a href="{{ route('posts.index') }}" class="list-group-item list-group-item-action py-3 ripple" aria-current="true">
                             <i class="fa-solid fa-house-chimney me-3 fa-fw"></i><span>Home</span>
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action py-3 ripple">
+                        <a href="{{ route('posts.search') }}" class="list-group-item list-group-item-action py-3 ripple">
                             <i class="fa-solid fa-magnifying-glass me-3 fa-fw"></i><span>Search</span>
                         </a>
                         <a href="{{ route('posts.create') }}" class="list-group-item list-group-item-action py-3 ripple">

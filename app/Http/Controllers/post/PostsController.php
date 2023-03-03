@@ -20,14 +20,27 @@ class PostsController extends Controller
         return view('post/index')->with('all_posts', $all_posts);
     }
 
+    public function search(Request $request)
+    {
+        $all_posts = Post::latest()->get();
+
+        $tag = $request->input('tag');
+        $query = Post::query();
+
+        if(!empty($tag)) {
+            $query->where('body', 'LIKE', "{$tag}");
+
+            $all_posts = $query->paginate(20);
+        }
+
+        return view('post/search')
+                    ->with('all_posts', $all_posts)
+                    ->with('tag', $tag);
+    }
+
     public function create()
     {
         return view('post/create');
-    }
-
-    public function show($id)
-    {
-        //
     }
 
     public function store(Request $request)
@@ -64,6 +77,12 @@ class PostsController extends Controller
         if (Storage::disk('local')->exists($image_path)) :
             Storage::disk('local')->delete($image_path);
         endif;
+    }
+
+    public function show(Post $post)
+    {
+        // $post = Post::findOrFail($id);
+        return view('post/show')->with('post',$post);
     }
 
     public function update(Request $request, $post)

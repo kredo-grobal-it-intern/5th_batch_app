@@ -11,9 +11,6 @@
                         <a href="{{ route('questions.index') }}" class="list-group-item list-group-item-action py-3 ripple" aria-current="true">
                             <i class="fa-solid fa-house-chimney me-3 fa-fw"></i><span>Home</span>
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action py-3 ripple">
-                            <i class="fa-solid fa-magnifying-glass me-3 fa-fw"></i><span>Search</span>
-                        </a>
                         <a href="{{ route('questions.create') }}" class="list-group-item list-group-item-action py-3 ripple">
                             <i class="fa-solid fa-square-plus me-3 fa-fw"></i><span>Create a question</span>
                         </a>
@@ -31,6 +28,27 @@
             <div class="text-center p-4 bg-white" style="position: sticky; top: 0px; z-index: 999;">
                 <h1 class="font-mask">All Questions</h1>
             </div>
+            <form method="get" action="{{ route('questions.index') }}" class="form-inline">
+                <div class="container-fluid">
+                    {{-- <div class="w-75 mx-auto mb-3">
+                        <label for="category" class="form-label d-block">Select Category</label>
+                        @foreach ($all_question_categories as $category)
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" name="category[]"  id="{{ $category->name }}" value="{{ $category->id }}" class="form-check-input">
+                                <label for="{{ $category->name }}" class="form-check-label">{{ $category->name }}</label>
+                            </div>
+                        @endforeach
+                    </div> --}}
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                            <input type="text" name="keyword" class="form-control" value="{{ $keyword }}" placeholder="Type keyword">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-success">Search <i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
             @foreach ($all_questions as $question)
                 <section class="mx-auto my-5 w-75">
                     <div class="card">
@@ -46,7 +64,9 @@
                                 </div>
                                 <div class="col-9">
                                     <div>
-                                        <h5 class="card-title font-weight-bold mb-2">{{ $question->user->name }}</h5>
+                                        <h5 class="card-title font-weight-bold mb-2">
+                                            <a class="text-decoration-none text-dark" href="#">{{ $question->user->name }}</a>
+                                        </h5>
                                         <p class="card-text"><i class="far fa-clock pe-2"></i>{{ $question->created_at->diffForHumans() }}</p>
                                     </div>
                                 </div>
@@ -231,6 +251,11 @@
                     </div>
                 </section>
             @endforeach
+            {{-- @if (!empty($keyword))
+                <div class="mx-auto text-center mt-3">
+                    {{ $all_questions->links() }}
+                </div>
+            @endif --}}
         </div>
     </div>
 @endsection
